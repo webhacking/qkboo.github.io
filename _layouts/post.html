@@ -15,7 +15,7 @@ comments: true
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
       {% endif %}
       {% if page.comments %}
-       • <a href="https://qkboo.github.io{{ page.url }}#disqus_thread">Comments</a>
+       • <a href="{{ site.url }}{{ page.url }}#disqus_thread">Comments</a>
       {% endif %}
     </p>
   </header>

@@ -16,7 +16,7 @@
 title: qkboo Blog
 email: gangtai.goh@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  다양한 프로그래밍 환경을 다루고 컴퓨터 언어에 대해서도 다루고 있습니다.
+  다양한 프로그래밍 환경을 다루고 Mobile, macOS, Python, Linux Developement 대해서 다루고 있습니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://qkboo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: gtko
