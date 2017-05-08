@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -12,7 +13,11 @@ layout: default
       </time>
       {% if page.author %}
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
-      {% endif %}</p>
+      {% endif %}
+      {% if page.comments %}
+       • <a href="https://qkboo.github.io{{ page.url }}#disqus_thread">Comments</a>
+      {% endif %}
+    </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">

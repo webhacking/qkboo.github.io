@@ -39,3 +39,7 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
+
+# Disqus
+disqus:
+  shortname: qkboo-github-io

@@ -44,3 +44,7 @@
   </div>
 
 </footer>
+{% if page.comments %}
+  <!-- Disqus comment count -->
+  <script id="dsq-count-scr" src="//{{ site.disqus.shortname }}.disqus.com/count.js" async></script>
+{% endif %}
