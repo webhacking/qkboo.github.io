@@ -1,7 +1,8 @@
 ---
 title: Tmux Basic
-date:   2017-05-04 07:00:00 +0900
+date: 2017-05-04 07:00:00 +0900
 layout: post
+comments: true
 tags: tmux, terminal, linux
 categories:
 - Linux
