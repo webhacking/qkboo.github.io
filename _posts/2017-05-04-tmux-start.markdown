@@ -121,7 +121,7 @@ $ tmux new -s foo        # 세션 foo를 시작하고 참가한다
 
 Tmux 세션 참가후 Window에서는 Prefix key로 Session, Window, Pane 관련 명령을 키로 조합해 사용한다. 기본 Prefix key는 `Control+b` key고 옵션으로 사용하는 Meta key는 `Alt` 키 이다. 
 
-여기서 `Control+b`는 **C** 혹은 **C-b**로 표기하고, Meta key인 `Alt`는 **M**으로 표기한다.
+여기서 Prefix key는 **C**와 조합으로 표기하고, Meta key인 `Alt`는 **M**으로 표기한다.
 
 윈도우 명령 control, meta 키 조합과 병행해 윈도우에서 명령모드를 사용할 수 있다. 명령모드는 **C-:** 키로 시작하고, 명령모드에서 **명령 자동 완성**을 지원한다.
 
@@ -206,8 +206,9 @@ $ tmux kill-session -t 3   # 세션번호 3을 종료한다.
 Capslock키를 Control 키로 대체해 사용하면, Control+a 키 조합이 편하다. .tmux.conf 에 키 조합을 변경한다.
 
 ```
+#Control+a에 'prefix' 연결
 set -g prefix C-a
-# bind 'C-a C-a' to type 'C-a'
+#send-prefix를 Control+a에 전달
 bind C-a send-prefix
 unbind C-b
 ```
