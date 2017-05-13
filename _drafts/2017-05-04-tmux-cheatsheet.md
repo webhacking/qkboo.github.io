@@ -2,15 +2,13 @@
 title: Tmux cheatsheet
 date: 2017-05-04 05:16:00 +0900
 layout: post
-comments: true
-tags: tmux, iterm2, terminal, linux
+tags: tmux, linux, iterm2, terminal
 categories:
 - Linux
 - tmux
 ---
 
-
-여기서 `tmux` 터미널 명령은 `$ tmux` 로 표현하고, tmux window 에서 Tmux 명령은 기능키와 메타키 조합으로 `C-[c,b...]` 같이 표기한다.
+여기서 `tmux` 터미널 명령은 `$ tmux` 로 표현하고, tmux 세션 시작후에 Tmux window 에서 명령은 기능키와 메타키 조합으로 `C-[c,b...]` 같이 표기한다.
 여기서 C는 Control 키고, M은 META키인 Alt 키다.
  - 여기서 기능키 조합은 C-a를 사용했다. (기본 기능키 조합은 C-b)
 
@@ -29,7 +27,7 @@ unbind C-b
 
 tmux는 세션을 만들고, 세션에서 window를 구성하고, window 안에 pane을 사용한다.
 
-##### 새로운 세션 시작하기
+### 새로운 세션 시작하기
 
 ```bash
 $ tmux                        #새로운 새션
@@ -38,7 +36,7 @@ $ tmux new -s session_name    #session_name으로 새로운 세션
 
 세션을 dettach하면 세션은 저장된다. 사용하지 않으면 **kill**로 종료한다.
 
-##### 세션 이용하기
+### 세션 이용하기
 
 ```sh
 $ tmux ls
@@ -46,7 +44,8 @@ $ tmux list-session
 $ tmux list-windows         # Window 목록
 ```
 
-열린 세션 사용하기. 세션 번호중 낮은 번호에 우선해서 접속한다.
+#### 열린 세션에 붙기.
+ - 세션 번호중 낮은 번호에 우선해서 접속한다.
 
 ```sh
 $ tmux attach
@@ -54,13 +53,14 @@ $ tmux at
 $ tmux a
 ```
 
-특정 세션에 접속하기 - 세션 번호 혹은 이름으로 접속한다.
+#### 특정 세션에 접속하기
+ - 세션 번호 혹은 이름으로 접속한다.
 
 ```sh
 $ tmux a -t session_name
 ```
 
-세션 마감하기
+#### 세션 마감하기
 
 ```sh
 $ tmux kill-session session_name

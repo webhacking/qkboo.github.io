@@ -1,3 +1,11 @@
+---
+title: Jekyll Usages
+date: 2017-05-07 10:10:00 +0900
+layout: post
+tags: jekyll
+categories: jekyll
+---
+
 # jekyll 기본 사용
 
 - 지킬 사이트의 테마 이용
@@ -45,11 +53,12 @@ jekyll 디렉토리 구조
 | _includes | 레이아웃과 포스트에 포함시킬... 재사용 가능한 조각들 |
 | _layouts |  |
 
+
 ### new 명령
 
 *jekyll new SITE_NAME* 으로 생성시 아래 같은 템플릿으로 구성.
 
-```
+```sh
 Gemfile
 Gemfile.lock
 _config.yml
@@ -79,20 +88,31 @@ index.html
 [jekyll 설정](http://jekyllrb-ko.github.io/docs/configuration/) 참조
 
 
-```yaml
+```yml
 markdown: kramdown
 highlighter: pygments
 permalink: pretty
 relative_permalinks: false
 ```
 
-Jekyll 실행 환경을 지정할 수 있다. 예를 들어 디버깅, 개발, 상품 환경으로 구분한다면 코드에 다음 같이 넣을 수 있다:
 
-```yaml
+rouge syntax highlighter
+https://sacha.me/articles/jekyll-rouge/
+
+Jekyll 실행 환경을 지정할 수 있다. 
+예를 들어 디버깅, 개발, 상품 환경으로 구분한다면 코드에 다음 같이 넣을 수 있다:
+
+{% raw %}
+```liquid
 {% if jekyll.environment == "production" %}
-   {% include disqus.html %}
+  {% include disqus_comments.html %}
 {% endif %}
 ```
+{% endraw %}
+
+https://shopify.github.io/liquid/basics/introduction/
+http://ozzieliu.com/2016/04/26/writing-liquid-template-in-markdown-with-jekyll/
+
 
 jekyll을 실행시 JEKYLL_ENV에 값을 지정해 줄 수 있다. 기본 값은 development 이다.
 
@@ -100,6 +120,8 @@ jekyll을 실행시 JEKYLL_ENV에 값을 지정해 줄 수 있다. 기본 값은
 $ JEKYLL_ENV=production bundle exec jekyll build
 $ JEKYLL_ENV=production jekyll build
 ```
+
+지킬의 포스트 등에서 사용하는 변수는 https://jekyllrb.com/docs/variables/ 에서 확인할 수 있다.
 
 
 ##### github 지원 config items
@@ -143,7 +165,7 @@ $ JEKYLL_ENV=production jekyll build
 > Front matter
 > BODY
 
-Front matter 는 다음 같이 구성되고, **[Front Matter](http://jekyllrb.com/docs/frontmatter/)**, **[머리말](http://jekyllrb-ko.github.io/docs/frontmatter/)를 참조한다.
+Front matter 는 다음 같이 구성되고, **[Front Matter](http://jekyllrb.com/docs/frontmatter/)**, **[머리말](http://jekyllrb-ko.github.io/docs/frontmatter/)**를 참조한다.
 
 YAML 머리말 블록을 가진 모든 파일을 특별한 파일로 인식하여 처리합니다. 머리말은 반드시 올바른 YAML 형식으로 작성되어야 하며, 대시문자 3 개로 감싸서 파일의 맨 첫 부분에 위치해야 합니다.
 
@@ -176,6 +198,15 @@ Front matter 에 사용할 수 있는 내장된 변수는 다음 같다:
 |**tags**|카테고리와 유사하게, 하나 이상의 태그를 포스트에 추가할 수 있다. 또 카테고리와 동일하게, YAML 리스트 또는 쉼표로 구분된 문자열로 지정할 수도 있다.|
 
 
+
+#### Syntaxhighlighting
+
+https://gist.github.com/zakkain/3203448
+
+https://demisx.github.io/jekyll/2014/01/13/improve-code-highlighting-in-jekyll.html
+
+
+
 ##### 외부 자원
 
 이미지, 다운로드 파일 등을 사용할 때는 루트 디렉토리의 `images`, `assets`, `downloads` 라는 디렉토리를 만들고 그곳에 둔다. 그리고 해당 자원의 참조를 */* 경로를 기준으로 삼으면 된다.
@@ -206,9 +237,9 @@ Front matter 에 사용할 수 있는 내장된 변수는 다음 같다:
 
 
 
-## Theme 
+## Theme
 
-Jekyll은 기본 테마로 `Minima`라 불리는 gem-based theme를 사용한다. 이 테마를 구성하는 파일은 jekyll new <PATH> 명령으로 <PATH> 위치에 다음 같이 구성된다. 
+Jekyll은 기본 테마로 `Minima`라 불리는 gem-based theme를 사용한다. 이 테마를 구성하는 파일은 jekyll new <PATH> 명령으로 <PATH> 위치에 다음 같이 구성된다.
 
 > Minima 테마는 assets, _layouts, _includes, and _sass 디렉토리를 실제 Minima theme gem 디렉토리에 위치하고 있고 아래 같은 구성으로 사이트가 생성된다.
 
@@ -265,7 +296,7 @@ Minima 테마의 기본 폴더는 `bundle show minima` 명령으로 확인이 �
 
 #### 기본 테마 재정의 하기
 
-Jekyll theme는 기본 layouts, includes, stylesheets를 지정하는데, 이것을 사이트 콘텐트에 맞게 재정의할 수 있다. 
+Jekyll theme는 기본 layouts, includes, stylesheets를 지정하는데, 이것을 사이트 콘텐트에 맞게 재정의할 수 있다.
 
 Minima 테마의 기본 폴더는 `bundle show minima` 명령으로 확인이 가능하다. 그리고 아래 같이 찾아서 열어 볼 수 있다. 먼저 macOS 는
 
@@ -290,7 +321,7 @@ $ cd `bundle show minima`
 
 #### Layout
 
-컨텐츠의 구성은 **_layouts** 폴더에 넣는다. 이렇게 구성해 보자 
+컨텐츠의 구성은 **_layouts** 폴더에 넣는다. 이렇게 구성해 보자
 
 ```
 default.html|
@@ -319,7 +350,7 @@ default.html|
 
     {% include footer.html %}
 
-    {% include analytics.html %}
+    {% include google-analytics.html %}
 
     <script id="dsq-count-scr" src="//{{ site.disqus }}.disqus.com/count.js" async></script>
 
@@ -410,7 +441,7 @@ icon-github.html
 
 
 
-#### sass 
+#### sass
 
 *_sass* 디렉토리에 *.sass* 파일을 두면 sass 컴파일러가 컴파일 한다.
 
@@ -458,11 +489,19 @@ href 속성에 #disqus_thread 를 추가하기 위해서, _layouts/post.html 템
 • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
 {% endif %}
 {% if page.comments %}
-• <a href="https://{{ page.url }}#disqus_thread">Comments</a>
+  • <a href="{{ site.url }}{{ page.url }}#disqus_thread">Comments</a>
 {% endif %}
 ```
 
-![](images/disqus-comment-count.png)
+![](/images/jekyll/disqus-comment-count.png)
+
+조건에 page.conmments 를 참조하면 post 에 `comments: true` 가 정의되면 되고, layout 전체를 담당하려면 아래 같은 layout.comments 를 비교한다:
+
+```yaml
+{% if layout.comments %}
+  • <a href="{{ site.url }}{{ page.url }}#disqus_thread">Comments</a>
+{% endif %}
+```
 
 
 ### Google Analytics
@@ -487,7 +526,7 @@ default.html
 
     {% include footer.html %}
 
-    {% include analytics.html %}
+    {% include google-analytics.html %}
 
     <script id="dsq-count-scr" src="//{{ site.disqus }}.disqus.com/count.js" async></script>
 

@@ -1,8 +1,7 @@
 ---
-title: Tmux Basic
+title: Tmux Start
 date: 2017-05-04 07:00:00 +0900
 layout: post
-comments: true
 tags: tmux, terminal, linux
 categories:
 - Linux
@@ -21,6 +20,7 @@ Tmux는 terminal multiplexer로 서버에 여러 프로그램을 세션에 저�
 
 - Ubuntu 14.04, Raspbian Jessie, Armbian 등에서 tmux가 1.8, 1.9 버전이 제공
 - Ubuntu 15, 16 Xenivior 버전은 Tmux 2.1
+- macOS는 `brew` 를 사용한다.
 
 
 ### Tmux 2.3 설치
@@ -50,109 +50,160 @@ sudo make install
 ```
 
 
-> #### deb 바이너리 설치
->
+#### deb 바이너리 설치
+
 > 단, libtinfo5 6.x 설치시 의존성 라이브러리 문제로 패키지 삭제 문제 발생!!!
->
-> https://launchpad.net/ubuntu/yakkety/amd64/tmux/2.2-3 에 빌드되어 있는 바이너리를 Ubuntu 14.04 설치하기 위해서 다음 패키지 버전이 필요하다.
-> Depends on:
->  - libc6 (>= 2.14)
->  - libevent-2.0-5 (>= 2.0.10-stable)
->  - libtinfo5 (>= 6)
->  - libutempter0 (>= 1.1.5)
->
->
+
+https://launchpad.net/ubuntu/yakkety/amd64/tmux/2.2-3 에 빌드되어 있는 바이너리를 Ubuntu 14.04 설치하기 위해서 다음 패키지 버전이 필요하다.
+
+Depends on:
+ - libc6 (>= 2.14)
+ - libevent-2.0-5 (>= 2.0.10-stable)
+ - libtinfo5 (>= 6)
+ - libutempter0 (>= 1.1.5)
+
 > 기본 설치후 업그레이드를 했다면 libc6 버전은 문제가 없는듯.
->
->
-> ```
-> $ sudo apt-cache show libc6
-> $ sudo apt-cache show libtinfo5
-> ```
->
-> Ubuntu14.04.4 LTS 버전의 libtinfo5는 5.9로 다음 같이 설치해 준다.
->
-> ```
-> $ wget http://launchpadlibrarian.net/271601076/libtinfo5_6.0+20160625-1ubuntu1_amd64.deb
-> ```
->
-> 그리고 tmux 2.2 버전의 deb 를 다운로드한다.
->
-> ```
-> $ wget http://launchpadlibrarian.net/263289132/tmux_2.2-3_amd64.deb
-> ```
->
-> 설치
->
-> ```
-> $ sudo dpkb -i libtinfo5_6.0+20160625-1ubuntu1_amd64.deb
-> $ sudo dpkb -i tmux_2.2-3_amd64.deb
-> ```
->
 
-
-### 시작
-
-tmux는 세션으로 관리한다.
 
 ```
-$ tmux              
-$ tmux new -s foo        #create session foo and attach
-$ tmux new -s foo -d     #create detached session foo
+$ sudo apt-cache show libc6
+$ sudo apt-cache show libtinfo5
 ```
+
+Ubuntu14.04.4 LTS 버전의 libtinfo5는 5.9로 다음 같이 설치해 준다.
+
+```
+$ wget http://launchpadlibrarian.net/271601076/libtinfo5_6.0+20160625-1ubuntu1_amd64.deb
+```
+
+그리고 tmux 2.2 버전의 deb 를 다운로드한다.
+
+```
+$ wget http://launchpadlibrarian.net/263289132/tmux_2.2-3_amd64.deb
+```
+
+설치
+
+```
+$ sudo dpkb -i libtinfo5_6.0+20160625-1ubuntu1_amd64.deb
+$ sudo dpkb -i tmux_2.2-3_amd64.deb
+```
+
+이제 `tmux` 명령으로 다중 터미널 명령을 사용할 수 있다.
+
+
+#### macOS에서 tmux 설치
+
+homebrew를 사용해서 tmux를 설치한다. 2017년 현재 2.4 버전이 설치된다.
+
+```
+$ brew install tmux
+```
+
+이제 tmux 명령으로 시작할 수 있다.
+
+
+## 시작
+
+tmux 를 시작하면 하나의 세션에 하나의 윈도우가 만들어 진다.
+
+```
+$ tmux                   # 세션을 시작하고 참가한다.
+$ tmux new -s foo        # 세션 foo를 시작하고 참가한다
+```
+
+세션에 참가하면 하나 혹은 그 이상의 윈도우에서 Pane을 배치해 사용할 수 있다.
+
+![](/images/tmux/tmux-screen-layout.png)
+[그림. Tmux window layout]
+
+#### Control와 Meta key
+
+Tmux 세션 참가후 Window에서는 Prefix key로 Session, Window, Pane 관련 명령을 키로 조합해 사용한다. 기본 Prefix key는 `Control+b` key고 옵션으로 사용하는 Meta key는 `Alt` 키 이다. 
+
+여기서 `Control+b`는 **C** 혹은 **C-b**로 표기하고, Meta key인 `Alt`는 **M**으로 표기한다.
+
+윈도우 명령 control, meta 키 조합과 병행해 윈도우에서 명령모드를 사용할 수 있다. 명령모드는 **C-:** 키로 시작하고, 명령모드에서 **명령 자동 완성**을 지원한다.
+
+![](/images/tmux/tmux-screen-command-window2.png)
+[그림. Window command mode]
+
+
+#### Pane 다루기
+
+윈도우는 수직/수평으로 구획을 나눌수 있다. **C-"** 키로 현재 Pane 아래에 수평으로 새 Pane을 나눈다. 그리고 **C-%**키로 수직으로 새 Pane을 나눌 수 있다.
+
+![](/images/tmux/tmux-screen-pane.png)
+[그림. Tmux Window Pane]
+
+- C-q : pane 번호를 표시하고 번호를 눌러서 이동
+- C-o : pane을 순서대로 이동
+- C-방향키 : 해당 방향으로 이동
+- C-M-방향키 : 해당 방향으로 크기 조절
+- C-M-1~5 : 몇 가지 미리 설정된 레이아웃을 고를 수 있고, prefix space로 이 레이아웃을 순서대로 - 돌아가며 선택 가능
+- C-z : 특정화면만 확대하기 다시 예전 Panes상태로 돌아오기 
+
+Pane을 지우려면 터미널 `exit` 명령 혹은 **C-x** 키로 빠져 나올 수 있다.
+
+#### Window 다루기
+
+윈도우는 명령모드에서 `new-window` 혹은 **C-c** 키로 새 윈도우를 추가할 수 있다.
+
+![](/images/tmux/tmux-screen-new-window2.png)
+[그림. new Window ]
+
+윈도우 사이의 이동은 윈도우 번호에 따라 단축키 **C-0,1,2...9**를 사용하거나 **C-w**로 윈도우 목록에서 선택해 이동할 수 있다.
+
+- C-n, C-p : 다음 윈도우, 이전 윈도우로 이동
+- C-l : 직전 사용하던 윈도우로 이동
+- C-w : 윈도우 리스트를 띄우고 선택
+- C-, : 윈도우 이름 바꾸기
+
+세션 사용중에 세션을 빠져 나오려면 **C-d** 로 detach 하거나, 명령모드 `C-:`에서 detach 명령을 준다.
+
+
+#### 복사와 스크롤
+
+Tmux 화면 버퍼는 한 화면분 밖에 안되서, 이전 화면 내용을 보려면 스크롤 기능을 켜야 한다. **C+[** 키는 스크롤 키고, 우측상단에 페이지 표시가 나타난다. 키보드 방향키나 Page Up/Down키로 스크롤이 가능하다.
+
+![](/images/tmux/tmux-scroll.png)
 
 
 #### 세션 연결
 
-세션 사용중에 세션을 빠져 나오려면 `META+d` 로 detach 하거나, 명령모드 `MEAT+:`에서 detach 명령을 준다.
+세션은 하나 혹은 그 이상 만들고 `attach` 명령으로 세션에 참가할 수 있다. 
 
-detach한 세션 혹은 다른 세션에 접속하려면
+```
+$ tmux new -s foo -d     # 세션 foo를 시작하고 빠져나온다.
+$ tmux ls                # 세션 목록을 출력한다.
+0: 1 windows (created Fri May 12 10:26:00 2017) [80x24] (attached)
+foo: 1 windows (created Fri May 12 10:34:18 2017) [80x24]
+```
+
+터미널에서 세션에 참가하려면 `attach` 명령과 대상 세션을 지정해 준다. 대상 세션은 `tmux ls` 명령에 표시되는 세션번호 혹은 세션이름을 지정한다.
 
 ```
 $ tmux attach
-$ tmux attach -t foo
+$ tmux attach -t 0       # 세션 0번에 참여한다
+$ tmux attach -t foo     # 세션 foo에 참여한다.
+```
+
+세션을 완전히 종료 시키려면, tmux 세션에서 명령모드 **C-:** 에서 *kill-session* 명령을 실행한다.
+혹은 다른 터미널에서 세션번호 혹은 세션 이름으로 종료한다.
+
+```
+$ tmux kill-session -t 3   # 세션번호 3을 종료한다.
 ```
 
 
-세션을 완전히 종료 시키려면, tmux 세션에서 `META+:` 명령으로 *kill-session* 명령을 실행한다.
-혹은 다른 터미널에서
 
-```
-$ tmux ls
-...
+### 설정파일 **.tmux.conf**
 
-$ tmux kill-session -t 3
-```
+사용자 홈디렉토리에 *.tmux.conf* 파일에 tmux에 대한 설정을 명시할 수 있다.
 
+#### Control + a 사용하기
 
-## 사용
-
-윈도우
-
-prefix c : 윈도우 생성
-prefix 0~9 : 해당 번호 윈도우로 이동
-prefix n, prefix p : 다음 윈도우, 이전 윈도우로 이동
-prefix l : 직전 사용하던 윈도우로 이동
-prefix w : 윈도우 리스트를 띄우고 선택
-prefix , : 윈도우 이름 바꾸기
-
-
-pane
-
-prefix % : 좌우로 나누기
-prefix " : 상하로 나누기
-prefix q : pane 번호를 표시하고 번호를 눌러서 이동
-prefix o : pane을 순서대로 이동
-prefix 방향키 : 해당 방향으로 이동
-prefix Alt-방향키 : 해당 방향으로 크기 조절
-prefix Alt-1~5 : 몇 가지 미리 설정된 레이아웃을 고를 수 있고, prefix space로 이 레이아웃을 순서대로 돌아가며 선택 가능
-
-
-### Prefix key
-
-The default prefix is C-b. If you (or your muscle memory) prefer C-a, you need to add this to ~/.tmux.conf:
-
-#### remap prefix to Control + a
+Capslock키를 Control 키로 대체해 사용하면, Control+a 키 조합이 편하다. .tmux.conf 에 키 조합을 변경한다.
 
 ```
 set -g prefix C-a
@@ -161,7 +212,7 @@ bind C-a send-prefix
 unbind C-b
 ```
 
-앞르로 prefix라는 표시는 C-a 를 말한다.
+위에서 prefix는 **C-a** 로 재배치된다.
 
 
 #### Mouse On/Off
@@ -180,26 +231,14 @@ bind M \
 
 
 
-#### 복사와 스크롤
-
-prefix+[ : 우측상단에 페이지 표시 나타나고, 키보드 방향키나 Page Up/Down키로 스크롤 가능
-
-![](/images/tmux/tmux-scroll.png)
-
-마우스로 스크롤 하기 위해서는 `tmux.conf`에 다음을 추가하면 스크롤을 사용할 수 있습니다.
-
-> set -g terminal-overrides 'xterm*:smcup@:rmcup@'
-
-그리고 화면 내용을 복사라혀면
-
- `Ctrl+[`  : 카피 모드 진입하고 `Ctrl+PgDown PgUp
-
 
 ## Plugin manager
 
-https://github.com/tmux-plugins/tpm
+[Tmux Pluin Manager](https://github.com/tmux-plugins/tpm) 를 설치하고, tmux 기능을 확장할 수 있다.
 
-사용자 홈 디렉토리에 저장한다.
+### tpm 설치
+
+먼저 사용자 홈 디렉토리에 저장한다.
 
 ```
 $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -217,31 +256,27 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 run '~/.tmux/plugins/tpm/tpm'
 ```
 
+#### plugin 관리
 
-플러그인 설치를 위해서 `prefix-I` (대문자) 를 실행: prefix 누르고 Shft+i
-
-플러그인 업그레이드를 위해서 `prefix + U` 를 실행: prefix 누르고 Shft+u
-
-
-remove/uninstall plugins not on the plugin list
-
-Press prefix + alt + u (lowercase u as in uninstall) to remove the plugin.
+플러그인 설치를 위해서 **C-I** (대문자) 를 실행
+플러그인 업그레이드를 위해서 `prefix + U` 를 실행
+플러그인 목록에서 플러그인을 선택하고 C-M-u (소문자)
 
 
 ### Resurrection
 
-tmux plugin manager로 설치하려면 tmux.conf에 다음을 추가
+tmux-resurrect는 tmux 세션을 백업/복구 할 수 있는 플러그인이다. tmux.conf에 다음을 추가
 
 ```
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 ```
 
-플러그인 설치를 위해서 `prefix-I` 를 실행
+플러그인 설치를 위해서 **C-I** 를 실행하면 설치를 시작한다.
 
-#### Key bindings
+Resurrection 플러그인으로 백업/복구하는 키는 다음 같이 지정되어 있다:
 
-prefix + Ctrl-s - save
-prefix + Ctrl-r - restore
+ - C-s : save
+ - C-r : restore
 
 
 ### 설정 저장
@@ -260,123 +295,12 @@ $ tmux source-file ~/.tmux.current.conf
 
 
 
-
-# Tmux Command
-
-mac 기준으로 Tmux 설치부터 기본적인 명령어를 알아가고자 한다.<br>
-Tutorial용으로 참고할만한 블로그는 아래와같다.<br>
-[Tmux-Part1](http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/)
-[Tmux-Part2](http://blog.hawkhost.com/2010/07/02/tmux-%E2%80%93-the-terminal-multiplexer-part-2/)
-
-
-## Install
-```
-$ brew install tmux
-```
-
-## Command
-
-default는 `ctrl+b`에 키조합을 한다.
-
-무슨말이냐고 하면 아래와 같다.
-```
-e.g)
-$ ctrl + b + %
-$ ctrl + b + "
-```
-
-
-### create session
-
-```
-$ tmux new -s [name]
-```
-
-### kill session
-
-```
-$ tmux kill-session -t [name]
-```
-
-#### rename session
-
-> usage: rename-session [-t target-session] new-name
-
-
-```sh
-$ tmux rename-session -t 1 t-site
-```
-
-## hide & visible tmux
-
-```
-$ ctrl + b + d      # hide
-$ tmux a -t [name]  # visible
-```
-
-### Window(Tab)
-Window는 터미널에서 탭개념이다.
-```
-$ ctrl + b + c # create Window
-```
-
-### window move
-window간에 서로 이동할때
-```
-$ ctrl + b + [window number]
-```
-
-### Panes(Split)
-Panes는 한 윈도우에서 화면분한을 할때 사용한다.
-```
-# horizontal split
-#        |
-#   1    |    2
-#        |
-$ ctrl + b + %  
-```
-
-```
-# vertical split
-#        1
-# ----------------
-#        2
-$ ctrl + b + "
-```
-
-
-## Panes Move
-화면 분할한 상태에서 이동하기
-```
-$ ctrl + b + [방향키]
-```
-
-## Panes Zoom
-특정화면만 확대하기
-다시 예전 Panes상태로 돌아오기
-```
-$ ctrl + b + z
-```
-
-
-
-
-
-#### 한글 문제
-
-다음 솔루션은 잘 작동 안한다.
-
-> UTF-8 환경에서 한글 자모만 출력되는 현상이 있다. 실행시 `-u` 옵션을 준다.
-> > http://askubuntu.com/questions/410048/utf-8-character-not-showing-properly-in-tmux
-
-한글 패치
-
-http://seonhyu-blog.tumblr.com/post/34612062806/맥에서-tmux-한글-파일명-출력-문제-해결하기
-
-
-
 ## 참고
 
-(1) http://gypark.pe.kr/wiki/Tmux
-http://haruair.com/blog/3437
+- [Tmux-Part1](http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/)
+- [Tmux-Part2](http://blog.hawkhost.com/2010/07/02/tmux-%E2%80%93-the-terminal-multiplexer-part-2/)
+- [Tmux 소개](http://gypark.pe.kr/wiki/Tmux)
+- [tmux 사용에 도움되는 설정과 플러그인 정리](http://haruair.com/blog/3437)
 - [스크롤에 대한 의견](http://superuser.com/questions/209437/how-do-i-scroll-in-tmux)
+- [tmux-한글-파일명-출력-문제-해결하기](http://seonhyu-blog.tumblr.com/post/34612062806/맥에서-tmux-한글-파일명-출력-문제-해결하기)
+

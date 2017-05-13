@@ -1,8 +1,12 @@
 ---
-layout: docs
-title: 템플릿
-permalink: /docs/templates/
+title: Jekyll Install
+date: 2017-05-13 10:10:00 +0900
+layout: post
+tags: jekyll
+categories: jekyll
 ---
+
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 
 Jekyll 은 템플릿 처리 작업을 위해 [Liquid](https://github.com/Shopify/liquid/wiki) 템플릿
 언어를 사용합니다. 표준 Liquid [태그](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers#tags)와
@@ -11,6 +15,7 @@ Jekyll 은 템플릿 처리 작업을 위해 [Liquid](https://github.com/Shopify
 작업을 더 쉽게 처리할 수 있습니다.
 
 ## 필터
+
 
 <div class="mobile-side-scroller">
 <table>

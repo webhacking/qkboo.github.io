@@ -1,3 +1,12 @@
+---
+title: Jekyll Install
+date: 2017-05-07 10:10:00 +0900
+layout: post
+tags: jekyll
+categories: jekyll
+---
+
+
 # jekyll
 
 jekyll 구성을 위해서
