@@ -262,20 +262,23 @@ $ sudo dd if=Debian_jessie_default.img of=/dev/rdisk1 bs=1M conv=fsync
 
 #### Verifying the burned image with Linux
 
+오에스 이미지 파일의 md5 값과 디스크에 쓴 이미지의 해시 값을 비교할 수 있다.
+
 ```
 $ sudo dd if=</dev/path/of/card> bs=512 count=$((`stat -c%s <my/odroid/image.img>`/512)) | md5sum
 167742+0 records in
 167742+0 records out
 85883904 bytes (86 MB, 82 MiB) copied, 0.153662 s, 559 MB/s
 9b085251a00ad7ae16fe42fbfb25c042  -
+$
 $ dd if=<my/odroid/image.img> bs=512 count=$((`stat -c%s <my/odroid/image.img>`/512)) | md5sum
 167742+0 records in
 167742+0 records out
 85883904 bytes (86 MB, 82 MiB) copied, 0.140843 s, 610 MB/s
-9b085251a00ad7ae16fe42fbfb25c042  - ```
+9b085251a00ad7ae16fe42fbfb25c042  - 
+```
 
-Compare above two MD5 values. They must be ident
-
+두 값이 일치해야 한다.
 
 ### 첫번째 로그인
 
