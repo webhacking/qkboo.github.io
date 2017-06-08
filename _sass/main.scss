@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "NotoSansCJKkr-Regular";
+    src: url( '../_assets/fonts/NotoSansCJKkr-Regular.otf') format( 'opentype');
+}
+@font-face {
+    font-family: "NotoSansCJKkr-Bold";
+    src: url( '../_assets/fonts/NotoSansCJKkr-Bold.otf') format( 'opentype');
+    font-style: bold;
+}
+@font-face {
+    font-family: "NotoSansCJKkr-Light";
+    src: url( '../_assets/fonts/NotoSansCJKkr-Light.otf') format( 'opentype');
+}
+
+table, td, th {
+    border: 1px solid #003300;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th {
+    border: 2px solid black;
+}
+
+td {
+    padding: 1px 2px;
+}
