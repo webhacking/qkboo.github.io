@@ -5,7 +5,6 @@ layout: post
 tags: tmux, terminal, linux
 categories:
 - Linux
-- tmux
 ---
 
 Tmux는 terminal multiplexer로 서버에 여러 프로그램을 세션에 저장하고, 다른 작업 혹은 연결을 끊었다 다시 접속해서 세션을 열어 작업을 이어갈 수 있다.

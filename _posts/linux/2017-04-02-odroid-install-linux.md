@@ -3,7 +3,7 @@ title: Odroid - Install Linux
 date: 2017-04-02 10:10:00 +0900
 layout: post
 tags: odroid, armbian
-categories: linux
+categories: Linux
 ---
 
 # Odroid C2

@@ -5,7 +5,6 @@ layout: post
 tags: tmux, linux, iterm2, terminal
 categories:
 - Linux
-- tmux
 ---
 
 터미널 명령은 `$ tmux` 로 표현하고, Tmux window 에서 컨트롤을 위한 Prefix key는 **C** 키 조합으로 표기하고, Meta key인 `Alt`는 **M**으로 표기한다.
