@@ -119,10 +119,6 @@ Jekyll 실행 환경을 지정할 수 있다. 예를 들어 디버깅, 개발, �
 
 {% endraw %}
 
-https://shopify.github.io/liquid/basics/introduction/
-http://ozzieliu.com/2016/04/26/writing-liquid-template-in-markdown-with-jekyll/
-
-
 jekyll을 실행시 JEKYLL_ENV에 값을 지정해 줄 수 있다. 기본 값은 development 이다.
 
 ```sh
@@ -135,7 +131,7 @@ $ JEKYLL_ENV=production jekyll build
 
 #### github 지원 config items
 
-아래는 GitHub에서 기본으로 제공하는 설정으로 사용자가 원하는 대로 변경이 가능한 설정입니다.
+아래는 GitHub에서 기본으로 제공하는 설정으로 사용자가 원하는 대로 변경이 가능한 설정.
 
 ```yaml
  github: [metadata]
@@ -155,14 +151,12 @@ $ JEKYLL_ENV=production jekyll build
    noscript: false
 ```
 
-
-- lsi : 관련 포스트글에 대한 인덱스를 생성합니다.
-- safe : 사용자 플러그인을 비활성화하고, 심볼릭 링크(symbolic links)를 무시합니다.
-- source : Jekyll이 읽을 파일의 위치를 변경합니다.
-- incremental : 변경된 포스트만 재빌드하는 옵션입니다.
-- highlighter : GitHub에서 자체적으로 설정하는 코드 하이라이터인 것 같습니다. Jekyll 문서에는 따로 설명이 없습니다.
-- gist : 이것도 GitHub에서 자체 설정인 것 같습니다.
-
+- lsi : 관련 포스트글에 대한 인덱스를 생성.
+- safe : 사용자 플러그인을 비활성화 하고, 심볼릭 링크(symbolic links)를 무시.
+- source : Jekyll이 읽을 파일의 위치를 변경.
+- incremental : 수정 변경한 포스트만 다시 빌드하는 옵션.
+- highlighter : rough highlighter 지정
+- gist : GitHub gist 사용 설정.
 
 
 ### **post**
@@ -176,7 +170,7 @@ $ JEKYLL_ENV=production jekyll build
 
 Front matter 는 다음 같이 구성되고, **[Front Matter](http://jekyllrb.com/docs/frontmatter/)**, **[머리말](http://jekyllrb-ko.github.io/docs/frontmatter/)**를 참조한다.
 
-YAML 머리말 블록을 가진 모든 파일을 특별한 파일로 인식하여 처리합니다. 머리말은 반드시 올바른 YAML 형식으로 작성되어야 하며, 대시문자 3 개로 감싸서 파일의 맨 첫 부분에 위치해야 합니다.
+YAML 머리말 블록을 가진 모든 파일을 특별한 파일로 인식하여 처리하고, 머리말은 반드시 올바른 YAML 형식으로 작성되어야 하며, 대시문자 3개(---)로 감싸서 파일의 맨 첫 부분과 끝 부분에 위치한다.
 
 BODY 내용은 마크다운, 기타 문법 형식으로 작성하면 된다.
 
