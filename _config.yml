@@ -50,3 +50,7 @@ exclude:
 # Disqus
 disqus:
   shortname: qkboo-github-io
+
+# Google Analytics
+google_analytics: UA-98721340-1
+
