@@ -1,7 +1,6 @@
-_drafts
-_site
-.sass-cache
+_drafts/
+_site/
+.sass-cache/
 .jekyll-metadata
-.sublime-project
-.sublime-workspace
+*.sublime-workspace
 .DS_Store
