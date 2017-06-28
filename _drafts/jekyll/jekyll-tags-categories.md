@@ -2,7 +2,7 @@
 title: Jekyll Tags 와 Categories 활용
 date: 2017-05-13 10:10:00 +0900
 layout: post
-tags: jekyll
+tags: [jekyll]
 categories: jekyll
 ---
 

@@ -2,7 +2,7 @@
 title: Jekyll Liquid
 date: 2017-05-13 10:10:00 +0900
 layout: post
-tags: jekyll
+tags: [jekyll]
 categories: jekyll
 ---
 

@@ -2,7 +2,7 @@
 title: Tmux Start
 date: 2017-05-04 07:00:00 +0900
 layout: post
-tags: tmux, terminal, linux
+tags: [tmux, terminal, linux, install]
 categories:
 - Linux
 ---

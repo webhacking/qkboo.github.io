@@ -2,7 +2,7 @@
 title: Jekyll Syntax Highlighter
 date: 2017-05-07 13:00:00 +0900
 layout: post
-tags: jekyll
+tags: [jekyll]
 categories: jekyll
 lcb: "{"
 ---

@@ -2,7 +2,7 @@
 title: Tmux cheatsheet
 date: 2017-05-05 09:00:00 +0900
 layout: post
-tags: tmux, linux, iterm2, terminal
+tags: [tmux, linux, iterm2, terminal]
 categories:
 - Linux
 ---

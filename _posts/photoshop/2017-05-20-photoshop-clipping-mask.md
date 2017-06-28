@@ -2,9 +2,9 @@
 title: Photoshop Clipping Mask
 date: 2017-05-20 09:00:00 +0900
 layout: post
-tags: clipping-mask
+tags: [photoshop, clipping-mask]
 categories: 
- - photoshop
+ - Photoshop
 ---
 
 클리핑 마스크는 원본 이미지에 다른 이미지를 합성할 때 유용하다.

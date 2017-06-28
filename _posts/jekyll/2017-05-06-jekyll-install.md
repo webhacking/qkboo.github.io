@@ -2,7 +2,7 @@
 title: Jekyll Install
 date: 2017-05-06 09:00:00 +0900
 layout: post
-tags: jekyll, install,
+tags: [jekyll, install]
 categories: jekyll
 ---
 
