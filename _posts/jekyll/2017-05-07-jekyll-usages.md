@@ -41,31 +41,6 @@ about.md
 index.md
 ```
 
-새로 생성된 *디렉토리 구조*는 아래 같다,
-
-```
-├── _config.yml
-├── _data
-|   └── members.yml
-├── _drafts
-|   ├── begin-with-the-crazy-ideas.md
-|   └── on-simplicity-in-technology.md
-├── _includes
-|   ├── footer.html
-|   └── header.html
-├── _layouts
-|   ├── default.html
-|   └── post.html
-├── _posts
-|   ├── 2007-10-29-why-every-programmer-should-play-nethack.md
-|   └── 2009-04-26-barcamp-boston-4-roundup.md
-├── _sass
-|   ├── _base.scss
-|   └── _layout.scss
-├── _site
-├── .jekyll-metadata
-└── index.html # can also be an 'index.md' with valid YAML Frontmatter
-```
 
 중요한 구성 파일은,
 
@@ -75,6 +50,8 @@ index.md
 |_drafts       | 발행하지 않은 준비중인 포스트. |
 | _includes    | 재사용 가능한 조각 파일로, _post, _layouts에서 사용 |
 | _layouts     | 포스팅 글의 배치를 할 수 있다. |
+
+
 
 
 #### 빈 사이트 만들기
@@ -263,6 +240,7 @@ Jekyll은 기본 테마로 `Minima`라 불리는 gem-based theme를 사용한다
 ```
 
 다른 Theme gem을 사용하려면 `bundle update`를 실행하거나 `bundle update <THEME>` 로 사용할 <THEME> 를 지정한다.
+
 jekyll은 사이트 접근시 처음에 컨텐츠를 아래 폴더 안에서 찾는다.
 - /assets
 - /_layouts
@@ -301,6 +279,9 @@ Minima 테마의 기본 폴더는 `bundle show minima` 명령으로 확인이 �
  └── assets
      └── main.scss
 ```
+
+
+
 
 
 #### 기본 테마 재정의 하기

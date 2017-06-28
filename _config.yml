@@ -40,9 +40,12 @@ kramdown:
 #   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 
 
-theme: minima
+#theme: minima
 gems:
   - jekyll-feed
+  - bootstrap
+  - autoprefixer-rails
+  - jekyll-assets
 exclude:
   - Gemfile
   - Gemfile.lock

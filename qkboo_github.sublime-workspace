@@ -1,0 +1,852 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"mongo",
+				"mongodata"
+			],
+			[
+				"StopAll",
+				"StopAllCoroutines\tMonoBehaviour.*()"
+			],
+			[
+				"disqus_",
+				"disqus_comments"
+			],
+			[
+				"Tk",
+				"TkPicamPreviewApp\tclass"
+			],
+			[
+				"th",
+				"threading\tmodule"
+			],
+			[
+				"Se",
+				"SensorModel"
+			],
+			[
+				"to",
+				"toggleImage"
+			],
+			[
+				"poll",
+				"pollModel"
+			],
+			[
+				"s",
+				"sensors"
+			],
+			[
+				"url",
+				"urlencode"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"py",
+				"pyplot\tmodule"
+			],
+			[
+				"auto",
+				"auto_now_add"
+			],
+			[
+				"groups",
+				"GroupViewSet\tclass"
+			],
+			[
+				"User",
+				"UserSerializer\timport"
+			],
+			[
+				"cho",
+				"choice_list"
+			],
+			[
+				"rend",
+				"render_to_response\tfunction"
+			],
+			[
+				"ren",
+				"render_to_response\tfunction"
+			],
+			[
+				"Http",
+				"HttpResponse\tclass"
+			],
+			[
+				"choice",
+				"Choice"
+			],
+			[
+				"cli",
+				"clientController"
+			],
+			[
+				"au",
+				"authConroller"
+			],
+			[
+				"Beer",
+				"BeerModel"
+			],
+			[
+				"con",
+				"controllers"
+			],
+			[
+				"pass",
+				"passport"
+			],
+			[
+				"c",
+				"callback"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"Hom",
+				"HomeView"
+			],
+			[
+				"ba",
+				"Backbone"
+			],
+			[
+				"Boo",
+				"BookModel"
+			],
+			[
+				"key",
+				"keywords"
+			],
+			[
+				"for",
+				"form"
+			],
+			[
+				"conten",
+				"contentType "
+			],
+			[
+				"list",
+				"list-style-type"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 127.0,
+		"last_filter": "cheat",
+		"selected_items":
+		[
+			[
+				"cheat",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"markdown",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"makrdown che",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"mark",
+				"MarkdownEditing: Unfold All Sections"
+			],
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"markdow",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"previ",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markdo",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"sideb",
+				"Side Bar: Refresh"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"iop",
+				"iOpener: Find File"
+			],
+			[
+				"quick",
+				"quick open"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"color",
+				"Color Picker"
+			],
+			[
+				"format",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"pandoc",
+				"Pandoc: Render Markdown DocX"
+			],
+			[
+				"upd",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"side",
+				"Side Bar: Refresh"
+			],
+			[
+				"up",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"markd",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 554.0
+	},
+	"console":
+	{
+		"height": 64.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '261dd1222b4693ce6d4f85f9c827ac06' + '6d5ab8ebdd020086947172a8a1356bb6'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"pwd",
+			"ls",
+			"pwd",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/thinkbee/work-blog/qkboo-github-work",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_layouts",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_posts",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_posts/jekyll",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/minima"
+	],
+	"file_history":
+	[
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/main.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/blog.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_layouts/post.html",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_layouts/page.html",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/minima/_layout.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_layouts/default.html",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_layouts/home.html",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_posts/jekyll/2017-05-06-jekyll-install.md",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_posts/jekyll/2017-05-07-jekyll-usages.md",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/minima/_base.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/about.md",
+		"/Users/thinkbee/work-blog/qkboo-github-work/index.md",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_includes/header.html",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_includes/footer.html",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/_custom.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/assets/main.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/qkboo_github.sublime-project",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/head.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/header.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/navbar.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/blog.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/assets/main.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/main.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_layouts/home.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_layouts/default.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/navbar.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/_custom.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_config.yml",
+		"/Users/thinkbee/work-blog/qkboo.github.io/qkboo_github.sublime-project",
+		"/Users/thinkbee/work-blog/qkboo.github.io/.gitignore",
+		"/Users/thinkbee/work-blog/qkboo.github.io/Gemfile",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_config.yml",
+		"/Users/thinkbee/work-blog/qkboo-github-work/Gemfile",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/minima/_syntax-highlighting.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_sass/minima.scss",
+		"/Users/thinkbee/work-blog/qkboo-github-work/_includes/head.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_layouts/post.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_layouts/page.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/jekyll/jekyll-bootstrap4.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_layouts/default.html.bak",
+		"/Users/thinkbee/work-blog/qkboo.github.io/index.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/minima/_syntax-highlighting.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/minima.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/minima/_layout.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/footer.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_sass/minima/_base.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/footer.html.bak",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/jekyll/2017-05-07-jekyll-usages.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/jekyll/2017-05-06-jekyll-install.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/css/navbar.css",
+		"/Users/thinkbee/work-blog/qkboo.github.io/css/main.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/header.html.orig",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/head.html.bak",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/icon-github.html",
+		"/Users/thinkbee/work-blog/jekyll-bootstrap/_layouts/default.html",
+		"/Users/thinkbee/work-blog/jekyll-bootstrap/css/main.scss",
+		"/Users/thinkbee/work-blog/jekyll-bootstrap/_config.yml",
+		"/Users/thinkbee/work-blog/qkboo.github.io/README.md",
+		"/Users/thinkbee/work-blog/jekyll-bootstrap/README.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/tags.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/categories.html",
+		"/Users/thinkbee/work-blog/jekyll-bootstrap/_sass/_variables.scss",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_layouts/default.html.orig",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/jekyll/jekyll-templets.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/header.html.",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/footer.html.orig",
+		"/Users/thinkbee/Dropbox/MyMarkdown/doc-scm/git-usages.mdown",
+		"/Users/thinkbee/Dropbox/MyMarkdown/doc-scm/git.markdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/kotlin/tutorial-start.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/kotlin/tutorial-start-android.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/kotlin/kotlin-function.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/kotlin/_as-kotlin-configure.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/kotlin/ref-start01-.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/kotlin/SublimeText_Kotlin.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/linux-apt-get-cheatsheet.markdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/2017-05-06-tmux-iterm2.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/sublimetext-tips.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/sublimetext-shortcus.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/linux-system-cheatsheet.markdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/linux-ge620-rts5139driver.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/linux-find.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/linux-benchmark.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/linux-basic_commands.markdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/mac-iterm.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/Tutorials.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/welcome-to-jekyll.markdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/odroid-armbian-problems.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/jekyll/2017-05-07-jekyll-highlighter.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/jekyll/2017-05-07-jekyll-usages.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_includes/google-analytics.html",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/orangepi/OrangePi-Armbian.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/orangepi/OrangePi-crosscompile.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/orangepi/OrangePi-system_performance.markdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/jekyll/2017-05-07-jekyll-install.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/orangepi/OrangePi-Plus.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/orangepi/OrangePi-Chromium-install.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/csharp/csharp-object.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/mongodb-basic-usage.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/linux/2017-04-03-odroid-lvm2.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/linux/2017-04-11-mongodb-3.x-install-armv8.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/2017-05-04-tmux-start.markdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/2017-05-05-tmux-cheatsheet.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/photoshop/2017-05-20-photoshop-clipping-mask.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/linux/2017-04-02-odroid-install-linux.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/mongodb-test-scripts.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/linux/2017-04-11-mongodb-3.x-install-armv8.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/2017-04-11-mongodb-3.x-install-armv8.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/mongodb-3.x-armv8.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_posts/2017-04-02-odroid-install-linux.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/unity3d/unity-basic01-start.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/unity3d/math-tigon1.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/unity3d/unity3d-세균전1.md",
+		"/Users/thinkbee/Downloads/unity3d-tankgame.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/photoshop/clipping-mask.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/bigdata_r/2017-06-01-bigdata-r.mdown",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/bigdata_r/2017-05-22-bigdata-r-sns.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/bigdata_r/2017-05-15-bigdata-r-install.md",
+		"/Users/thinkbee/work-Unity/landwar-master/세균전cs_project.sublime-project",
+		"/Users/thinkbee/work-Unity/세균전게임/세균전게임.sublime-project",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/unity3d/unity-basic02-new-project.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/unity3d/unity-basic03-ball-moving.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/unity3d/unity3d-tankgame3.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/bigdata_r/2017-05-15-bigdata-r-usages.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/orangepi/OrangePi-Kodi.md",
+		"/Users/thinkbee/work-blog/qkboo.github.io/_drafts/bigdata_r/bigdata-r-exam.md",
+		"/Users/thinkbee/Downloads/Game.of.Thrones.S06.torrent",
+		"/Users/thinkbee/work-Unity/Hello-Math/Assets/Scripts/SceneLoader.cs",
+		"/Users/thinkbee/work-Unity/Hello-Math/hellomath_project.sublime-project"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"<open files>,<open folders>",
+			"<open files>",
+			"/Users/thinkbee/lectures/lecture_node",
+			"/Users/thinkbee/projects/flipl-web",
+			"/Users/thinkbee/lectures/lecture_js",
+			"/Users/thinkbee/lectures/lecture_node",
+			"/Users/thinkbee/projects/work-flipl/flipl-web",
+			"/Users/thinkbee/lectures/lecture_node",
+			"<open folders>",
+			"/Users/thinkbee/workbeeW/node_books",
+			"/Users/thinkbee/workbeeW/lecture_js"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".post",
+			"blog-masthead",
+			"nav-trigger",
+			"_custom",
+			"apple-touch-icon-precomposed.png",
+			"/apple-touch-icon-precomposed.png",
+			"{% raw",
+			"raw",
+			"$base-font-family",
+			"$base-font-family:",
+			"social-media-list",
+			"relative",
+			"$relative-font",
+			".post_li",
+			"navbar.css",
+			"tags-expo",
+			"font",
+			"google",
+			"math",
+			"time.delta",
+			"number",
+			"math",
+			"ㅡㅁ소",
+			"rigid",
+			"rdig",
+			"강체",
+			"강",
+			"강체",
+			"kodi",
+			"under",
+			"kodi",
+			"한",
+			"한글",
+			"base-font-",
+			"post-content",
+			"post_content",
+			"articlebody",
+			"transform",
+			"instance",
+			"split",
+			"스플",
+			"regression",
+			"padd",
+			"table",
+			"dd",
+			"tags-expo",
+			"config.y",
+			"code",
+			"include",
+			"analytics.htmgl",
+			"analytics.html",
+			"disqus",
+			"disqus.html",
+			"draft",
+			"prefix",
+			"highlight",
+			"태그",
+			"쟈",
+			"Label1",
+			"태",
+			"태그",
+			"ssh-key",
+			"rsync",
+			"rsnc",
+			"|-----|---------------------------|",
+			"ssh-key",
+			"clone",
+			"core.sparse",
+			"git clone",
+			"git",
+			"git 하위",
+			"git 서브",
+			"remote",
+			"apt-key",
+			"unzip",
+			"dd",
+			"[pkhinkorea@astro10 ~]",
+			"linux",
+			"커너",
+			"커",
+			"커널",
+			"key",
+			"updateuser",
+			"27017",
+			"bash-comp",
+			"adduesr",
+			"useradd",
+			"dpkg/lock",
+			"fail2ban",
+			"fail2ba",
+			"systemctl",
+			"mongo",
+			"system",
+			"mpv",
+			"chrome",
+			"mali",
+			"브라우저",
+			"browser",
+			"lang",
+			"imagetk",
+			"frame",
+			"self.running",
+			"printD",
+			"DEBUG",
+			"rpi.",
+			"gpio",
+			"root",
+			".vs",
+			"event",
+			"imutils",
+			"펌웨어",
+			"orangepi",
+			"1080",
+			"키보드",
+			"camera",
+			"gdrive",
+			"systemd",
+			"unstable",
+			"orangepi",
+			"github",
+			"git-hub",
+			"git-hut",
+			"cross compile",
+			"nmap",
+			"nma",
+			"toolchain",
+			"ssh",
+			"transmission"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"apt",
+			"_8WJmXwzQwA"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/GCC.sublime-build",
+	"project": "qkboo_github.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"blog",
+				"_sass/blog.scss"
+			],
+			[
+				"",
+				"qkboo.github.io/.gitignore"
+			],
+			[
+				"nav",
+				"qkboo.github.io/_sass/navbar.scss"
+			],
+			[
+				"main",
+				"qkboo.github.io/assets/main.scss"
+			],
+			[
+				"main.",
+				"qkboo.github.io/_sass/main.scss"
+			],
+			[
+				"defa",
+				"qkboo.github.io/_layouts/default.html"
+			],
+			[
+				"pa",
+				"qkboo.github.io/_layouts/page.html"
+			],
+			[
+				"footer",
+				"qkboo.github.io/_includes/footer.html"
+			],
+			[
+				"rsync",
+				"doc-xbmc/OrangePi-system_performance.markdown"
+			],
+			[
+				"onedr",
+				"techtips/linux-onedrive.mdown"
+			],
+			[
+				"onedrive",
+				"techtips/linux-onedrive.mdown"
+			],
+			[
+				"samba",
+				"doc-xbmc/samba.mdown"
+			],
+			[
+				"wlan",
+				"doc-android-platform/ubuntu-firewall.mdown"
+			],
+			[
+				"mongo",
+				"doc-android-platform/mongodb-build-armv8.mdown"
+			],
+			[
+				"tmux",
+				"doc-android-platform/ubuntu-tmux.mdown"
+			],
+			[
+				"trans",
+				"doc-xbmc/samba-transmission.mdown"
+			],
+			[
+				"dpkg",
+				"docker-md/db-postgres.md"
+			],
+			[
+				"secu",
+				"~/Dropbox/MyMarkdown/doc-android-platform/ubuntu-2securities.md"
+			],
+			[
+				"sensor",
+				"~/mnt/RPi_nodejs/hello_led/helloled/routes/sensormodel.js"
+			],
+			[
+				"url",
+				"pylog/urls.py"
+			],
+			[
+				"model",
+				"blog/models.py"
+			],
+			[
+				"view",
+				"blog/views.py"
+			],
+			[
+				"sett",
+				"pylog/settings.py"
+			],
+			[
+				"home",
+				"blog/templates/home.html"
+			],
+			[
+				"det",
+				"blog/templates/detail.html"
+			],
+			[
+				"cre",
+				"blog/templates/create.html"
+			],
+			[
+				"base",
+				"blog/templates/base.html"
+			],
+			[
+				"_po",
+				"blog/templates/_post.html"
+			],
+			[
+				"admin",
+				"blog/admin.py"
+			],
+			[
+				"for",
+				"blog/forms.py"
+			],
+			[
+				"mode",
+				"blog/models.py"
+			],
+			[
+				"vi",
+				"blog/views.py"
+			],
+			[
+				"test",
+				"blog/tests.py"
+			],
+			[
+				"ur",
+				"pylog/urls.py"
+			],
+			[
+				"vie",
+				"blog/views.py"
+			],
+			[
+				"setting",
+				"django_restfullframework/settings.py"
+			],
+			[
+				"choi",
+				"DjangoHello/tpl/polls/choice.html"
+			],
+			[
+				"se",
+				"DjangoHello/DjangoHello/settings.py"
+			],
+			[
+				"toto",
+				"201410_WKU/todo-html/todo-tutorial5.html"
+			],
+			[
+				"restfullpack",
+				"restfull-api/package.json"
+			],
+			[
+				"repackage.j",
+				"restfull-api/package.json"
+			],
+			[
+				"model-in",
+				"directory-backbone-bootstrap/js/models/model-in-memory.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 27.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 601.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 175.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

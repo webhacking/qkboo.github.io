@@ -1,26 +1,27 @@
-<footer class="site-footer">
+<footer class="bg-faded mt-4">
 
-  <div class="wrapper">
-
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
+    {% comment %}<h3>{{ site.title | escape }}</h3>{% endcomment %}
+    
+    <div class="row">
+      <div class="col-md-3 footer-col">
         <ul class="contact-list">
           <li>
             {% if site.author %}
-              {{ site.author | escape }}
+              <h4>{{ site.author | escape }}</h4>
             {% else %}
-              {{ site.title | escape }}
+              <h4>{{ site.title | escape }}</h4>
             {% endif %}
+
+              <span class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></span>
+
             </li>
             {% if site.email %}
-            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            {% comment %}<li><a href="mailto:{{ site.email }}">{{ // site.email }}</a></li>{% endcomment %}
             {% endif %}
         </ul>
       </div>
 
-      <div class="footer-col footer-col-2">
+      <div class="col-md-2 footer-col">
         <ul class="social-media-list">
           {% if site.github_username %}
           <li>
@@ -36,14 +37,13 @@
         </ul>
       </div>
 
-      <div class="footer-col footer-col-3">
+      <div class="col-md-5 ml-4 footer-col blog-description">
         <p>{{ site.description | escape }}</p>
       </div>
     </div>
 
-  </div>
-
 </footer>
+
 {% if page.comments %}
   <!-- Disqus comment count -->
   <script id="dsq-count-scr" src="//{{ site.disqus.shortname }}.disqus.com/count.js" async></script>
