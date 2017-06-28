@@ -115,6 +115,18 @@ $ jekyll new my-awesome-site
 Running bundle install in /home/qkboo/Hdd/Blogs/qkboo.github...
 ```
 
+이렇게 생성된 사이트는 아래 같은 구조를 갖는다:
+
+```
+├── Gemfile
+├── Gemfile.lock
+├── _config.yml
+├── _posts
+│   └── 2016-12-04-welcome-to-jekyll.markdown
+├── about.md
+└── index.md
+```
+
 그리고 다음 같이 서버를 실행해서 `config.yml` 파일을 생성하게 하자.
 
 ```
@@ -136,6 +148,8 @@ port: 5000
 ```
 
 이렇게 해주어야 외부에서 브라우저로 접근할 수 있다.
+
+gem-based themes에서는 `assets`, `_layouts`, `_includes`, `_sass` 디렉토리가 테마의 gem에 있다.
 
 
 <!-- 다음 워닝
