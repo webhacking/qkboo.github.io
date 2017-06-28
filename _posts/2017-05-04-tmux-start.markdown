@@ -9,7 +9,7 @@ categories:
 
 Tmux는 terminal multiplexer로 서버에 여러 프로그램을 세션에 저장하고, 다른 작업 혹은 연결을 끊었다 다시 접속해서 세션을 열어 작업을 이어갈 수 있다.
 
-![](https://tmux.github.io/ss-tmux2.png)
+![](https://tmux.github.io/ss-tmux2.png){: width="600"}
 
 [그림. Tmux 실행 모습  (tmux.github.io)]
 
@@ -113,7 +113,7 @@ $ tmux new -s foo        # 세션 foo를 시작하고 참가한다
 
 세션에 참가하면 하나 혹은 그 이상의 윈도우에서 Pane을 배치해 사용할 수 있다.
 
-![](/images/tmux/tmux-screen-layout.png)
+![](/images/tmux/tmux-screen-layout.png){: width="600"}
 [그림. Tmux window layout]
 
 #### Control와 Meta key
@@ -124,7 +124,7 @@ Tmux 세션 참가후 Window에서는 Prefix key로 Session, Window, Pane 관련
 
 윈도우 명령 control, meta 키 조합과 병행해 윈도우에서 명령모드를 사용할 수 있다. 명령모드는 **C-:** 키로 시작하고, 명령모드에서 **명령 자동 완성**을 지원한다.
 
-![](/images/tmux/tmux-screen-command-window2.png)
+![](/images/tmux/tmux-screen-command-window2.png){: width="600"}
 [그림. Window command mode]
 
 
@@ -132,7 +132,7 @@ Tmux 세션 참가후 Window에서는 Prefix key로 Session, Window, Pane 관련
 
 윈도우는 수직/수평으로 구획을 나눌수 있다. **C-"** 키로 현재 Pane 아래에 수평으로 새 Pane을 나눈다. 그리고 **C-%**키로 수직으로 새 Pane을 나눌 수 있다.
 
-![](/images/tmux/tmux-screen-pane.png)
+![](/images/tmux/tmux-screen-pane.png){: width="600"}
 [그림. Tmux Window Pane]
 
 - C-q : pane 번호를 표시하고 번호를 눌러서 이동
@@ -148,7 +148,7 @@ Pane을 지우려면 터미널 `exit` 명령 혹은 **C-x** 키로 빠져 나올
 
 윈도우는 명령모드에서 `new-window` 혹은 **C-c** 키로 새 윈도우를 추가할 수 있다.
 
-![](/images/tmux/tmux-screen-new-window2.png)
+![](/images/tmux/tmux-screen-new-window2.png){: width="600"}
 [그림. new Window ]
 
 윈도우 사이의 이동은 윈도우 번호에 따라 단축키 **C-0,1,2...9**를 사용하거나 **C-w**로 윈도우 목록에서 선택해 이동할 수 있다.

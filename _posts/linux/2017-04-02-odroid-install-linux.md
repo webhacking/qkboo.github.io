@@ -8,7 +8,7 @@ categories: Linux
 
 # Odroid C2
 
-![](http://odroid.com/dokuwiki/lib/exe/fetch.php?tok=53e4d9&media=http%3A%2F%2Fdn.odroid.com%2Fhomebackup%2F201602%2FODROID-C2.png)
+![](http://odroid.com/dokuwiki/lib/exe/fetch.php?tok=53e4d9&media=http%3A%2F%2Fdn.odroid.com%2Fhomebackup%2F201602%2FODROID-C2.png){: width="600"}
 
 [그림. armv8 Odroid C2]
 
@@ -28,7 +28,7 @@ categories: Linux
 
 Armbian에서 데스크탑 버전으로 Ubuntu 와 서버 버전으로 Debian Jessie를 다운로드 가능하다.
 
-![](/images/odroid/odroidc2-armbian-download.png)
+![](/images/odroid/odroidc2-armbian-download.png){: width="600"}
 
 여기서는 Debian Jessie 버전을 사용한다.
 
@@ -59,7 +59,7 @@ linux 7z은  ```apt-get install p7zip-full``` 으로 설치한다.
 
 [Etcher](https://etcher.io) 에서 다운로드해서 실행하고, SD Card를 준비한다.
 
-![](https://etcher.io/static/screenshot-1x.gif)
+![](https://etcher.io/static/screenshot-1x.gif){: width="600"}
 
 그리고 다운로드한 Debian_jessie_default.7z 이미지 파일을 선택하고 선택한 SD Card에 이미지를 쓴다.
 

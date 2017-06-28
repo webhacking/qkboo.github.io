@@ -57,7 +57,7 @@
 
 .blog-post {
   margin-top: 4rem;
-  margin-bottom: 1rem;
+  margin-bottom: $footer-height+3;
 }
 .blog-post-header {
   @include relative-font-size(1.15);
@@ -121,7 +121,7 @@
 
 footer {
   border-top: 1px solid $gray-light;
-  padding: $spacing-unit 0;
+  padding: $spacing-unit/3 0;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: $footer-height;
