@@ -19,6 +19,9 @@
 				"cleanup"
 			],
 			"path": "."
+		},
+		{
+			"path": "/Users/thinkbee/Dropbox/MyMarkdown/doc-scm"
 		}
 	]
 }
