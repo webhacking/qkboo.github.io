@@ -470,3 +470,67 @@ google_analytics: UA—XXXXXXXX-X
 
 > 운영모드인 production 은 github 에 업로드시 자동으로 적용된다. 만약 다른 사이트에 업로드하려면 빌드를 한다.
 > ```$ JEKYLL_ENV=production bundle exec jekyll build```
+
+
+
+
+### Pagenation
+
+지킬에서 `jekyll-paginate` gem 을 추가하면 페이지 구분을 추가할 수 있다.
+
+https://jekyllrb.com/docs/pagination/
+
+
+### Gemfile과 _config.yml
+
+Gemfile에 추가.
+
+```
+group :jekyll_plugins do
+   gem "jekyll-feed", "~> 0.6"
+   gem "jekyll-paginate"
+```
+
+
+config.yml에서 활성화:
+
+
+```
+gems:
+  - jekyll-feed
+  - jekyll-paginate
+
+#페이지 활성화
+paginate: 6
+
+
+```
+
+
+
+### Custom Domain
+
+github page를 github.io 서브도메인 대신 본인의 도메인에 등록하려면 두 가지를 한다:
+ - 깃헙 페이지의 설정에서 custom domain 을 추가한다.
+ - DNS에 CNAME을 등록한다.
+
+#### Custom domain 추가
+
+github 에서 github page 저장소의 Settings 에서 Custom Domain에 사용할 도메인 이름을 저장한다.
+
+
+#### CNAME 등록
+
+DNS에 `CNAME` 을 github의 `USER_NAME.github.io` 에 연결해 준다.
+제대로 등록됐는지 dig 명령으로 확인한다.
+
+```sh
+$ dig docs.example.com +nostats +nocomments +nocmd
+;docs.example.com.                     IN      A
+docs.example.com.              3592    IN      CNAME   YOUR-USERNAME.github.io.
+YOUR-USERNAME.github.io.           43192   IN      CNAME  < GITHUB-PAGES-SERVER >.
+  < GITHUB-PAGES-SERVER >.      22      IN      A       199.27.XX.XXX
+```
+
+참조: https://help.github.com/articles/setting-up-a-custom-subdomain/
+

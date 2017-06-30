@@ -150,4 +150,3 @@ fun Activity.b() {
     this.textView.setText(“”)     
 }
 ```
-

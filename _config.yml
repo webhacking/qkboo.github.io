@@ -32,7 +32,6 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-
 # Makrdown-redcarpet
 # markdown: redcarpet
 # highlighter: pygments
@@ -43,6 +42,7 @@ kramdown:
 #theme: minima
 gems:
   - jekyll-feed
+  - jekyll-paginate
 #  - bootstrap
 #  - autoprefixer-rails
 #  - jekyll-assets
@@ -58,3 +58,12 @@ disqus:
 # Google Analytics
 google_analytics: UA-98721340-1
 
+
+paginate: 6
+
+
+
+# Collections
+collections:
+  my_collection:
+    output: true
