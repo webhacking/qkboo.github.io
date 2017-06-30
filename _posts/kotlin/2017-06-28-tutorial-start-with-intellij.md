@@ -8,7 +8,7 @@ categories:
 ---
 
 
-**Kotlin 이용 개발을 위한 Getting Started Korlin**
+**Kotlin 이용 개발을 위한 Getting Started Kotlin**
 
  - Start with IntelliJ
  - [Start with Eclipse](/kotlin/2017/06/29/tutorial-start-with-eclipse.html)

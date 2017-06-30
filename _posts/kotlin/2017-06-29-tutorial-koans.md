@@ -7,7 +7,7 @@ categories: [Kotlin]
 ---
 
 
-**Kotlin 이용 개발을 위한 Getting Started Korlin**
+**Kotlin 이용 개발을 위한 Getting Started Kotlin**
 
  - [Start with IntelliJ](/kotlin/2017/06/28/tutorial-start-with-intellij.html)
  - [Start with Eclipse](/kotlin/2017/06/29/tutorial-start-with-eclipse.html)
@@ -36,6 +36,9 @@ $ git clone https://github.com/Kotlin/kotlin-koans
 ##### Koans 프로젝트를 IntelliJ IDEA에서 혹은 에디터에서 연다.
 
 단, *인텔리제이* 에서 Koans 프로젝트를 열면, 코틀린 라이브러리를 갱생하도록 프롬프트가 표시된다.
+
+![Open Koans in IntelliJ](/images/kotlin/koans-intellij01.png){:witdh="600"}
+
 
 테스트를 실행해 통과하도록 만듭니다.
 

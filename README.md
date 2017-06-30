@@ -5,7 +5,14 @@
 
 ## About me
 
-* **Goh Gangtai** - *Initial work* - [qkboo](https://github.com/qkboo)
+* **Goh Gangtai** - *It's me* - {% include icon-github.html username="qkboo" %}
+
+## Blog 
+
+* Writing by Markdown on Jekyllrb
+    - Used *bootstrap 4* theme
+* Jekyll 에서 Markdown으로 작성하고 있다.
+    - theme는 bootstrap 4를 사용한다.
 
 
 ## License
