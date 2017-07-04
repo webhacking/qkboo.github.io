@@ -9,25 +9,27 @@ categories: [Kotlin]
 ## Getting Started : 기본 문법의 사용
 
 kotlinlang.org의 [Kotlin Android Extensions](https://kotlinlang.org/docs/reference/basic-syntax.html) 를 참고하고 있다.
+- 아래 내용에서 **[링크:..]** 는 외부 링크이다.
 
- - [AAAA]({{ site.baseurl }}{% post_url /kotlin/2017-06-28-tutorial-android-extension %})
+
+[Kotlin koans]({{ site.baseurl }}{% post_url /kotlin/2017-06-29-tutorial-koans %})
 
 ### 패키지 선언
 
-소스 파일의 꼭대기에 **package** 키워드를 사용해서 패키지를 명시합니다:
+소스 파일의 꼭대기에 **package**{: .keyword } 키워드를 사용해서 패키지를 명시합니다:
 
-{% highlight kotlin %}
 
+```kotlin
 package my.demo
 
 import java.util.*
 
 // ...
-{% endhighlight %}
+```
 
 소스 파일이 위치한 디렉토리와 패키지 이름이 일치하지 않아도 된다.
 
-[패키지 설명 참조](https://kotlinlang.org/docs/reference/packages.html)
+[링크: 패키지](https://kotlinlang.org/docs/reference/packages.html)
 
 <br/>
 
@@ -47,7 +49,7 @@ fun main(args: Array<String>) {}
 
 다음 함수는 두개의 *Int* 매개변수를 가지고 반환 형식으로 *Int*를 선언하고 있다:
 
-```
+```kotlin
 fun sum(a: Int, b: Int): Int {
   return a + b
 }
@@ -55,52 +57,81 @@ fun sum(a: Int, b: Int): Int {
 
 함수는 Expression body로 반환시 반환 형식을 추정한다. `sum()` 함수를 표현식을 사용해 선언할 수 있다:
 
-{% highlight kotlin %}
-
+```kotlin
 fun sum(a: Int, b: Int) = a + b
 
-{% endhighlight %}
+```
 
-함수는 의미있는 값을 반환하지 않을 수 있다:
+`Unit` 반환 형식의 함수는 값을 반환하지 않을 수 있다:
 
-{% highlight kotlin %}
+```kotlin
 
 fun printSum(a: Int, b: Int): Unit {
   print(a + b)
   println("$a + $b = ${a + b}")
 }
+```
 
-{% endhighlight %}
+`Unit` 반환 형식은 아래 같이 반환형을 제외한 형태를 표현한 것이다:
 
-Unit 반환 형식은 아래 같이 반환형을 제외한 형태를 표현한 것이다:
+```kotlin
 
-{% highlight kotlin %}
 fun printSum(a: Int, b: Int) {
   println("$a + $b = ${a + b}")
 }
-{% endhighlight %}
+```
 
 
-[Kotlin functions]({{ site.baseurl }}{% link _my_collection/kotlin-functions.md %})
+[Kotlin functions 참조]({{ site.baseurl }}{% link _my_collection/kotlin-functions.md %})
 
 
 
-### 지역변수
+IntelliJ 에서 프로그램 매개변수를 지정하려면 먼저 Ctrl+Shft+R 로 실행구성을 하나 생성한 후에 Edit configuration으로 명령 파라 미터를 다음 같이 추가한 후에 다시 실행합니다.
 
-한 번 대입하는 지역 변수들, 다음 같이 초기화 한다.
+![](images/kotlin/intellij-kotlin-run-conf2.png) ![](images/kotlin/intellij-kotlin-run-conf1.png)
 
-{% highlight kotlin %}
+[그림. ]
+
+
+
+### 변수의 선언
+
+변수는 형식을 지정하고 선언하거나, 임의의 값을 바로 대입할 수 있다. *var*{.keyword}로 가변형식의 선언 하거나, *val*{.keyword}로 불변형으로 선언한다.
+
+> val name[:TYPES] = VALUE
+> var name[:TYPES] = VALUE
+
+
+```kotlin
+var hello: String = "안녕하세요"
+
 fun main(args: Array<String>) {
-  var a: Int = 1      // 변수 a의 선언과 초기화
-  var b = 1           // 'Int' 형식으로 참조
-  var c: Int          // 변수 초기화 (초기값 지정)이 안되면 데이터 형식이 필요하다
+  val hi = "Hi"
+  print(hello)
+  println(hi)
+}
+```
+
+
+#### 지역변수
+
+*val*{.keyword} 키워드는 변수를 읽기 전용으로, 초기화시 한 번만 값을 대입한다.
+
+```kotlin
+
+fun main(args: Array<String>) {
+  val a: Int = 1      // 변수 a의 선언과 초기화
+  val b = 1           // 'Int' 형식으로 참조
+  val; c: Int          // 변수 초기화 (초기값 지정)이 안되면 데이터 형식이 필요하다
   c = 1               // 명확한 대입
 
   println("a = $a, b = $b, c = $c")
 }
-{% endhighlight %}
+```
+- 일반적으로 변수는 위와 같이 초기화 한다.
 
-Mutable 변수
+
+Mutable 변수는 *var*{.keyword}로 선언한다
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -109,12 +140,13 @@ fun main(args: Array<String>) {
 }
 ```
 
-[속성과 필드 보기](https://kotlinlang.org/docs/reference/properties.html)
+{% comment %} [속성과 필드 보기](https://kotlinlang.org/docs/reference/properties.html) {% endcomment %}
+[속성과 필드 참조]({{ site.baseurl }}{% link _my_collection/kotlin-properties.md %})
 
 
-#### 주석 Comments
+### 주석 Comments
 
-또한 함수 혹은 코드 내에서 단어, 줄을 주석 처리 할 수 있다. 주석은 줄 혹은 묶음으로 처리하는데 Java, C 등과 같이 *//*로 한 줄 주석 그리고 */* */*로 묶음 범위에 대해 주석을 처리할 수 있습니다.
+또한 함수 혹은 코드 내에서 단어, 줄을 주석 처리 할 수 있다. 주석은 줄 혹은 묶음으로 처리하는데 Java, C 등과 같이 *//*로 한 줄 주석 그리고 */* */*로 묶음 범위에 대해 주석을 처리할 수 있다.
 
 ```kotlin
 // 한 줄 주석
@@ -127,16 +159,13 @@ fun main(args: Array<String>) {
 
 자바와 코틀린은 달리 블럭 주석은 중첩할 수 있다:
 
-[코트린 코드 문서화](https://kotlinlang.org/docs/reference/kotlin-doc.html) 참조
+[코트린 코드 문서화 링크](https://kotlinlang.org/docs/reference/kotlin-doc.html)
 
 
-> 소스 kr.kotlin.ref.start.Basic01.kt
+### 문자열 템플릿 사용
 
+문자열 안에서 문자열 템플릿 표현식을 사용 할 수 있다. `$` 기호로 시작하는 문자열 템플릿을 문자열에서 변수를 참조하게 할 수 있다.
 
-
-#### 문자열 템플릿 사용
-
-문자열은 문자열 템플릿 표현식을 사용 할 수 있다. 문자열 템플릿을 사용해서 문장과 변수를 템플릿 같이 상요할 수 있습니다.
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -147,15 +176,12 @@ fun main(args: Array<String>) {
 ```
 
 
-[스트림 템플릿](https://kotlinlang.org/docs/reference/basic-types.html#string-templates) 참조
-
-> 소스파일: ref.start/Basic02_Var.kt
+[문자열 템플릿 링크](https://kotlinlang.org/docs/reference/basic-types.html#string-templates)
 
 
+### 조건 표현식 사용하기
 
-#### 조건 표현식 사용하기
-
-조건 판단을 위해서 **if** 키워드를 사용하는데 다음 같이 **()** 안에 논리식을 이용해서 조건 판단을 합니다.
+조건 판단을 위해서 *if*{:.keyword } 키워드를 사용하는데 다음 같이 **()** 안에 논리식을 이용해서 조건 판단을 한다.
 
 ```kotlin
 fun max(a: Int, b: Int): Int {
@@ -166,56 +192,54 @@ fun max(a: Int, b: Int): Int {
 }
 ```
 
-위의 코드는 조건 판단을 위해서 **if express** 표현식을 사용해서 Expression body에 적용할 수 있습니다. 위 함수는 아래 같은 표현식으로 사용될 수 있습니다:
+위의 코드는 조건 판단을 위해서 **if express** 표현식을 사용해서 Expression body에 적용할 수 있다. 위 함수는 아래 같은 *if*{.keyword} 표현식으로 사용될 수 있다:
 
 ```kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
 
-> [if-expression 참조](https://kotlinlang.org/docs/reference/control-flow.html#if-expression)
+> [링크: if-expression](https://kotlinlang.org/docs/reference/control-flow.html#if-expression)
 
 
-### 널일 수 있는 값과 *null* 점검
+### *null*{:.keyword} 가능한 값과 점검
 
-변수 참조시 null 값일 가능성이 있으면 널 일 수 있음을 명시해야 합니다. 
-예를 들어 parseInf()라는 함수를 선언시 반환 형식에 다음 같이 **Int?** 안전호출 연산자를 반환식에 사용하면 값이 Null이 아니면 값을, 만약 Null이라면 Null을 반환해 줍니다. 
+변수 참조시 *null*{:.keyword} 값 가능성이 있으면, *null*{:.keyword} 일 수 있음을 명시해서 널에 안전한 코드를 만들 수 있다. 이것은 Null-safety 키워드 *?*{:.keyword} 로 객체가 *null*{:.keyword} 일 수 있다고 선언해 준다.
 
-```kotlin
-fun parseInt(str: String): Int? {
-  // ...
-}
-```
+Null-safety로 안전한 코드를 작성하게 제공하기 위해서 **?.** 라는 Null-safety 키워드를 사용할 수 있습니다. 
 
-널인 값을 반환하는 함수로 매개변수가 2개 미만인 경우 널인 값을 반환하게 된다.
+아래 parseInf()라는 함수를 선언시 반환 형식에 다음 같이 *Int?*{:.keyword} 안전호출 연산자를 붙여 반환식에 사용하면 값이 *null*{:.keyword}이 아니면 값을, 반대면 *null*{:.keyword}을 반환한다.
 
 ```kotlin
-fun main(args: Array<String>) {
-    if(args.size < 2) {
-        print("2개의 인자가 필요합니다")
-        return
-    }
-
-    var x = parseInteger(args[0])
-    var y = parseInteger(args[1])
-
-    if( x != null && y != null) {
-        print("${x} x ${y} = ${x*y}")
-    }
-}
-
 fun parseInteger(s: String): Int? {
     return s.toInt()
 }
+
+fun printProduct(arg1: String, arg2: String) {
+    val x = parseInt(arg1)
+    val y = parseInt(arg2)
+
+    // Using `x * y` yields error because they may hold nulls.
+    if (x != null && y != null) {
+        // x and y are automatically cast to non-nullable after null check
+        println(x * y)
+    }
+    else {
+        println("either '$arg1' or '$arg2' is not a number")
+    }    
+}
+
+fun main(args: Array<String>) {
+    printProduct("6", "7")
+    printProduct("a", "7")
+    printProduct("a", "b")
+}
+
 ```
 
-IntelliJ 에서 프로그램 매개변수를 지정하려면 먼저 Ctrl+Shft+R 로 실행구성을 하나 생성한 후에 Edit configuration으로 명령 파라 미터를 다음 같이 추가한 후에 다시 실행합니다.
+혹은 또한 null 체크는 **==** 동등비교 연산자를 사용해서 다음 같이 사용할 수 있습니다:
+ *null*{:.keyword} 경우 return으로 반환만 한다.
 
-![](images/kotlin/intellij-kotlin-run-conf2.png) ![](images/kotlin/intellij-kotlin-run-conf1.png)
-
-[그림. ]
-
-또한 null 체크는 **==** 동등비교 연산자를 사용해서 다음 같이 사용할 수 있습니다:
 
 ```kotlin
   if (x == null) {
@@ -229,17 +253,15 @@ IntelliJ 에서 프로그램 매개변수를 지정하려면 먼저 Ctrl+Shft+R 
 ```
 
 
-> 소스파일: ref.start/Basic03_Null.kt 
+[Null-safety]({{ site.baseurl }}{% link _my_collection/kotlin-null-safety.md %})
+[링크: Null-safety](https://kotlinlang.org/docs/reference/null-safety.html)
 
-그렇지만 Null-safety로 안전한 코드를 작성하게 제공하기 위해서 **?.** 라는 Null-safety 키워드를 사용할 수 있습니다. 
-
-> [Null-safety 참조](ref-null-safety.md)
-> [Null-safety](https://kotlinlang.org/docs/reference/null-safety.html)
 
 
 ### 형 점검과 자동 형 캐스트
 
-**is** 연산자는 변수가 데이터 형에 맞는 인스턴스인지 점검합니다. 만약 불변 로컬 변수 혹은 속성이 특정 형식에 대해 점검되면 명시적으로 캐스트할 필요가 없다.
+*is*{:.keyword} 연산자는 변수가 데이터 형에 맞는 인스턴스인지 점검 할 수 있다. 그래서 만약 불변 지역 변수 혹은 속성이 특정 형식에 대해 형 점검되면 명시적으로 캐스트할 필요가 없다.
+
 
 ```kotlin
 fun getStringLength(obj: Any): Int? {
@@ -250,21 +272,29 @@ fun getStringLength(obj: Any): Int? {
   // 형 체크 범위 밖에서는 'obj'는 'Any'형으로 판단된다.
   return null
 }
-```
 
-Any 형 객체가 스트링 관련 처리 요청시 역시 스트링으로 캐스팅된다. 다음 같이 obj.lengh 스트링 문자열 크기를 요청하면 스트링 캐스팅 된다.
-
-```kotlin
-fun getStringLength(obj: Any): Int? {
-  if (obj !is String)
-    return null
-
-  // 여기서 `obj`는 자동으로 `String`에 캐스팅된다
-  return obj.length
+fun main(args: Array<String>) {
+    fun printLength(obj: Any) {
+        println("'$obj' string length is ${getStringLength(obj) ?: "... err, not a string"} ")
+    }
+    printLength("Incomprehensibilities")
+    printLength(1000)
+    printLength(listOf(Any()))
 }
 ```
 
-비슷하게 다음 조건식 *if* 절에서 `obj`는 오른쪽 `&&` 뒤에서 자동으로 스트링 캐스팅됩니다.
+다음 함수에서 Any 형 객체가 스트링 관련 처리 요청시 역시 스트링으로 캐스팅된다. 다음 같이 obj.lengh 스트링 문자열 크기를 요청하면 스트링 캐스팅 된다.
+
+```kotlin
+fun getStringLength(obj: Any): Int? {
+    if (obj !is String) return null
+
+    // `obj` is automatically cast to `String` in this branch
+    return obj.length
+}
+```
+
+비슷하게 다음 조건식 *if* 절에서 `obj`는 오른쪽 `&&` 뒤에서 자동으로 스트링 캐스팅된다.
 
 ```kotlin
 fun getStringLength(obj: Any): Int? {
@@ -275,39 +305,21 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-[클래스](https://kotlinlang.org/docs/reference/classes.html)와 형 [캐스트](https://kotlinlang.org/docs/reference/typecasts.html) 참조
+[링크: 클래스](https://kotlinlang.org/docs/reference/classes.html)
+[링크: 캐스트](https://kotlinlang.org/docs/reference/typecasts.html)
 
-
-### 범위값 사용하기
-
-**in** 연산자를 사용해서 주어진 범위 사이의 숫자를 점검할 수 있다.
-
-```kotlin
-if (x in 1..y-1)
-  print("OK")
-```
-
-**!** 연산자와 함께 사용해서 범위를 벗어나는지 점검한다:
-
-```kotlin
-if (x !in 0..array.lastIndex)
-  print("Out")
-```
-
-
-참조: [Ranges](https://kotlinlang.org/docs/reference/ranges.html) 
 
 
 ### for 반복문 사용
 
-for 반복문은 컬렉션의 **in** 연산자를 사용해서 for 연산식을 사용한다.
+for 반복문은 *for ... in*{:.keyword} 반복문에 컬렉션을 사용한다.
 
 ```kotlin
 for (x in 1..5)
   print(x)
 ```
 
-for와  in 연산자를 컬렉션 요소를 직접 사용한다
+for와 in 연산자에 컬렉션 요소를 직접 사용한다
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -324,7 +336,9 @@ for (i in args.indices)
 ```
 
 
-참조: [for loop](https://kotlinlang.org/docs/reference/control-flow.html#for-loops) 
+[Controlflow: for loop]({{ site.baseurl }}{% link _my_collection/kotlin-controlflow.md %})
+
+[링크: Controlflow: for loop](https://kotlinlang.org/docs/reference/control-flow.html#for-loops) 
 
 
 ### while 반복문 사용
@@ -337,62 +351,84 @@ fun main(args: Array<String>) {
 }
 ```
 
-[while loop](https://kotlinlang.org/docs/reference/control-flow.html#while-loops) 참조
+[Controlflow: for loop]({{ site.baseurl }}{% link _my_collection/kotlin-controlflow.md %})
+
+[링크: Controlflow: for loop](https://kotlinlang.org/docs/reference/control-flow.html#while-loops) 
 
 
 
 ### when 표현식
 
-**when ()** 안에 주어진 인스턴스의 식에 따라 분기 한다. 값에 따른 분기 판단은 *->* 연산자를 사용하고 값의 형식은 자동 연산된다.
+*when()*{:.keyword} 안에 주어진 인스턴스의 식에 따라 분기 한다. 값에 따른 분기 판단은 *->*{:.keyword} 연산자를 사용하고 값의 형식은 자동 연산된다.
 
 ```kotlin
-fun cases(obj: Any) {
-  when (obj) {
-    1          -> print("One")
-    "Hello"    -> print("Greeting")
-    is Long    -> print("Long")
-    !is String -> print("Not a string")
-    else       -> print("Unknown")
-  }
+fun describe(obj: Any): String =
+when (obj) {
+    1          -> "One"
+    "Hello"    -> "Greeting"
+    is Long    -> "Long"
+    !is String -> "Not a string"
+    else       -> "Unknown"
 }
-```
 
-참조 [when 표현](https://kotlinlang.org/docs/reference/control-flow.html#when-expression)
-
-
-#### 샘플 코드
-> 소스코드: Basic04_ForWhen.kt
-
-```kotlin
 fun main(args: Array<String>) {
-    for( i in 1..5) {
-        when (i) {
-            1 -> cases(1)
-            2 -> cases("Hello")
-            3 -> cases(100000000L)
-            4 -> cases(args)
-        }
-    }
+    println(describe(1))
+    println(describe("Hello"))
+    println(describe(1000L))
+    println(describe(2))
+    println(describe("other"))
+}
+```
+
+[링크: when 표현](https://kotlinlang.org/docs/reference/control-flow.html#when-expression)
+
+
+### 범위값 사용하기
+
+*in*{:.keyword} 연산자를 사용해서 주어진 범위 사이의 숫자를 점검할 수 있다.
+
+```kotlin
+if (x in 1..y-1)
+  print("OK")
+```
+
+*!*{:.keyword} 연산자와 함께 사용해서 범위를 벗어나는지 점검한다:
+
+```kotlin
+val list = listOf("a", "b", "c")
+
+if (-1 !in 0..list.lastIndex) {
+    println("-1 is out of range")
+}
+if (list.size !in list.indices) {
+    println("list size is out of valid list indices range too")
+}
+```
+
+for 반복문으로 범위 만큼 반복한다. 반복시 단계를 둘 수 있다.
+
+```kotlin
+for (x in 1..5) {
+    print(x)
 }
 
-fun cases(obj: Any) {
-    when (obj) {
-        1 -> println("One")
-        "Hello" -> println("Greeting")
-        is Long -> println("Long")
-        !is String -> println("Not a string")
-        else -> println("Unknown")
-    }
+for (x in 1..10 step 2) {
+    print(x)
+}
+for (x in 9 downTo 0 step 3) {
+    print(x)
 }
 ```
 
 
+
+[링크: Ranges](https://kotlinlang.org/docs/reference/ranges.html) 
 
 
 
 ### 컬렉션 사용
 
-컬렉션 데이터 위에서 되풀이 할 수 있습니다.
+컬렉션 데이터 위에서 되풀이 할 수 있다.
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -405,7 +441,7 @@ fun main(args: Array<String>) {
 ```
 
 Checking if a collection contains an object using in operator:
-한 컬렉션을 **in** 연산자로 객체를 사용하는지 점검할 수 있다.
+컬렉션이 객체를 내포하는지 *in*{:.keyword} 연산자로 점검할 수 있다.
 
 ```kotlin
 if( "박문수" in names) {
@@ -413,18 +449,18 @@ if( "박문수" in names) {
 }
 ```
 
-
-람다 표현식을 사용해서 필터하고 컬렉션을 사상할 수 있다
+람다 표현식을 사용해서  컬렉션을 필터하고 사상 할 수 있다
 
 ```kotlin
-names
-    .filter { it.startsWith("A") }
-    .sortedBy { it }
-    .map { it.toUpperCase() }
-    .forEach { print(it) }
-
+  val fruits = listOf("banana", "avocado", "apple", "kiwi")
+  fruits
+  .filter { it.startsWith("a") }
+  .sortedBy { it }
+  .map { it.toUpperCase() }
+  .forEach { println(it) }
 ```
 
-참조: [고수준 함수와 람다](https://kotlinlang.org/docs/reference/lambdas.html)
+
+[링크: 고수준 함수와 람다](https://kotlinlang.org/docs/reference/lambdas.html)
 
 

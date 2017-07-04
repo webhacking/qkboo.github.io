@@ -83,6 +83,25 @@
   margin-bottom: 1rem;
 }
 
+
+/*
+ * Keyword highlighter
+ */
+.blog-post .keyword {
+  font-family: Liberation Mono, Consolas, Menlo, Courier, monospace;
+  font-style: normal;
+  color: #0000c0
+}
+// highlighter의 highlight 클래스
+.highlight > code {
+  font-family: Liberation Mono, Consolas, Menlo, Courier, monospace;
+  font-size: 0.9em;//smaller;
+  line-height: 0.5;
+}
+
+
+
+
 /**
  * Navbar
  */
