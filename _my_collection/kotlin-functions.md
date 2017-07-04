@@ -1,6 +1,6 @@
 ---
-title: Kotlin - Ref/기본문법
-date: 2017-06-29 22:00:00 +0900
+title: Kotlin - Ref/Functions
+date: 2017-06-30 09:00:00 +0900
 layout: post
 tags: [kotlin, intellij]
 categories: [Kotlin]

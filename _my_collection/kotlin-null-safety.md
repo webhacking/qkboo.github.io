@@ -1,4 +1,11 @@
-# Null Safety
+---
+title: Kotlin - Ref/Null Safety
+date: 2017-06-30 09:00:00 +0900
+layout: post
+tags: [kotlin, intellij]
+categories: [Kotlin]
+published: true
+---
 
 ## Nullable types and Non-Null Types
 
