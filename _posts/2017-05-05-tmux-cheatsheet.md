@@ -111,6 +111,7 @@ C-"          #수평으로 나누기
 C-z          #현재 pane 확대 및 돌아오기
 C-{          #현재 pane을 이전 pane 위치로 이동
 C-}          #현재 pane을 다음 pane 위치로 이동
+C-Arrow      #앞,뒤 pane을 방향키로 이동
 C-M+Arrow    #pane 크기를 방향키에 따라 변경
 C-spacebar   #pane 방향 전환 (수직<->수평)
 C-!          #현재 pane을 새 window로 분리
