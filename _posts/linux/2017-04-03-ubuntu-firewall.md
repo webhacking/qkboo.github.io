@@ -2,7 +2,7 @@
 title: UFW Firewall on Ubuntu/Debian
 date: 2017-04-03 14:00:00 +0900
 layout: post
-tags: [linux, firewall]
+tags: [linux, firewall, security]
 categories: 
 - Linux
 ---

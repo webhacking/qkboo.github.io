@@ -78,7 +78,7 @@ $ sudo ln -s /etc/nginx/sites-available/my-site /etc/nginx/sites-enabled/my-site
 $ sudo service nginx reload # 설정 다시 가져오기
 ```
 
-Debian, Ubuntu 계열은 Ubuntu 15.x, Debian Wizzy 이후에서 시스템 서비스를 systemctl 로 다룬다.
+Debian, Ubuntu 계열은 Ubuntu 15.x, Debian Wizzy 이후? 시스템 서비스를 `systemd` 로 다룬다. nginx도 systemd 스크립트로 관리할 수 있다. systemd 관련 내용 참조 - [^6]
 
 ```sh
 $ sudo systemctl reload nginx.service
@@ -320,3 +320,4 @@ server {
 [^3]: [Enabling Https with Nginx](https://manual.seafile.com/deploy/https_with_nginx.html)
 [^4]: [Create Self signed SSL](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04)
 [^5]: [Http Auth](https://www.digitalocean.com/community/tutorials/how-to-set-up-http-authentication-with-nginx-on-ubuntu-12-10)
+[^6]: [서버 프로세스 관리에 대해](http://www.codeok.net/서버%20프로세스를%20관리하는%20올바른%20방법)
