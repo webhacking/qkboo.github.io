@@ -82,7 +82,17 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
+.blog-post > blockquote.right-history {
+  position: relative;
+  left: 70%;
+  width: 30%;
+  #border: 1px solid #afafaf;
+  padding: 10px;
+  background: #f1f1f1;
+  #font-family: "Times New Roman", Times, serif;
+  font: italic 0.8rem Georgia, serif;
 
+}
 
 /*
  * Keyword highlighter
