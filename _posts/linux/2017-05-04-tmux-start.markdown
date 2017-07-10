@@ -7,6 +7,9 @@ categories:
 - Linux
 ---
 
+> 2017-07-10: tmux-continum 추가
+{:.right-history}
+
 Tmux는 terminal multiplexer로 서버에 여러 프로그램을 세션에 저장하고, 다른 작업 혹은 연결을 끊었다 다시 접속해서 세션을 열어 작업을 이어갈 수 있다.
 
 ![](https://tmux.github.io/ss-tmux2.png){: width="600"}
@@ -259,15 +262,15 @@ run '~/.tmux/plugins/tpm/tpm'
 #### plugin 관리
 
 플러그인 설치를 위해서 **C-I** (대문자) 를 실행
-플러그인 업그레이드를 위해서 `prefix + U` 를 실행
-플러그인 목록에서 플러그인을 선택하고 C-M-u (소문자)
+플러그인 업그레이드를 위해서 **C-U** 를 실행
+ - 플러그인 목록에서 플러그인을 선택하고 C-M-u (소문자)
 
 
-### Resurrection
+### Tmux-Resurrection
 
-tmux-resurrect는 tmux 세션을 백업/복구 할 수 있는 플러그인이다. tmux.conf에 다음을 추가
+*tmux-resurrect*{:.keyword}는 tmux 세션을 백업/복구 할 수 있는 플러그인이다. tmux.conf에 다음을 추가
 
-```
+```sh
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 ```
 
@@ -279,6 +282,95 @@ Resurrection 플러그인으로 백업/복구하는 키는 다음 같이 지정�
  - C-r : restore
 
 
+### Tmux-continuum
+
+*tmux-resurrect*{:.keyword} 에서 저장한 환경을 자동으로 저장/복구할 수 있는 플러그인이다.
+ - [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum)
+
+*tmux-continuum*{:.keyword} 의 주요 기능은:
+
+ - *tmux*{:.keyword} 환경을 15분 마다 자동 저장
+ - 컴퓨터/서버 시작시 *tmux*{:.keyword} 자동 시작
+ - *tmux*{:.keyword} 시작시 자동 복구
+ - **tmux 1.9** 이상, bash, **tmux-resurrect** plugin
+
+#### 설치
+
+**.tmux.conf** 파일에 아래 플러그인을 추가:
+
+```sh
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+```
+
+tmux 에서 플러그인 설치를 위해서 **C-I** (대문자) 를 실행
+
+그리고 **.tmux.conf** 파일에 continuum-restore 을 on으로 해준다.
+
+```sh
+set -g @continuum-restore 'on'
+```
+
+tmux 세션을 모두 나와서 tmux 서버를 모두 `kill-session` 같은 명령으로 종료시킨후 tmux를 다시 시작하면 `.tmux/resurrect` 에 저장된 마지막 세션이 복구되는 것을 확인할 수 있다.
+
+이제부터 15분 마다 자동 저장하고 서버를 재시작한 후에 tmux를 다시 시작하면 저장한 환경을 자동으로 복구해 준다.
+
+#### tmux status 표시
+
+tmux-continuum 의 상태를 tmux status line에 표시할 수 있다.
+
+```sh
+set -g status-right 'Continuum status: #{continuum_status}'
+```
+
+#### Linux에서 tmux 자동 시작
+
+tmux-continuum 은 Linux systemd, macOS 에서 자동 시작을 지원한다.
+
+Linux는 `.tmux.conf` 파일에 다음 부트 옵션을 추가한다.
+
+```sh
+set -g @continuum-boot 'on'
+```
+
+그리고 현재 실행중인 세션에 변경한 설정을 적용하려면
+
+```sh
+$ tmux source-file ~/.tmux.conf
+```
+
+
+#### macOS에서 tmux 자동 시작
+
+`.tmux.conf` 파일에 다음 부트 옵션을 추가한다.
+
+```sh
+set -g @continuum-boot 'on'
+```
+
+그리고 현재 실행중인 세션에 변경한 설정을 적용한다.
+
+```sh
+$ tmux source-file ~/.tmux.conf
+```
+
+맥이 재시작 하면 자동으로 `Terminal.app` 이 실행된다. 터미널 크기는 다음 옵션으로 지정한다:
+
+```sh
+set -g @continuum-boot-options 'fullscreen' # terminal window will go fullscreen
+set -g @continuum-boot-options 'iterm'    # start iTerm instead of Terminal.app
+set -g @continuum-boot-options 'iterm,fullscreen' # start iTerm in fullscreen
+
+```
+
+#### 다중 tmux 서버는 지원하지 않는다.
+
+tmux 로 서버를 하나 시작하고, `tmux -S /tmp/foo` 같이 다른 소켓을 사용했다고 자동 저장/복구가 별도로 진행되지 않는다. [^10]
+
+
+
+
+<br/>
 ### 설정 저장
 
 tmux 설정을 위힌 default 파일이 존재하지 않는다는 점이다. 그래서 tmux 기본 설정을 어딘가 추출해서 보관해두면 다시 돌아오는데 편리하다. 현재 tmux에 설정된 값은 다음 명령어로 추출할 수 있다.
@@ -303,4 +395,9 @@ $ tmux source-file ~/.tmux.current.conf
 - [tmux 사용에 도움되는 설정과 플러그인 정리](http://haruair.com/blog/3437)
 - [스크롤에 대한 의견](http://superuser.com/questions/209437/how-do-i-scroll-in-tmux)
 - [tmux-한글-파일명-출력-문제-해결하기](http://seonhyu-blog.tumblr.com/post/34612062806/맥에서-tmux-한글-파일명-출력-문제-해결하기)
+
+
+
+
+[^10]: [Behaviro when running multiple tmux servers](https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/multiple_tmux_servers.md)
 
