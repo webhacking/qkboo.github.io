@@ -85,15 +85,6 @@ fun printSum(a: Int, b: Int) {
 [Kotlin functions 참조]({{ site.baseurl }}{% link _my_collection/kotlin-functions.md %})
 
 
-
-IntelliJ 에서 프로그램 매개변수를 지정하려면 먼저 Ctrl+Shft+R 로 실행구성을 하나 생성한 후에 Edit configuration으로 명령 파라 미터를 다음 같이 추가한 후에 다시 실행합니다.
-
-![](images/kotlin/intellij-kotlin-run-conf2.png) ![](images/kotlin/intellij-kotlin-run-conf1.png)
-
-[그림. ]
-
-
-
 ### 변수의 선언
 
 변수는 형식을 지정하고 선언하거나, 임의의 값을 바로 대입할 수 있다. *var*{.keyword}로 가변형식의 선언 하거나, *val*{.keyword}로 불변형으로 선언한다.

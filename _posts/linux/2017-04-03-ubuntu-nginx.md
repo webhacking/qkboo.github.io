@@ -226,21 +226,6 @@ server {
 ```
 
 
-
-### Upload size
-
-POST로 multi-part 업로드시에 다음 에러가 보이면 nginx의 기본 업로드 크기를 2M 이하로 설정되어 그렇다.
-
-```
-[error] 31354#0: *10899 client intended to send too large body: 1198151 bytes, client: <IP address>, server: example.com, request: “POST /wp-admin/async-upload.php HTTP/1.1”, host: “example.com”, referrer: “http://example.com/wp-admin/post.php?post=<post id>&action=edit”
-```
-
-`client_max_body_size` 속성을 server, location 에 설정해 준다:
-
-```
-client_max_body_size 20M;
-```
-
 <br/>
 <br/>
 ## WebDAV
@@ -313,6 +298,41 @@ server {
 ```
 
 
+
+## more configures
+
+http://nginx.org/en/docs/http 에 있는 세부 설정중 사용한 것.
+
+### Upload size
+
+POST로 multi-part 업로드시에 다음 에러가 보이면 nginx의 기본 업로드 크기를 2M 이하로 설정되어 그렇다.
+
+```
+[error] 31354#0: *10899 client intended to send too large body: 1198151 bytes, client: <IP address>, server: example.com, request: “POST /wp-admin/async-upload.php HTTP/1.1”, host: “example.com”, referrer: “http://example.com/wp-admin/post.php?post=<post id>&action=edit”
+```
+
+`client_max_body_size` 속성을 server, location 에 설정해 준다:
+
+```
+client_max_body_size 20M;
+```
+
+
+### limit_rate
+
+[limit_rate](http://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate), limit_rate_after 는 함께 사용
+
+```
+location /flv/ {
+    flv;
+    limit_rate_after 500k;
+    limit_rate       50k;
+}
+```
+
+
+<br/>
+<br/>
 ## 참조
 
 [^2]: [SSL 인증서 종류](http://it79.egloos.com/1121724)
