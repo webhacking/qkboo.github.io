@@ -508,16 +508,14 @@ Status
 전체 jail 중에 특정한 것만 확인한다.
 
 ```
-$ sudo fail2ban-client status sshd
-Status for the jail: sshd
-|- Filter
-|  |- Currently failed: 0
-|  |- Total failed: 0
-|  `- File list:    /var/log/auth.log
-`- Actions
-   |- Currently banned: 0
-   |- Total banned: 0
-   `- Banned IP list:
+Status for the jail: ssh
+|- filter
+|  |- File list:        /var/log/auth.log
+|  |- Currently failed: 208
+|  `- Total failed:     4357
+`- action
+   |- Currently banned: 679
+   |  `- IP list:       2.176.38.209 116.31.116.53 181.21.6.110 153.171.66.99 190.67.247.209 201.179.200.15 103.207...
 ```
 
 #### 테스트
