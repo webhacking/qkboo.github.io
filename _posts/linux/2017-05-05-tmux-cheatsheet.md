@@ -7,9 +7,14 @@ categories:
 - Linux
 ---
 
-터미널 명령은 `$ tmux` 로 표현하고, Tmux window 에서 컨트롤을 위한 Prefix key 키 조합은 는 **C** 표기하고, Meta key인 `Alt`는 **M**으로 표기한다.
+> - 2017-07-14: 윈도우에서 session 관리
+> - 2017-07-10: tmux copy & paste
+{:.right-history}
 
-`.tmux.conf` 에서 기능키/메타키 연결
+
+터미널 명령은 `$ tmux` 로 표현하고, Tmux window 에서 Prefix key 키 조합은 는 *C*{:.keyword} 표기하고, Meta key인 `Alt`는 *M*{:.keyword}으로 표기한다 - [Tmux Start](http://localhost:4000/linux/tmux/2017/05/04/tmux-start.html) 참조.
+
+여기서는 *.tmux.conf* 에서 기능키/메타키 연결해서 기본 Prefix key인 `Ctrl+b` 를 `Ctrl+a`로 묶었다.
 
 ```bash
 set -g prefix C-a
@@ -17,8 +22,6 @@ bind C-a send-prefix
 unbind C-b
 ```
 
-> Prefix key인 Ctrl+a는 **C** 키 조합으로 표기하고, Meta key인 `Alt`는 **M**으로 표기한다.
-> [Tmux Start](http://localhost:4000/linux/tmux/2017/05/04/tmux-start.html) 참조.
 
 
 ## Tmux 명령
@@ -122,6 +125,19 @@ C-[          #pane에서 스크롤 기능을 활성화
 ```
 
 
+### Session transition
+
+윈도우 상태에서 여러 세션 사이의 전환 단축키;
+
+```
+C-$          # 현재 세션 이름 바꾸기
+C-(          # 이전 세션으로 전환
+C-)          # 다음 세션으로 전환
+C-L          # 사용한 세션중 마지막 세션으로 전환
+C-s          # 사용 가능한 세션 목록
+```
+
+
 ### Tmux copy & paste
 
 `tmux` 는 자체 버퍼에 터미널에서 선택한 영역의 텍스트를 복사해서 사용할 수 있다.
@@ -137,9 +153,12 @@ C-]         # 붙여 넣는다.
 
 #### Copy with mouse drag
 
-You can enable ‘mouse mode’, using which you can copy text into tmux buffer by mouse drag. For doing that, you just need to add this line to your ~/.tmux.conf file:
+**mouse mode**를 활성화 하면 터미널에서 마우스 드래그로 텍스트를 선택하면 tmux buffer에 복사되게 한다. *.tmux.conf* 파일에 다음 구성을 추가한다:
 
+```sh
 set -g mouse on
+```
+
 
 <!--
 ## 참조
