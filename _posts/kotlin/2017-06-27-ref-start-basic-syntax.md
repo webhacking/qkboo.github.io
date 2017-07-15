@@ -87,7 +87,7 @@ fun printSum(a: Int, b: Int) {
 
 ### 변수의 선언
 
-변수는 형식을 지정하고 선언하거나, 임의의 값을 바로 대입할 수 있다. *var*{.keyword}로 가변형식의 선언 하거나, *val*{.keyword}로 불변형으로 선언한다.
+변수는 형식을 지정하고 선언하거나, 임의의 값을 바로 대입할 수 있다. *var*{:.keyword}로 가변형식의 선언 하거나, *val*{:.keyword}로 불변형으로 선언한다.
 
 > val name[:TYPES] = VALUE
 > var name[:TYPES] = VALUE
@@ -106,7 +106,7 @@ fun main(args: Array<String>) {
 
 #### 지역변수
 
-*val*{.keyword} 키워드는 변수를 읽기 전용으로, 초기화시 한 번만 값을 대입한다.
+*val*{:.keyword} 키워드는 변수를 읽기 전용으로, 초기화시 한 번만 값을 대입한다.
 
 ```kotlin
 
@@ -122,7 +122,7 @@ fun main(args: Array<String>) {
 - 일반적으로 변수는 위와 같이 초기화 한다.
 
 
-Mutable 변수는 *var*{.keyword}로 선언한다
+Mutable 변수는 *var*{:.keyword}로 선언한다
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -183,7 +183,7 @@ fun max(a: Int, b: Int): Int {
 }
 ```
 
-위의 코드는 조건 판단을 위해서 **if express** 표현식을 사용해서 Expression body에 적용할 수 있다. 위 함수는 아래 같은 *if*{.keyword} 표현식으로 사용될 수 있다:
+위의 코드는 조건 판단을 위해서 **if express** 표현식을 사용해서 Expression body에 적용할 수 있다. 위 함수는 아래 같은 *if*{:.keyword} 표현식으로 사용될 수 있다:
 
 ```kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
