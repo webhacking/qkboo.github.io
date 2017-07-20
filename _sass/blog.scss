@@ -41,6 +41,7 @@
 }
 .post-meta {
   font-size: $small-font-size;
+  font-style: italic;
   color: $gray;
 }
 
@@ -93,6 +94,12 @@
   font: italic 0.8rem Georgia, serif;
 }
 
+// testing floating menu on right side
+.row-floating {
+    position: relative;
+}
+
+
 /*
  * Keyword highlighter
  */
@@ -106,6 +113,7 @@
   font-family: Liberation Mono, Consolas, Menlo, Courier, monospace;
   font-size: 0.9em;//smaller;
   line-height: 0.5;
+  word-wrap: break-word;
 }
 
 
