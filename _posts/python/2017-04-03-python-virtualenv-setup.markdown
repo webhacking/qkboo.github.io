@@ -209,6 +209,12 @@ $ workon django3
 (django3):~$ deactivate
 ```
 
+#### 가상환경 복사하기
+
+```sh
+$ cpvirtualenv django3 new_djang4
+$ rmvirtualenv django3
+```
 
 
 ### pyvenv

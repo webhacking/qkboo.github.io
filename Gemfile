@@ -22,6 +22,7 @@ gem "jekyll", "3.4.3"
 group :jekyll_plugins do
    gem "jekyll-feed", "~> 0.6"
    gem "jekyll-paginate"
+   gem "jekyll-gist"
 #   gem 'bootstrap', '~> 4.0.0.alpha4'
 #   gem 'autoprefixer-rails'
 #   gem 'jekyll-assets'

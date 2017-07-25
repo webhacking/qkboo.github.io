@@ -1,5 +1,5 @@
 ---
-title: Kotlin - Ref/기본문법
+title: Kotlin - Getting Started/기본문법
 date: 2017-06-29 22:00:00 +0900
 layout: post
 tags: [kotlin, intellij]
@@ -89,11 +89,13 @@ fun printSum(a: Int, b: Int) {
 
 변수는 형식을 지정하고 선언하거나, 임의의 값을 바로 대입할 수 있다. *var*{:.keyword}로 가변형식의 선언 하거나, *val*{:.keyword}로 불변형으로 선언한다.
 
-> val name[:TYPES] = VALUE
-> var name[:TYPES] = VALUE
+```
+val name[:TYPES] = VALUE    # 불변형 변수
+var name[:TYPES] = VALUE    # 가변형 변수
+```
 
 
-```kotlin
+~~~kotlin
 var hello: String = "안녕하세요"
 
 fun main(args: Array<String>) {
@@ -101,12 +103,25 @@ fun main(args: Array<String>) {
   print(hello)
   println(hi)
 }
-```
+~~~
+
+*val*{:.keyword} 키워드는 변수를 읽기 전용으로, 초기화시 한 번만 값을 대입한다.
+
+~~~kotlin
+val foo = 10
+#...
+foo = 20
+~~~
+
+*val*{:.keyword} 로 선언하고 값을 다시 대입하면 *Val cannot be reassigned* 에러가 발생한다.
+이렇게 선언하고 컴파일 후 실행하면 다음 에러를 볼 수 있다:
+
+![](/images/kotlin/kotlin-error-val-reassigned.png){: width="500"}
 
 
 #### 지역변수
 
-*val*{:.keyword} 키워드는 변수를 읽기 전용으로, 초기화시 한 번만 값을 대입한다.
+함수 안에서 지역변수를 선언한다.
 
 ```kotlin
 
@@ -155,7 +170,7 @@ fun main(args: Array<String>) {
 
 ### 문자열 템플릿 사용
 
-문자열 안에서 문자열 템플릿 표현식을 사용 할 수 있다. `$` 기호로 시작하는 문자열 템플릿을 문자열에서 변수를 참조하게 할 수 있다.
+문자열 안에서 *문자열 템플릿 표현식*을 사용 할 수 있다. *$*{:.keyword} 기호로 시작하는 문자열 템플릿로 문자열에서 변수를 참조하게 할 수 있다.
 
 
 ```kotlin
@@ -195,9 +210,8 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 
 ### *null*{:.keyword} 가능한 값과 점검
 
-변수 참조시 *null*{:.keyword} 값 가능성이 있으면, *null*{:.keyword} 일 수 있음을 명시해서 널에 안전한 코드를 만들 수 있다. 이것은 Null-safety 키워드 *?*{:.keyword} 로 객체가 *null*{:.keyword} 일 수 있다고 선언해 준다.
-
-Null-safety로 안전한 코드를 작성하게 제공하기 위해서 **?.** 라는 Null-safety 키워드를 사용할 수 있습니다. 
+Null-safety 기법으로 *null*{:.keyword}에 안전한 코드를 작성하게 제공하기 위해서 *?*{:.keyword} Null-safety 키워드를 사용할 수 있다.
+이것은 변수 참조시 *null*{:.keyword} 값 가능성이 있으면, *null*{:.keyword} 일 수 있음을 명시해서 널에 안전한 코드를 만들 수 있다. 
 
 아래 parseInf()라는 함수를 선언시 반환 형식에 다음 같이 *Int?*{:.keyword} 안전호출 연산자를 붙여 반환식에 사용하면 값이 *null*{:.keyword}이 아니면 값을, 반대면 *null*{:.keyword}을 반환한다.
 
@@ -228,9 +242,7 @@ fun main(args: Array<String>) {
 
 ```
 
-혹은 또한 null 체크는 **==** 동등비교 연산자를 사용해서 다음 같이 사용할 수 있습니다:
- *null*{:.keyword} 경우 return으로 반환만 한다.
-
+null 체크의 전통적이고 다른 방법으로 *==*{:.keyword} 동등비교 연산자를 사용해서 다음 같이 사용할 수 있다. *null*{:.keyword}인 경우 *return*{:.keyword} 반환하면 된다.
 
 ```kotlin
   if (x == null) {
@@ -245,14 +257,14 @@ fun main(args: Array<String>) {
 
 
 [Null-safety]({{ site.baseurl }}{% link _my_collection/kotlin-null-safety.md %})
+
 [링크: Null-safety](https://kotlinlang.org/docs/reference/null-safety.html)
 
 
 
 ### 형 점검과 자동 형 캐스트
 
-*is*{:.keyword} 연산자는 변수가 데이터 형에 맞는 인스턴스인지 점검 할 수 있다. 그래서 만약 불변 지역 변수 혹은 속성이 특정 형식에 대해 형 점검되면 명시적으로 캐스트할 필요가 없다.
-
+*is*{:.keyword} 연산자는 변수가 데이터 형에 맞는 인스턴스인지 점검 할 수 있다. *is*{:.keyword} 연산자는 만약 불변 변수 혹은 속성이 특정 형식에 대해 형으로 판단 되면 명시적으로 캐스트 할 필요가 없이 형 판단을 한다.
 
 ```kotlin
 fun getStringLength(obj: Any): Int? {
@@ -273,6 +285,7 @@ fun main(args: Array<String>) {
     printLength(listOf(Any()))
 }
 ```
+ - 문자열 템플릿 연산자 *$*{:.keyword}는 함수도 표현식에 사용할 수 있다.
 
 다음 함수에서 Any 형 객체가 스트링 관련 처리 요청시 역시 스트링으로 캐스팅된다. 다음 같이 obj.lengh 스트링 문자열 크기를 요청하면 스트링 캐스팅 된다.
 
@@ -297,6 +310,7 @@ fun getStringLength(obj: Any): Int? {
 ```
 
 [링크: 클래스](https://kotlinlang.org/docs/reference/classes.html)
+
 [링크: 캐스트](https://kotlinlang.org/docs/reference/typecasts.html)
 
 
@@ -310,7 +324,7 @@ for (x in 1..5)
   print(x)
 ```
 
-for와 in 연산자에 컬렉션 요소를 직접 사용한다
+*for*{:.keyword}와 *in*{:.keyword} 연산자에 컬렉션 요소를 직접 사용한다
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -374,9 +388,9 @@ fun main(args: Array<String>) {
 [링크: when 표현](https://kotlinlang.org/docs/reference/control-flow.html#when-expression)
 
 
-### 범위값 사용하기
+### 범위 연산자 사용하기
 
-*in*{:.keyword} 연산자를 사용해서 주어진 범위 사이의 숫자를 점검할 수 있다.
+*..*{:.keyword} 연산자는 `rangeTo()` 함수의 연산자 형태로 사용한다. *in*{:.keyword} 연산자에 사용해서 주어진 범위 사이의 숫자를 점검할 수 있다.
 
 ```kotlin
 if (x in 1..y-1)
@@ -396,7 +410,7 @@ if (list.size !in list.indices) {
 }
 ```
 
-for 반복문으로 범위 만큼 반복한다. 반복시 단계를 둘 수 있다.
+*for*{:.keyword} 반복문으로 범위 만큼 반복한다. 반복시 `downTo()`, `step()` 함수와 함께 단계로 뛰어 넘을 수 있다.
 
 ```kotlin
 for (x in 1..5) {
@@ -406,20 +420,20 @@ for (x in 1..5) {
 for (x in 1..10 step 2) {
     print(x)
 }
+
 for (x in 9 downTo 0 step 3) {
     print(x)
 }
 ```
 
 
-
-[링크: Ranges](https://kotlinlang.org/docs/reference/ranges.html) 
+[링크: Ranges 표현식](https://kotlinlang.org/docs/reference/ranges.html) 
 
 
 
 ### 컬렉션 사용
 
-컬렉션 데이터 위에서 되풀이 할 수 있다.
+컬렉션 데이터를 *in*{:.keyword} 연산자와 같이 사용해 데이터 끝까지 반복 할 수 있다.
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -431,8 +445,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-Checking if a collection contains an object using in operator:
-컬렉션이 객체를 내포하는지 *in*{:.keyword} 연산자로 점검할 수 있다.
+*if*{:.keyword} 조건절에서는 *in*{:.keyword} 연산자와 함께 사용해 컬렉션이 객체를 내포하는지 점검할 수 있다.
 
 ```kotlin
 if( "박문수" in names) {
@@ -453,5 +466,8 @@ if( "박문수" in names) {
 
 
 [링크: 고수준 함수와 람다](https://kotlinlang.org/docs/reference/lambdas.html)
+
+[링크: 람다 표현식](http://kotlinlang.org/docs/reference/lambdas.html#lambda-expressions-and-anonymous-functions)
+
 
 

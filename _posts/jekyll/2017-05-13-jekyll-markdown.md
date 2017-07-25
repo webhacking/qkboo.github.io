@@ -112,6 +112,8 @@ lcb: "{"
 | item2 | item2 description | 100.00 |{:.table-hover}
 
 
+http://digitaldrummerj.me/styling-jekyll-markdown/
+
 ## 참조
 
 [^1]: [Liquid in markdown](http://ozzieliu.com/2016/04/26/writing-liquid-template-in-markdown-with-jekyll/)

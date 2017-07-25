@@ -6,7 +6,11 @@ tags: [linux, odroid, armbian, install]
 categories: Linux
 ---
 
-# Odroid C2
+> 2017-07-24: exFAT 추가
+{:.right-history}
+
+
+Odroid C2 
 
 ![](http://odroid.com/dokuwiki/lib/exe/fetch.php?tok=53e4d9&media=http%3A%2F%2Fdn.odroid.com%2Fhomebackup%2F201602%2FODROID-C2.png){: width="600"}
 
@@ -423,7 +427,23 @@ Press <enter> to keep the current choice[*], or type selection number: 6
 ```
 
 
+### exFAT
 
+리눅스테어 외부 USB 디스크를 *exFAT*로 포맷하고 사용한다면, *exfat-fuse*와 *exfat-utils*를 설치해 준다.
+
+```sh
+$ sudo apt install exfat-fuse exfat-utils
+```
+
+그리고 대부분 최신 리눅스 데스크탑은 USB 디스크를 더블클릭하면 자동마운트 해준다.
+
+터미널에서는
+
+```sh
+$ sudo mkdir /media/my_usb
+$ sudo mount -t exfat /dev/sdb1 /media/my_usb
+$ sudo umount /dev/sdb1
+```
 
 ## 참조
  - [sudo user create](> https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart)

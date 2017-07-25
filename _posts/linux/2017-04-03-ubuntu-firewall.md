@@ -80,8 +80,6 @@ $ sudo ufw enable
 Firewall is active and enabled on system startup
 ```
 
-
-
 방화벽을 끌 때는 아래와 같은 명령어를 입력한다
 
 ```sh
@@ -240,7 +238,7 @@ $ sudo ufw allow from 192.168.0.101 to any port 9200:9300 proto tcp
 서브넷을 특정 포트에 허용할 경우
 
 ```
-$ sudo ufw allow from 192.168.0.0/24 to any port 8080
+$ sudo ufw allow from 192.168.0.0/24 to any port 27017 proto tcp
 ```
 
 

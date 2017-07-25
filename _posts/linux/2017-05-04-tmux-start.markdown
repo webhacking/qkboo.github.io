@@ -39,9 +39,9 @@ Tmux는 terminal multiplexer로 서버에 여러 프로그램을 세션에 저�
 $ sudo apt remove --purge tmux
 ```
 
-소스를 다운로드 하고 빌드한다.
+소스를 [https://github.com/tmux/tmux/releases/](https://github.com/tmux/tmux/releases/) 에서 최신 버전으로 다운로드 하고 빌드한다.
 
-```
+```sh
 sudo apt update
 sudo apt install -y libevent-dev libncurses-dev
 wget https://github.com/tmux/tmux/releases/download/2.3/tmux-2.3.tar.gz

@@ -35,20 +35,41 @@ $ sudo usermod -aG sudo pi
 
 ### ufw를 사용한 방화벽 등록
 
+
+```sh
+$ sudo apt install ufw
+```
+
+방화벽 기본 규칙을 실행한다.
+
+```sh
+$ sudo ufw default deny incoming
+$ sudo ufw default allow outgoing
+```
+
+리눅스 방화벽 구성에 대해서는 포스트 [UFW Firewall on Ubuntu/Debian](/linux/2017/04/03/ubuntu-firewall.html) 에 자세히 설명하고 있다.
+
+
+```sh
+$ sudo ufw allow ssh
+$ sudo ufw allow http
+$ sudo ufw allow https
+```
+
+그리고 ufw로 방화벽을 활성화 한다.
+
+```
+$ sudo ufw status
+Status: inactive
+
+$ sudo ufw enable
+```
+
 현재 서버의 열린 포트는 다음 같이 `netstat` 명령으로 확인이 가능하다.
 
 ```sh
 $ netstat -tlnp
 ```
-
-방화벽 기본 규칙을 실행한다.
-
-```
-sudo ufw default deny
-sudo ufw default allow
-```
-
-리눅스 방화벽 구성에 대해서는 포스트 [UFW Firewall on Ubuntu/Debian](/linux/2017/04/03/ubuntu-firewall.html) 에 자세히 설명하고 있다.
 
 
 #### ping (icmp) 허용/거부
@@ -79,13 +100,7 @@ Logging enabled
 
 리눅스 방호벽에 ssh 허용한다. ufw를 사용한다면 다음 같이 해준다.
 
-ssh 허용
-
-```
-$ sudo ufw allow ssh
-or
-$ sudo ufw allow 22
-```
+ssh 보안
 
 ssh Brute-force Attack 방어
 
@@ -273,7 +288,9 @@ $ chmod 700 ~/.ssh
 ```
 
 
-##### ssh로 복사
+##### 한번에 복사
+
+클라이언트에서 서버로 복사한다.
 
 ```
 cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'cat >> .ssh/authorized_keys'

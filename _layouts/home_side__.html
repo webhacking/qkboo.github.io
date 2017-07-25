@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<div class="container-fluid container">
+
+  <div class="blog-post">
+
+        <ul class="post-list float-md-left">
+          {% for post in site.posts %}
+            <li>
+              {% comment %}
+              {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+              <span class="post-meta">{{ post.date | date: date_format }}</span> 
+              {% endcomment %}
+              <span class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date }}</time></span>
+
+              <h2>
+                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+              </h2>
+            </li>
+          {% endfor %}
+        </ul>
+  </div>
+
+
+  <div class="float-md-right">
+    <ul class="row-floating">
+
+      {% for post in site.posts limit:5 %}  
+        <li class="nav-item"><a class="nav-link" href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>  
+      {% endfor %}  
+
+      <li class="nav-item pull-xs-right">
+        <a class="nav-link" href="#">Link on the Right</a>
+      </li>
+    </ul>
+  </div>
+
+
+
+</div>
