@@ -58,8 +58,9 @@ virtualenv 환경을 권장한다.
 #### virtualenv 환경에서 설치
 
 여기서는 
- - [macOS에서 Python 가상 개발환경 설치]({% post_url /python/2017-04-03-python-virtualenv-mac %})
- - [Linux에서 Python 가상 개발환경 설치]({% post_url /python/2017-04-03-python-virtualenv-setup %})
+- [macOS에서 Python 가상 개발환경 설치]({% post_url /python/2017-04-03-virtualenv-mac %})
+- [Linux에서 Python 가상 개발환경 설치]({% post_url /python/2017-04-03-virtualenv-linux %})
+
 
 를 참조해서 virtualenv, virtualenvwrapper 를 구성해서 사용한다고 가정한다.
 
