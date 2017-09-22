@@ -188,13 +188,20 @@ DSS';
 
 ```
 
+설정 파일이 제대로 구성됐는지 테스트해본다.[^1]
+
+```sh
+sudo nginx -t
+```
 
 
-## Nginx with Node.js
+### Nginx for Node.js
 
 Nginx를 메인 웹 서버로 사용하고 여기에 연결되는 URL, Location에 따라 nginx 외부의 다른 서비스에서 처리하게 하는 방법을 proxy 를 연결하는 것이다. 즉, nginx에서 Node.js, Django, Tomcat 같은 웹 서비스의 통로로 사용한다.
 
-### proxy
+http://www.albertauyeung.com/post/setup-jupyter-nginx-supervisor/
+
+#### proxy
 
 ```
 server {
@@ -224,6 +231,10 @@ server {
  }
 
 ```
+
+
+설정 파일이 제대로 구성됐는지 테스트해본다. `sudo nginx -t` [^1]
+
 
 
 <br/>
@@ -335,6 +346,7 @@ location /flv/ {
 <br/>
 ## 참조
 
+[^1]: [nginx command](https://www.nginx.com/resources/wiki/start/topics/tutorials/commandline/)
 [^2]: [SSL 인증서 종류](http://it79.egloos.com/1121724)
 
 [^3]: [Enabling Https with Nginx](https://manual.seafile.com/deploy/https_with_nginx.html)

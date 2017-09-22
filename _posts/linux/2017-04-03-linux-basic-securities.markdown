@@ -217,19 +217,7 @@ PubkeyAuthentication yes
 RSAAuthentication yes
 ```
 
-클라이언트에서 공개키 생성을 한다.
-
-```
-ssh-keygen -t rsa -C "user@system.name"
-```
-
-아래 같이 시스템 명칭을 주고 생성할 수 도 있다.
-
-```
-ssh-keygen -t rsa -C "Raspberry Pi #123"
-```
-
-키의 크기를 높이려면 `-b` 옵션으로 1024, 2048, 4096 값을 제시한다.
+클라이언트에서 공개키 생성을 한다. 키의 크기를 높이려면 `-b` 옵션으로 1024, 2048, 4096 값을 제시한다.
 
 ```
 $ ssh-keygen -t rsa -b 4096 -C "USER@gmail.com"
@@ -261,6 +249,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
+
 명령어 실행후 나오는 다이얼로그들 중에 rsa에 암호를 걸 수 있으나 필요치 않으면 엔터로 기본값 사용으로 넘길수 있다. ~/.ssh 디렉토리 밑에 id_rsa 와 id_rsa.pub 이 생성되었다면 성공
 
 
@@ -269,6 +258,13 @@ The key's randomart image is:
 ```
 $scp ~/.ssh/id_rsa.pub USER_ID@HOST_NAME:id_rsa.pub
 ```
+
+
+> 아래 같이 시스템 명칭을 주고 생성할 수 도 있다.
+> ```
+> ssh-keygen -t rsa -C "Raspberry Pi #123"
+> ```
+
 
 
 #### 서버에서 할일

@@ -84,7 +84,7 @@ $ mkvirtualenv --system-site-packages -p python3 tensorflow
 (tensorflow)$ pip install --upgrade tfBinaryURL
 ```
 
-다면 `tfBinaryURL` 은 [여기](https://www.tensorflow.org/install/install_linux#the_url_of_the_tensorflow_python_package)서 찾아서 직접 지정한다.
+`tfBinaryURL` 은 [여기](https://www.tensorflow.org/install/install_linux#the_url_of_the_tensorflow_python_package)서 찾아서 직접 지정한다.
 
 
 #### Uninstall Tensorflow

@@ -4,7 +4,7 @@ date: 2017-07-12 12:00:00 +0900
 layout: post
 tags: [Artificial Intelligence, 인공지능, TensorFlow]
 categories: AI
-
+---
 
 [Getting Started with TensorFlow](https://www.tensorflow.org/get_started/get_started) 글을 요약 번역한다.
 
@@ -55,8 +55,8 @@ import tensorflow as tf
 **연산 그래프**는 그래프 노드에 배열된 *TensorFlow* 작업의 급수이다. 간단한 **연산 그래프**를 구성해 보면, 각 노드는 0 혹은 다수의 *tensor*를 입력으로 가지고 *tensor* 하나를 출력으로 생성하게 하자. 노드 형식 중 하나는 상수인데, 모든 TensorFlow 상수 값은 입력으로 받지 않고, 초기화한 값을 사용한다. 아래 처럼 부동소수 *tensor*의 node1, node2 두 개를 생성해 보자
 
 ```python
-node1 = tf.constants(3.0, dtype = tf.float32)
-node2 = tf.constants(4.0) # 명시적으로 tf.float32 를 인자로 사용해도 된다.
+node1 = tf.constant(3.0, dtype = tf.float32)
+node2 = tf.constant(4.0) # 명시적으로 tf.float32 를 인자로 사용해도 된다.
 print(node1, node2)
 ```
 

@@ -9,7 +9,11 @@ categories:
 
 일반적인 리눅스 배포본의 방화벽인 ufw` 를 사용해서 리눅스에 방화벽을 구축하는 방법을 기술하고 있다.
 
-여기서 사용, 테스트한 리눅스 배포본은 Ubuntu 14.04, 15.04, 16.04 계열이다. 정확히는 Raspbian Weezy, Jessie, Armbian Ubuntu 16.04, Debian Jessie 계열이다.
+> - 2017-09-10: Log, export 추가서
+{:.right-history}
+
+
+여기서 사용, 테스트한 리눅스 배포본은 Ubuntu 14.04, 15.04, 16.04 계열에서 동작하리라 믿는다. 실제 Raspbian Weezy, Jessie, Armbian Ubuntu 16.04, Debian Jessie 에서 사용중이다.
 
 <br/>
 <br/>
@@ -60,34 +64,8 @@ New profiles: skip
 `Default` 부분이 방화벽의 기본 규칙으로 현재 들어오는 것은 막고, 나가는 것은 열어 놓은 상태이다.
 
 
-```sh
-$ sudo ufw logging on
-Logging enabled
-```
 
-
-#### UFW 활성화
-
-방화벽은 커널 수준에서 패킷을 다루기 때문에 아래 같이 활성화 명령을 통해 네트워크 패킷을 ufw가 다룰 수 있게 해준다.
-
-ufw 활성화 상태를 확인하고 inactive 상태면 활성화 한다.
-
-```sh
-$ sudo ufw status
-Status: inactive
-
-$ sudo ufw enable
-Firewall is active and enabled on system startup
-```
-
-방화벽을 끌 때는 아래와 같은 명령어를 입력한다
-
-```sh
-$ sudo ufw disable
-```
-
-
-### 방화벽 규칙 허용과 차단
+### 방화벽 규칙 허용
 
 서비스, 포트, 프로토콜, 프로그램등에 예외 규칙을 적용할 액션을 추가한다.
 
@@ -133,6 +111,32 @@ To                         Action      From
 ```sh
 $ sudo ufw reload
 ```
+
+
+
+
+먼저 ufw를 활성화하고 규칙을 추가한다.
+
+#### UFW 활성화
+
+방화벽은 커널 수준에서 패킷을 다루기 때문에 아래 같이 활성화 명령을 통해 네트워크 패킷을 ufw가 다룰 수 있게 해준다.
+
+ufw 활성화 상태를 확인하고 inactive 상태면 활성화 한다.
+
+```sh
+$ sudo ufw status
+Status: inactive
+
+$ sudo ufw enable
+Firewall is active and enabled on system startup
+```
+
+방화벽을 끌 때는 아래와 같은 명령어를 입력한다
+
+```sh
+$ sudo ufw disable
+```
+
 
 
 
@@ -295,6 +299,48 @@ Status: active
 ```sh
 $ sudo ufw delete 2
 ```
+
+
+#### UFW 설정 파일
+
+**/etc/ufw/** 밑에 `before.rule`, `before6.rule` 파일이 있다. 기본적으로 ufw 시작시 before.rules, that allows loopback, ping, and DHCP을 활성화 하고
+
+또한 ufw 명령이 실행된 후에 추가되는 룰이 `after.rule`, IPv6용 `after6.rule` 파일이 있다.
+
+그리고 **/etc/default/ufw** 파일은 IPv6 를 활성화 하거나 비활서화 한다.
+
+
+
+### Logging
+
+
+
+```sh
+$ sudo ufw logging on
+Logging enabled
+```
+
+로그 수준은 `ufw logging low|medium|high` 로 지정한다.
+
+기록되는 로그는  */var/logs/ufw* 에 위치한다.
+
+```sh
+Sep 16 15:08:14 <hostname> kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:00:00:00:00:00:00:00:00:00:00:00:00:00 SRC=123.45.67.89 DST=987.65.43.21 LEN=40 TOS=0x00 PREC=0x00 TTL=249 ID=8475 PROTO=TCP SPT=48247 DPT=22 WINDOW=1024 RES=0x00 SYN URGP=0
+```
+
+- **UFW BLOCK**: This location is where the description of the logged event will be located. In this instance, it blocked a connection.
+- **IN**: If this contains a value, then the event was incoming
+- **OUT**: If this contain a value, then the event was outgoing
+- **MAC**: A combination of the destination and source MAC addresses
+- **SRC**: The IP of the packet source
+- **DST**: The IP of the packet destination
+- **LEN**: Packet length
+- **TTL**: The packet TTL, or time to live. How long it will bounce between routers until it expires, if no destination is found.
+- **PROTO**: The packet’s protocol
+- **SPT**: The source port of the package
+- **DPT**: The destination port of the package
+- **WINDOW**: The size of the packet the sender can receive
+- **SYN URGP**: Indicated if a three-way handshake is required. 0 means it is not.
 
 
 ## 참조
