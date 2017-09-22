@@ -4,7 +4,7 @@ date: 2017-06-28 22:00:00 +0900
 layout: post
 tags: [android, kotlin, intellij]
 categories:
-- Kotlin
+- Programming
 ---
 
 

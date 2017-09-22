@@ -3,7 +3,7 @@ title: Kotlin - Getting Started/기본문법
 date: 2017-06-29 22:00:00 +0900
 layout: post
 tags: [kotlin, intellij]
-categories: [Kotlin]
+categories: [Programming]
 ---
 
 ## Getting Started : 기본 문법의 사용

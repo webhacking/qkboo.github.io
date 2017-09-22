@@ -3,7 +3,7 @@ title: Kotlin - Getting Started/Idioms
 date: 2017-06-29 22:10:00 +0900
 layout: post
 tags: [kotlin, intellij]
-categories: [Kotlin]
+categories: [Programming]
 ---
 
 ## Getting Started : Idioms

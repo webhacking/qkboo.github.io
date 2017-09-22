@@ -4,7 +4,7 @@ date: 2017-04-03 13:00:00 +0900
 layout: post
 tags: [python, virtualenv, virtualenvwrapper, macOS]
 categories: 
-- Python
+- Programming
 ---
 
 Python 개발환경을 위해서 macOS에 설치된 python2.7 그리고 brew 같은 유틸리티로 python3.x 를 설치하고, `pip`를 사용해서 패키지를 관리할 수 있다. 그리고 다양한 모듈과 시스템 모듈의 분리를 위해서 버전 관리 도구인 `virtualenv`와 `virtualenvwrapper` 를 사용해 가상 개발 환경을 구성하는 방법을 설명한다.
@@ -33,9 +33,13 @@ pip 9.0.1 from /usr/local/lib/python3.6/site-packages (python 3.6)
 
 #### site-packages
 
-`pip` 로 설치되는 패키지 모듈은 시스템의 site-packages 폴더에 설치된다. python2.7은 /usr/lib/python2.7/site-packages에 모듈을 설치한다. 그래서 시스템에 설치된 pip는 `sudo`로 설치한다.
+`pip` 로 설치되는 패키지 모듈은 시스템의 *site-packages* 폴더에 설치된다. 
+ - python2.7은 /usr/lib/python2.7/site-packages
+ - python3.4는 /usr/lib/python3.4/site-packages
 
-brew로 설치한 python3의 pip3는 사용자 환경에서 접근이 가능해서 sudo 없이 설치해도 된다.
+그래서 시스템에 설치된 `pip`는 `sudo`로 설치한다.
+
+`brew`로 설치한 python3의 pip3는 사용자 환경에서 접근이 가능해서 sudo 없이 설치해도 된다.
 
 ```bash
 $ sudo pip install --upgrade pip
@@ -101,7 +105,7 @@ VIRTUALENVWRAPPER_PYTHON=/usr/bin/python and that PATH is
 
 #### Quick-Start
 
-새로운 가상환경은 `mkvirtualenv` 명령으로 만든다. 가상환경으로 전환시 프롬프트가 `(NAME) $` 형태로 표시된다.
+새로운 가상환경은 `mkvirtualenv NAME` 명령으로 만든다. 가상환경으로 전환시 프롬프트가 `(NAME) $` 형태로 표시된다.
 
 ```bash 
 $ mkvirtualenv django2   #기본 python 버전의 환경 생성
@@ -122,7 +126,7 @@ $ mkvirtualenv --system-site-packages -p python3 django3
 ```
 
 
-**workon** 명령으로 설치한 가상 환경 목록을 보거나 혹은 해당 가상환경으로 전환할 수 있다.
+`workon NAME` 명령으로 설치한 가상 환경 목록을 보거나 혹은 해당 가상환경으로 전환할 수 있다.
 
 ```bash 
 $ workon 

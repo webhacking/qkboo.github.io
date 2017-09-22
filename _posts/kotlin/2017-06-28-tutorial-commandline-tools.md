@@ -3,7 +3,7 @@ title: Kotlin - Command line compiler
 date: 2017-06-28 23:00:00 +0900
 layout: post
 tags: [android, kotlin, intellij]
-categories: [Kotlin]
+categories: [Programming]
 ---
 
 **Kotlin 이용 개발을 위한 Getting Started Kotlin**

@@ -3,7 +3,7 @@ title: Kotlin - Start with Eclipse
 date: 2017-06-29 10:00:00 +0900
 layout: post
 tags: [android, kotlin, intellij]
-categories: [Kotlin]
+categories: [Programming]
 ---
 
 

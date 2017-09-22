@@ -2,9 +2,9 @@
 title: Python - Install virtualenv on Linux
 date: 2017-04-03 09:00:00 +0900
 layout: post
-tags: [python, virtualenv, virtualenvwrapper, macOS]
+tags: [python, virtualenv, virtualenvwrapper]
 categories: 
-- Python
+- Programming
 ---
 
 Python 개발환경을 위해서 시스템에 설치된 python2.7, python3.x 에서 사용하는 패키지 모듈을 `pip`를 사용해서 패키지를 관리할 수 있다. 그리고 시스템 모듈과 별도의 버전 환경으로 버전 관리 도구인 `virtualenv`와 `virtualenvwrapper` 를 사용해 파이썬 가상 개발 환경을 구성하는 방법을 설명한다.
@@ -27,80 +27,6 @@ Python 개발환경을 위해서 시스템에 설치된 python2.7, python3.x 에
 
 순서로 구성할 수 있다.
 
-<br/>
-### Python 가상환경 설치
-
-여기서는 Ubuntu/Debian을 사용한다고 가정하고, `apt`로 파이썬 개발용 패키지를 설치한 후에, `pip`를 사용해 가상환경을 구성한다.
-
-#### 사전 준비
-
-기본 개발자 모듈이 설치 안되어 있다면 설치한다.
-
-```sh
-$ sudo apt install build-essential
-```
-
-Python 개발을 위해서는 리눅스에 파이썬 헤더가 필요하다. 그래서 *python-dev* 패키지를 설치해 준다.
-
-```bash
-$ sudo apt install python-dev python3-dev
-```
-
->  패키지 이름으로 Python 2.x는 'python-' 접두어를 사용하고 Python 3.x 패키지들은 'python3-' 를 사용한다.
-
-파이썬 패키지 도구인 **pip**(Python Package Index, PyPI)는 파이썬 모듈을 검색, 설치, 관리 할 수 있다. 시스템에 설치된 python 버전 마다 sudo로 pip를 설치한다.
-
-```sh
-$ sudo apt install python-pip     # Python2.x
-$ sudo apt install python3-pip    # Python3.x
-```
-
-
-##### pip 소스에서 설치
-
-> Pip 소스로 설치
-> 
-> get-pip.py 소스를 다운받는다. 
-> 
-> ```bash
-> $ wget https://bootstrap.pypa.io/get-pip.py
-> ```
-> 
-> 시스템에 설치된 python 버전 마다 sudo로 pip를 설치애야 합니다. 
-> Python3 을 위한 pip를 설치한다.
-> 
-> ```bash
-> $ sudo python3 get-pip.py
-> Successfully installed pip-8.1.2 setuptools-24.0.3 wheel-0.29.0
-> ```
-> 
-> 다음은 Python2를 위한 pip를 설치합니다.
-> 
-> ```bash
-> $ sudo python2.7 get-pip.py
-> ```
-
-
-#### site-packages
-
-`pip --version` 버전 정보를 출력하면 버전과 pip로 설치하는 패키지가 저장되는 *site-packages* 위치를 확인할 수 있다.
-
-```sh
-$ pip3 --version
-pip 8.1.2 from /usr/local/lib/python3.5/dist-packages (python 3.5)
-$ pip2 --version
-pip 8.1.2 from /usr/local/lib/python2.7/dist-packages (python 2.7)
-```
-
-
-`pip` 로 설치되는 패키지 모듈은 시스템의 site-packages 폴더에 설치된다. python2.7은 /usr/lib/python2.7/site-packages에 모듈을 설치한다. 현재 설치한 `pip` 를 업그레이드 하려면 다음 같이 `sudo`로 설치해준다.
-
-```bash
-$ sudo pip install --upgrade pip
-$ sudo pip3 install --upgrade pip3.4
-```
-
-이후는 특별히 버전을 명시하지 않으면 `pip`는 **pip3.4**을 사용한다고 가정한다. 
 
 
 ### Python 가상 개발 환경 설치
@@ -113,15 +39,27 @@ $ sudo pip3 install --upgrade pip3.4
 
  - **autoenv** : 만약 pyenv와 virtualenv를 통해서 의존성을 해결한다고 하더라도 작업할때마다 설정해주는 것은 귀찮은 작업이다. 특정 프로젝트 폴더로 들어가면 자동으로 개발 환경을 설정해주는 autoenv라는 스크립트를 활용할 수 있다.
 
+#### pyenv
+
+http://pythonstudy.xyz/python/article/506-파이썬-가상환경
+
+
 
 여기서는 `virtualenv`와 `virtualenvwrapper`를 사용해서 모듈을 설치하고 관리한다. `pip` 모듈을 사용해서 virtualenv 와 virtualenvwrapper 를 설치한다.
 
+#### virtualenv 단독 사용
+
+다음 참조. http://dgkim5360.tistory.com/entry/python-virtualenv-on-linux-ubuntu-and-windows
+
+`virtualenv`는 가상환경이 설치된 위치로 이동해서, 설치한 폴더에서 `source` 명령을 통해 환경을 활성화해야 한다. 이런 점을 보완해 쉘 명령을 제공하는 `virtualenvwrapper`와 함께 쓰는 것을 권한다.
+
+여기서는 `pip`로 `virtualenv`와 `virtualenvwrapper`를 설치해서 사용한다.
 
 #### virtualenv와 virtualenvwrapper
 
-virtualenv는 가상의 파이썬 작업환경을 만들어 준다. 작업환경을 따로따로 만들어, 시스템 파이썬 모듈이나 다른 가상의 작업환경에게 영향을 주지 않는다. 또한 `pip`는 시스템의 site-packages 폴더에, /usr/lib/python2.7/site-packages에 모듈을 설치한다. virtualenv를 이용하면 분리할 수 있다.
+virtualenv는 가상의 파이썬 작업환경을 만들어 준다. 작업환경을 따로따로 만들어, 시스템 파이썬 모듈이나 다른 가상의 작업환경에게 영향을 주지 않는다. 또한 `pip`는 시스템의 site-packages 폴더 /usr/lib/python2.7/site-packages에 모듈을 설치하는데 virtualenv를 이용하면 분리할 수 있다.
 
-여기서 `pip`로 `virtualenv`와 `virtualenvwrapper`를 설치한다.
+이제 `pip`로 `virtualenv`와 `virtualenvwrapper`를 설치한다.
 
 ```bash
 $ pip3 install virtualenv
@@ -230,4 +168,7 @@ $ source env/bin/activate   # env의 파이썬 활성화
 ```
 
 
+## 참조
+
+[virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
 

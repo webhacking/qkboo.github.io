@@ -3,7 +3,7 @@ title: Kotlin - Android Developement 시작하기
 date: 2017-06-28 20:00:00 +0900
 layout: post
 tags: [android, kotlin, intellij]
-categories: [Kotlin]
+categories: [Programming]
 ---
 
 

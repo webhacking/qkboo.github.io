@@ -3,7 +3,7 @@ title: Kotlin - Koans
 date: 2017-06-29 14:00:00 +0900
 layout: post
 tags: [android, kotlin, intellij]
-categories: [Kotlin]
+categories: [Programming]
 ---
 
 
