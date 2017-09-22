@@ -2,15 +2,15 @@
 title: Typescript / 5min in Typescript
 date: 2017-09-01 01:00:00 +0900
 layout: post
-tags: [typescript, nodejs]
+tags: [nodejs, TypeScript Tutorials, TypeScript]
 categories: 
  - Programming
 ---
 
-자바스크립트 개발자 또는 경험자가 알아야 할 typescriptlang.org 의 Tutorials 를 정리했다.
+자바스크립트 개발자 또는 경험자를 위한 typescriptlang.org 의 Tutorials 를 정리했다.
 
  - 5분에 끝내는 TypeScript
- - Gulp
+ - [Gulp]({% post_url /nodejs/2017-09-01-typescript-2gulp %})
  - Migrating from Javascript
  - React & Webpack
 
@@ -22,19 +22,21 @@ categories:
 
 ### 설치
 
-Node.js를 사용하며 그러므로 npm으로 설치한다.
+TypeScript는 Node.js를 사용하며, npm으로 typescript 지원 도구를 설치한다.
 
 ```sh
 npm install -g typescript
 ```
 
-혹은 개발자용 nightly build도 설치할 수 있다.
+개발자용 nightly build도 설치 할 수 있다.
 
 ```sh
 npm install -g typescript@next
 ```
 
-TypeScript `tsc` 컴파일러,
+#### tsc 컴파일러 
+
+TypeScript 소스를 `tsc` 컴파일러로 컴파일하고, 결과는 Javascript로 생성된다.
 
 ```sh
 $ tsc -V
@@ -60,11 +62,15 @@ var user = "Jone James";
 document.body.innerHTML = greeter(user);
 ```
 
+
 그리고 컴파일 하면 자바스크립트 소스 **greeter.js** 가 생성된다.
 
 ```sh
 $ tsc greeter.ts
 ```
+
+> **greeter.ts** 소스와 컴파일 결과 **greeter.js** 소스는 일치한다.
+
 
 ### Type annotations
 
@@ -94,7 +100,7 @@ Typescript의 형 지정은 코드와 주어진 형 지정자를 기반으로 �
 
 ### Interfaces
 
-**interface** 를 사용해서 속성을 선언 할 수 있다. 아래 Person 인터페이스는 firstName, lastName 속성으로 선언하고 있다. TypeScript에서는 내부 구조가 호환하면 두 객체는 호횐 된다고 한다. 이것은 명시적으로 `implements` 절을 사용하지 않고 인터페이스가 요구하는 형태를 가지면 인터페이스 통해 구현이 가능하다고 한다. 이제 greeter 함수를 인터페이스 Person 형으로 다음 같이 선언할 수 있다.
+추상화를 위해 **interface** 를 사용해서 속성을 가진 개체를 선언 할 수 있다. 아래 Person 인터페이스는 firstName, lastName 속성으로 선언하고 있다. TypeScript에서는 내부 구조가 호환하면 두 객체는 호횐 된다고 한다. 이것은 명시적으로 `implements` 절을 사용하지 않고 인터페이스가 요구하는 형태를 가지면 인터페이스 통해 구현이 가능하다고 한다. 이제 greeter 함수를 인터페이스 Person 형으로 다음 같이 선언할 수 있다.
 
 ```ts
 interface Person {
@@ -111,7 +117,7 @@ var user = { firstName: "Jane", lastName: "User" };
 document.body.innerHTML = greeter(user);
 ```
 
- `tsc` 로 컴파일 해도 형이 일치한다고 판단해서 경고가 없다.
+이 소스를 `tsc` 로 컴파일 해도 형이 일치한다고 판단해서 경고가 없다.
 
 
 ### Classes
