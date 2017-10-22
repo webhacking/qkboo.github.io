@@ -11,7 +11,7 @@ comments: true
         <header class="post-header">
           <h1 class="blog-post-title">{{ page.title | escape }}</h1>
           <p class="blog-post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}">
+            <time datetime="{{ page.date | date_to_rfc822 }}">
               {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
               {{ page.date | date: date_format }}
             </time>
