@@ -245,6 +245,14 @@ $ sudo swapon /swapfile
 $ sudo swapon -s
 ```
 
+##### swapoff
+
+swap 을 지우려면
+
+```
+swapoff /swapfile
+rm /swapfile
+```
 
 
 ## Ubuntu 16.04 설치
@@ -348,10 +356,10 @@ sudo 사용자를 추가해서 사용하려면, adduser 혹은 useradd 명령을
 
 #### 새 사용자 등록
 
-먼저 adduser를 사용한 등록은,
+먼저 adduser는 추가할 사용자에 대한 정보를 하나씩 물어 가며 등록이 진행되고, 사용자 홈을 생성해 준다.
 
 ```
-# adduser qkboo
+$ sudo adduser qkboo
 Adding user `qkboo' ...
 Adding new group `qkboo' (1000) ...
 Adding new user `qkboo' (1000) with group `qkboo' ...
@@ -371,7 +379,7 @@ Is the information correct? [Y/n] y
 ```
 
 
-혹은 useradd 사용
+`useradd` 는 홈 디렉토리, 쉘 등에 대한 옵션을 주고 사용자를 등록한다.
 
 > http://www.tecmint.com/add-users-in-linux/
 
@@ -381,8 +389,18 @@ Is the information correct? [Y/n] y
  - 사용자 홈 디렉토리 생성
 
 ```
-$useradd -M -s /bin/false
+$sudo  useradd -m qkboo
 ```
+
+그리고 패스워드를 등록한다.
+
+```
+$ sudo passwd qkboo
+New password:
+Retype new password:
+passwd: password updated successfully
+```
+
 
 
 #### sudoer 등록
@@ -400,6 +418,7 @@ $useradd -M -s /bin/false
 ```
 $ sudo visudo
 # User privilege specification
+root  ALL=(ALL:ALL) ALL
 pi  ALL=(ALL:ALL) ALL
 ```
 
@@ -444,6 +463,23 @@ $ sudo mkdir /media/my_usb
 $ sudo mount -t exfat /dev/sdb1 /media/my_usb
 $ sudo umount /dev/sdb1
 ```
+
+
+### VNC server
+
+```
+sudo apt install tightvncserver
+```
+
+그리고 `vncserver` 명령으로 기본 패스워드를 생성한다.
+
+```
+vncserver
+
+```
+
+
+
 
 ## 참조
  - [sudo user create](> https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart)

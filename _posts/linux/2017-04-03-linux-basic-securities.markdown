@@ -18,7 +18,71 @@ categories:
 
 ### sudoer 등록
 
-처음 로그인후 새로운 사용자 등록하고 suders에 직접 권한을 줄 수 있다.  **visudo** 명령으로 sudoers 파일을 편집할 수 있다. sudoer에 있는 root는 제외하고 사용자로 등록한다.
+처음 로그인후 새로운 사용자 등록하고 suders에 직접 권한을 줄 수 있다. 
+
+
+### sudo 새 사용자 등록
+
+sudo 사용자를 추가해서 사용하려면, adduser 혹은 useradd 명령을 사용해서 사용자를 등록 할 수 있다. 
+
+#### 새 사용자 등록
+
+먼저 adduser를 사용한 등록은,
+
+```
+# adduser qkboo
+Adding user `qkboo' ...
+Adding new group `qkboo' (1000) ...
+Adding new user `qkboo' (1000) with group `qkboo' ...
+Creating home directory `/home/qkboo' ...
+Copying files from `/etc/skel' ...
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Changing the user information for qkboo
+Enter the new value, or press ENTER for the default
+        Full Name []: Gangtai
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+```
+
+`useradd` 는 홈 디렉토리, 쉘 등에 대한 옵션을 주고 사용자를 등록한다.
+
+> http://www.tecmint.com/add-users-in-linux/
+
+‘useradd‘ 명령은 크게 두가지 일을 한다:
+
+ - 추가한 사용자에 대한 /etc/passwd, /etc/shadow, /etc/group and /etc/gshadow 편집
+ - 사용자 홈 디렉토리 생성
+
+```
+$sudo  useradd -m qkboo
+```
+
+그리고 패스워드를 등록한다.
+
+```
+$ sudo passwd qkboo
+New password:
+Retype new password:
+passwd: password updated successfully
+```
+
+
+userdel 로 사용자 완전 삭제시
+
+```
+$ userdel -r sambaguest
+```
+
+
+
+#### visudo
+
+**visudo** 명령으로 sudoers 파일을 편집할 수 있다. sudoer에 있는 root는 제외하고 사용자로 등록한다.
 
 ```sh
 $ sudo visudo
@@ -128,11 +192,30 @@ ssh 사용에 특정한 사용자, 호스트 등에서만 사용하도록 제한
 
  /etc/ssh/sshd_config에서 다음 내용으로 수정한다.
 
+포트, IP, Time out 시간을 지정할 수 있다.
 
 ```
-# Login Prompt에서 사용자 입력을 기다리는 시간을 초 단위로 입력.
-LoginGraceTime 20
+#sshd 포트넘버 변경 (Port)
+Port 2222
 
+#sshd Listen Address
+ListenAddress 192.168.0.200
+
+# alive 메시지 사용 결정
+TCPKeepAlive no  # 기본 yes.
+
+# 클라이언트가 살아있는지 확인하는 간격.
+ClientAliveInterval 60  # 기본 0.
+# 클라이언트에서 응답이 없을 때 메시지를 보내는 횟수
+ClientAliveCountMax 3    # 확인 횟수
+
+# Login Prompt에서 사용자 입력을 기다리는 시간을 초 단위로 입력.
+LoginGraceTime 20  #( 1m: 기본 1분지정, 0은 시간제한없음)
+```
+
+사용자 계정에 대한 접근
+
+```
 # no로 설정하면 root 계정으로 Login 불가능.
 PermitRootLogin no
 
@@ -142,25 +225,28 @@ AllowUsers foo
 
 # sudo(관리자)그룹만 로그인가능( 다른 유저들도 ssh로그인을 가능하게 하려면 이부분 삭제 )
 AllowGroups sudo
+
+# 모두 접속이 허용, 여기에 등록된 group만 접속 거부됨
+#DenyGroups
+# 모두 접속이 허용, 여기에 등록된 계정만 접속 거부됨
+#DenyUsers 
 ```
 
-AllowGroups : 여기에 등록된 group만 접속 가능함
-AllowUsers : 이곳에 등록된 계정만 접속 가능함
-DenyGroups : 모두 접속이 허용, 여기에 등록된 group만 접속 거부됨
-DenyUsers : 모두 접속이 허용, 여기에 등록된 계정만 접속 거부됨
 
 
 #### issue 이용
 
-/etc/ssh/sshd_config에서 다음 내용으로 수정한다.
+ssh 로그인시 **Banner**로 지정한 Text File의 내용을 Login Prompt에 출력한다. 시스템 접근에 대한 사전 경고이다.
+
+
+*/etc/ssh/sshd_config* 에 Banner를 추가한다.
 
 ```
 # 설정한 경로에 존재하는 Text File의 내용을 Login Prompt에 출력.
 Banner /etc/issue.net
 ```
 
-
-$ sudo vi /etc/issue.net
+그리고 */etc/issue.net* 파일에 다음 경고를 넣어준다.
 
 
 ```
@@ -206,7 +292,7 @@ $ sudo service ssh restart
 ```
 
 
-#### 공개키 방식을 이용
+### 공개키 방식을 이용
 
 일반 패스워드를 사용하는 로그인 방식보다 rsa 키를 이용한 접속이 보다 보안에 좋다. 그리고 일단 한번 설정해 놓으면 편하다.
 
@@ -217,16 +303,14 @@ PubkeyAuthentication yes
 RSAAuthentication yes
 ```
 
-클라이언트에서 공개키 생성을 한다. 키의 크기를 높이려면 `-b` 옵션으로 1024, 2048, 4096 값을 제시한다.
+#### ssh 클라이언트
+
+클라이언트에서 공개키 생성을 한다. 키의 크기를 높이려면 `-b` 옵션으로 1024, 2048, 4096 값을 제시한다. 
 
 ```
-$ ssh-keygen -t rsa -b 4096 -C "USER@gmail.com"
-```
-
-```
-$ mkdir ~/.ssh
-$ chmod 700 ~/.ssh
-$ ssh-keygen -t rsa -b 4096 -C "USER@gmail.com"
+(CLIENT)$ mkdir ~/.ssh
+(CLIENT)$ chmod 700 ~/.ssh
+(CLIENT)$ ssh-keygen -t rsa -b 4096 -C "USER@CLIENT_HOST"
 Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/daddy/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
@@ -234,8 +318,8 @@ Enter same passphrase again:
 Your identification has been saved in /Users/daddy/.ssh/id_rsa.
 Your public key has been saved in /Users/daddy/.ssh/id_rsa.pub.
 The key fingerprint is:
-SHA256:nBbRg+tTnmEbyuqzb0cqeBfzuaj1XOJP3n767Xmj3s0 USER@gmail.com
-The key's randomart image is:
+SHA256:nBbRg+tTnmEbyuqzb0cqeBfzuaj1XOJP3n767Xmj3s0 USER@CLIENT_HOST
+The key\'s randomart image is:
 +---[RSA 4096]----+
 |        .o       |
 |        ..o      |
@@ -249,55 +333,42 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
+개인 비밀키와 공개키 파일이 *~/.ssh* 폴더에 기본 파일이름 *id_rsa.pub*, *id_rsa.prb* 파일로 저장된다.
 
-명령어 실행후 나오는 다이얼로그들 중에 rsa에 암호를 걸 수 있으나 필요치 않으면 엔터로 기본값 사용으로 넘길수 있다. ~/.ssh 디렉토리 밑에 id_rsa 와 id_rsa.pub 이 생성되었다면 성공
 
+#### 서버에서 할일
 
-서버로 id_rsa.pub을 전송
+서버에서 비밀키를 생성한다.
 
+```sh
+(SERVER)$ ssh-keygen -t rsa -b 4096 -C "USER@SERVER"
+(SERVER)$ chmod 700 ~/.ssh
 ```
-$scp ~/.ssh/id_rsa.pub USER_ID@HOST_NAME:id_rsa.pub
+
+
+#### 클라이언트 공개키를 서버 배포
+
+서버로 id_rsa.pub를 scp 로 복사해서 authorized_keys 파일에 더해주면 된다. 아래 같이 할 수 있다.
+
+```sh
+cat ~/.ssh/id_rsa.pub | ssh USER@SERVER 'cat >> .ssh/authorized_keys'
 ```
 
+scp로 복사하고 서버에서 authorized_keys 파일에 더해줄 수 있다.
+
+```sh
+(CLIENT)$ scp ~/.ssh/id_rsa.pub USER@SERVER:~/client.pub
+(CLIENT)$ ssh userid@SERVER
+(SERVER)$ cat client.pub >> .ssh/authorized_keys; rm client.pub
+```
+
+이제 해당 서버로 로그인해 본다.
 
 > 아래 같이 시스템 명칭을 주고 생성할 수 도 있다.
 > ```
 > ssh-keygen -t rsa -C "Raspberry Pi #123"
 > ```
 
-
-
-#### 서버에서 할일
-
-서버에서는 복사한 클라이언트 공개키를 등록한다.
-
-```sh
-cd ~
-install -d -m 700 ~/.ssh
-```
-
-혹은 직접 폴더를 생성해도 된다:
-
-```sh
-$ mkdir ~/.ssh
-$ chmod 700 ~/.ssh
-```
-
-
-##### 한번에 복사
-
-클라이언트에서 서버로 복사한다.
-
-```
-cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'cat >> .ssh/authorized_keys'
-```
-
-
-##### scp로 전송된 id_rsa.pub을 설정
-
-```
-cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
-```
 
 
 권한은 아래와 같이 클라이언트와 서버 모두 설정한다.
@@ -312,11 +383,13 @@ chmod 644 ~/.ssh/known_host
 그리고 클라이언트에서 서버로 ssh 접속을 해본다. 로그인 과정 없이 로그인되면 공개키 방식의 인증이 마무리되ㅓㅇㅆ다.
 
 ```sh
-ssh qkboo@192.168.11.122
+(CLIENT)$ ssh USER@SERVER
 ```
 
 
 #### 개인키 파일을 이용한 로그인
+
+*-i* 옵션을 이용하면 개인키를 여러개 만들어 두고 서버 마다 달리 로그인 할 수 있다.
 
 ```
 ssh -i .ssh/개인키 id@host-Name  

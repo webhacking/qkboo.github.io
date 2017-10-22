@@ -368,6 +368,7 @@ set -g @continuum-boot-options 'iterm,fullscreen' # start iTerm in fullscreen
 tmux 로 서버를 하나 시작하고, `tmux -S /tmp/foo` 같이 다른 소켓을 사용했다고 자동 저장/복구가 별도로 진행되지 않는다. [^10]
 
 
+> 여기까지 설정한 내용은 [qkboo/tmux.conf](https://gist.github.com/qkboo/9915a6f76cd9b7e4986965e8f5e95f2e) gist 에서 확인 가능.
 
 
 <br/>

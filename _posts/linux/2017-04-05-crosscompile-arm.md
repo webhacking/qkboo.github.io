@@ -9,7 +9,7 @@ categories:
 
 이 글은 우분투, 리눅스 박스에서 GNU ARM Cross compiler 를 설치하고 관리하는 방법을 다루고 있다.
 
-## gcc-arm-linux toolchains
+## ARM Cross compiler 설치
 
 우분투/데비안 리눅스에서 제공하는 ARM Toolchain 환경은 Linaro 툴체인을 바탕으로 만들어져 있어서 두가지 버전으로 제공된다. *Hard Float*을 지원하는 버전과 그렇지 않은 버전이다.[^1]
 
@@ -22,22 +22,30 @@ categories:
 이 툴체인은 EABI가 `gcc -mfloat-abi=hard` 옵션으로 생성한다는 의미이다. 이 의미는 Function Calling Convention이 double, float 사용시 FPU 레지스터에 올려서 전달하고 반환도 FPU 레지스터를 사용하게 된다는 것이다.
 
 
-### Ubuntu14.04 에서 arm toolchain 설치
+#### update-alternatives
 
-Ubuntu 14.04 에서 테스트했다. 그 이상 버전도 충분히 가능하다.
+플랫폼에 따른 gcc 환경을 변경하는 것은 `update-alternatives`을 사용한다. 링크 [update-alternatives]({{ site.baseurl }}{% link _my_collection/linux-update-alternatives.md %})에서 설명을 볼 수 있다.
+
+
+### ARM toolchain 설치
+
+Ubuntu 14.04 에서 테스트했다. 그 이상 버전도 충분히 가능하다. 아래 도구를 설치하면 각 플랫폼에 대한 *binutils--arm-linux-*, *gcc-arm-linux-*, *g++-arm-linux-*, *cpp-arm-linux-*  도구가 설치된다.
+
+
+#### Ubuntu14.04 에서 arm toolchain 설치
+
+Coretex ARM
+
+```sh
+sudo apt-get install gcc-arm-linux-gnueabihf
+sudo apt-get install g++-arm-linux-gnueabihf
+```
 
 ARM 
 
 ```sh
 $ sudo apt-get install gcc-arm-linux-gnueabi
 $ sudo apt-get install g++-arm-linux-gnueabi
-```
-
-Coretex ARM
-
-```sh
-$ sudo apt-get install gcc-arm-linux-gnueabihf
-$ sudo apt-get install g++-arm-linux-gnueabihf
 ```
 
 Bare metal ARM
@@ -47,12 +55,14 @@ $ sudo apt-get install gcc-arm-none-eabi
 $ sudo apt-get install g++-arm-none-eabi
 ```
 
+필요하면 *gfortran-arm-linux-*, *gobjc++-arm-linux-* 등의 도구를 설치한다.
+
+
 
 {% comment %}
 
 ### Linaro toolchain
  - http://www.linaro.org/downloads/#008
-
 
 Download
 Linaro has been very good at changing the location and availability of just about everything, making it very hard to keep a wiki up to date which refers to it. So the below download locations might be stale already.
@@ -69,50 +79,108 @@ WARNING: Do not use the 4.8 gcc versions of the linaro toolchain to build legacy
 {% endcomment %}
 
 
-### update-alternative
+### 툴 체인 등록
 
-`update-alternative` 유틸리티로 리눅스 기본 제공 개발 환경의 gcc, cross compiler용 gcc 등 여러 버전의 gcc를 사용할 수 있게 구성할 수 있다.
-이들 버전의 환경을 교체해서 사용하기를 원한다. `update-alternative` 도구를 사용할 수 있다.
-
-
-[How to switch gcc using update alternatives](https://codeyarns.com/2015/02/26/how-to-switch-gcc-version-using-update-alternatives) 를 참고했다.
-
-
-#### update-alternative 사용
-
-여러 버전의 gcc를 `update-alternative`를 사용해서 선택적으로 사용할 수 있다. `gcc` 로 등록된 현재 버전 목록을 질의 한다.
+여러 개발 보드의 cross compiler를 사용하기 위해서 해당 버전의 접두어를 사용해 보자. arm 을 사용하는 보드는 **arm-linux-gnueabi[hf]** 명칭을 사용한다. 
 
 ```sh
-$ update-alternatives --query gcc
+$ update-alternatives --list arm-linux-gnueabihf
+```
+
+새로운 *arm-linux-gnueabihf-* 를 등록하자.
+
+
+#### arm-linux-gnueabihf 등록하기
+
+arm-linux-gnueabihf-gcc-4.8 관련 도구를 **gcc** 그룹에 등록하기
+
+
+```sh
+sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf /usr/bin/arm-linux-gnueabihf-gcc-4.8 50 \
+--slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ /usr/bin/arm-linux-gnueabihf-g++-4.8 
+```
+
+arm-linux-gnueabihf-gcc-4.7 관련 도구를 **gcc** 그룹에 등록하기
+
+```sh
+sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf /usr/bin/arm-linux-gnueabihf-gcc-4.7 40 \
+--slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ /usr/bin/arm-linux-gnueabihf-g++-4.7
 ```
 
 
-#### 등록
+#### Raspberry pi Toolchain 등록하기
 
-여기서 사용하는 여러 gcc 버전들을 설치한 후에 다음과 같은 명령어로 등록을 할 수 있다.
+Raspberry pi 배포본에서 제공하는 arm gcc compile를  arm-linux-gnueabihf 그룹에 등록해 보자 [^2].  
 
-> update-alternatives --install <link> <name> <path> <priority>
-> 
-> <link> 실행파일 이름으로 /etc/alternatives/<name> 을 가리킨다. (예: /usr/bin/pager) 
-> <name>   해당 링크 그룹의 대표 이름으로, 여러 가지 버전의 패키지들을 대표하는 이름으로 보면 될 것 같다.(예: pager)
-> <path> alternatives 로 실제 연결할 실행파일 이름으로, 시스템에 설치한 패키지의 실행파일 이름이다.(예: /usr/bin/less)
-> <priority> automatic 모드에서 어떤 것을 자동으로 선택해서 사용할지 결정할 때 사용되는 우선순위로, 높은 수가 더 높은 우선순위이다.
+git으로 툴체인을 다운받아 **~/raspberrypi/tools** 에 설치한다고 가정한다. [^3]
 
-Ubuntu 14.04 최신 버전에 gcc4와 gcc5가 설치되어 있는데 이 환경을 구성해 보자
-
-먼저 첫번째 버전은 gcc-4.8 버전을 `gcc`로 연결하게 한다.
-
-```sh
-$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8
+```
+git clone https://github.com/raspberrypi/tools ~/raspberrypi/tools
 ```
 
-여기서 gcc를 master로 g++을 slave로 준비했다. `--slave` 옵션은 `--install` 로 지정한 master에 종속해서 여러개의 슬레이브를 마스터에 추가할 수 있고, 마스터의 링크가 바뀌면 슬레이브도 함께 바뀐다.
+다운로드한 tools 밑에 32bit, 64bit 버전의 컴파일러가 있다.
 
-이제 두 번째 버전은 gcc-5 를 `gcc`로 등록한다.
+32bit 버전은 `tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin`
+64bit 버전: `tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin`
+
+
+다운로드 한 후에 적절한 위치에 놓고, 해당 경로를 확인한다.
+
+```
+$ cd ~/rpi-arm/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/
+$ arm-linux-gnueabihf-gcc --version
+arm-linux-gnueabihf-gcc (crosstool-NG linaro-1.13.1+bzr2650 - Linaro GCC 2014.03) 4.8.3 20140303 (prerelease)
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
+64bit Raspberry Pi arm-linux-gnueabihf-gcc- 관련 도구를 **gcc** 그룹에 등록하기
 
 ```sh
-$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-4.8.3 30 \
+--slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
 ```
+
+{% comment %}
+```sh
+sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-4.8.3 30 \
+--slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++ \
+--slave /usr/bin/arm-linux-gnueabihf-ar arm-linux-gnueabihf-gcc-ar ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-ar \
+--slave /usr/bin/arm-linux-gnueabihf-nm arm-linux-gnueabihf-gcc-nm ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-nm \
+--slave /usr/bin/arm-linux-gnueabihf-ranlib arm-linux-gnueabihf-gcc-ranlib ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-ranlib \
+--slave /usr/bin/arm-linux-gnueabihf-readelf arm-linux-gnueabihf-readelf ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-readelf
+```
+{% endcomment %}
+
+32bit Raspberry Pi arm-linux-gnueabihf-gcc- 관련 도구를 **gcc** 그룹에 등록하기
+
+```sh
+sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-gcc-4.8.3 20 \
+--slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ ~/raspberrypi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++
+```
+
+크로스 플랫폼 환경에서 소스를 빌드하다 보면 GNU Tools 를 해당 그룹에 추가할 필요가 있다. 여기서 예로 든 python 3.6 빌드시 `readelf` 유틸리티를 요구하는데 우분투 배포본에 *arm-linux-gnueabihf-gcc* 그룹에 슬레이브로 `arm-linux-gnueabihf-readelf` 바이너리를 추가해 준다.
+
+
+
+#### 64bit AArch64
+
+64-bit ARM, **AARCH64** 을 지원하는 gcc는 **gcc-aarch64-linux-gnu-*** 로 시작한다.
+
+```sh
+sudo apt install binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+```
+
+
+이제 *arm-linux-gnueabihf-* 버전을 교환할 수 있는 환경이 준비됐다.
+
+```sh
+$ sudo update-alternatives --display arm-linux-gnueabihf
+$ sudo update-alternatives --list arm-linux-gnueabihf
+```
+
+
 
 설정된 버전 표기
 
@@ -152,94 +220,10 @@ Copyright (C) 2015 Free Software Foundation, Inc.
 ```
 
 
-#### 삭제
-
-설정한 내역을 지워버리고 싶을 때에는 `--remove` 옵션을 사용한다.
-
-```sh
-$ sudo update-alternatives --remove <name> <path>
-```
-
-
-
-### arm-linux-gnueabi-gcc 등록
-
-여러 개발 보드의 cross compiler를 사용하기 위해서 해당 버전의 접두어를 사용해 보자. arm 을 사용하는 보드는 arm-linux-gnueabi-gcc 명칭을 사용한다. 
-
-```sh
-$ update-alternatives --list arm-linux-gnueabi-gcc
-```
-
-새로운 *arm-linux-gnueabi-gcc-* 를 등록하자.
-
-#### arm-linux-gnueabi-gcc- 등록하기
-
-arm-linux-gnueabi-gcc-5 등록하기
-
-```sh
-$ sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf-gcc /usr/bin/arm-linux-gnueabihf-gcc-5 100 \
---slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ /usr/bin/arm-linux-gnueabihf-g++-5 \
---slave /usr/bin/cpp-arm-linux-gnueabihf cpp-arm-linux-gnueabihf /usr/bin/arm-linux-gnueabihf-cpp-5
-```
-
-arm-linux-gnueabi-gcc-4.8 등록하기
-
-```sh
-$ sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf-gcc /usr/bin/arm-linux-gnueabihf-gcc-4.8 90 \
---slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ /usr/bin/arm-linux-gnueabihf-g++-4.8 \
---slave /usr/bin/cpp-arm-linux-gnueabihf cpp-arm-linux-gnueabihf /usr/bin/arm-linux-gnueabihf-cpp-4.8
-```
-
-
-arm-linux-gnueabi-gcc-4.7 등록하기
-
-```sh
-$ sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf-gcc /usr/bin/arm-linux-gnueabihf-gcc-4.7 80 \
---slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ /usr/bin/arm-linux-gnueabihf-g++-4.7 \
---slave /usr/bin/cpp-arm-linux-gnueabihf cpp-arm-linux-gnueabihf /usr/bin/arm-linux-gnueabihf-cpp-4.7
-```
-
-이제 *arm-linux-gnueabi-gcc-* 버전을 교환할 수 있는 환경이 준비됐다.
-
-```
-$ sudo update-alternatives --display arm-linux-gnueabihf-gcc
-$ sudo update-alternatives --list arm-linux-gnueabihf-gcc
-/usr/bin/arm-linux-gnueabihf-gcc-5
-```
-
-
-#### Raspberry pi arm-linux-gnueabi-gcc 등록하기
-
-Raspberry pi 배포본에서 제공하는 arm gcc compiler도 등록해 보자 [^2]. 다운로드 한 후에 적절한 위치에 놓고, 해당 경로를 확인한다.
-
-```
-$ cd ~/rpi-arm/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/
-$ arm-linux-gnueabihf-gcc --version
-arm-linux-gnueabihf-gcc (crosstool-NG linaro-1.13.1+bzr2650 - Linaro GCC 2014.03) 4.8.3 20140303 (prerelease)
-Copyright (C) 2013 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-
-*arm-linux-gnueabihf-gcc* 그룹에 Linaro-x64 compiler 등록
-
-```
-$ sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf-gcc ~/rpi-arm/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-4.8.3 120 \
---slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ ~/rpi-arm/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++ \
---slave /usr/bin/arm-linux-gnueabihf-gcc-ar arm-linux-gnueabihf-gcc-ar ~/rpi-arm/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-ar \
---slave /usr/bin/arm-linux-gnueabihf-gcc-ranlib arm-linux-gnueabihf-gcc-ranlib ~/rpi-arm/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc-ranlib
-```
-
-크로스 플랫폼 환경에서 소스를 빌드하다 보면 GNU Tools 를 해당 그룹에 추가할 필요가 있다. 여기서 예로 든 python 3.6 빌드시 `readelf` 유틸리티를 요구하는데 우분투 배포본에 *arm-linux-gnueabihf-gcc* 그룹에 슬레이브로 `arm-linux-gnueabihf-readelf` 바이너리를 추가해 준다.
-
-```
---slave /usr/bin/arm-linux-gnueabihf-readelf arm-linux-gnueabihf-readelf ~/rpi-arm/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-readelf
-```
-
-혹은 `PATH` 환경 변수에 경로를 추가해 주거나 절대경로를 컴파일 옵션으로 제공하면 된다.
-
-
 ### 테스트
+
+`update-alternatives --config arm-linux-gnueabihf` 로 교체해서 다음을 컴파일 해보자.
+
 
 #### hello world
 
@@ -278,6 +262,38 @@ $ arm-linux-gnueabi-g++ hello.cc -o hello
 ```
 
 
+#### C++ std 14
+
+아래는 std++14 이상 컴파일이 필요한 lambda 제너릭 코드이다.
+
+```cpp
+// Generic lambda is C++14 code
+#include <iostream>
+
+int main()
+{
+    auto lambda = [](auto x){ return x; };
+    std::cout << lambda("Hello generic lambda!\n");
+    return 0;
+}
+```
+
+현재 g++ 버전,
+
+```sh
+aarch64-linux-gnu-g++ --version
+aarch64-linux-gnu-g++ (Ubuntu/Linaro 4.8.4-2ubuntu1~14.04.1) 4.8.4
+```
+
+위 코드를  시스템 gcc 로 컴파일 하면 아래 같이 구문 분석에서 에러가 난다.
+
+```
+$ arm-linux-gnueabihf-g++ -std=c++1y test_cpp14.cpp
+hello_cpp14.cpp:6:27: error: parameter declared ‘auto’
+```
+
+c++14 옵션으로
+
 
 #### Hardfloat 확인
 
@@ -296,6 +312,24 @@ $ arm-linux-gnueabi-gcc -S -O -o hello_float_gnueabi.s hello_float.c
 컴파일 옵션을 자세히 보려면 gcc에 -v 옵션을 쓰면 내부적으로 실행되는 명령과 옵션을 확인할 수 있습니다.
 
 arm-linux-gnueabihf-gcc 는 기본적으로 -march = armv7-a -mthumb이므로 Thumb2 코드가 생성됩니다. fpu 유형은 vfpv3-d16 그래서 NEON 없이도 움직일 수있게되어 있네요.
+
+
+
+
+
+#### 삭제
+
+설정한 내역을 지워버리고 싶을 때에는 `--remove` 옵션을 사용한다.
+
+```sh
+$ sudo update-alternatives --remove <name> <path>
+```
+
+udo update-alternatives --remove-all gcc 
+
+https://askubuntu.com/questions/26498/choose-gcc-and-g-version
+
+
 
 
 <br/>
@@ -421,6 +455,7 @@ export MANPATH="$MANPATH:/usr/local/python3.6/share/man"
 ## 참조
 
  - [Linux Kernel Cross Compilation](https://mentorlinux.files.wordpress.com/2013/02/kernel-compilation-ml.pdf)
+ - http://events.linuxfoundation.org/sites/events/files/slides/Shuah_Khan_cross_compile_linux.pdf
  - [Cross-compiling Python 3.3.1 for Beaglebone (arm-angstrom)](https://datko.net/2013/05/10/cross-compiling-python-3-3-1-for-beaglebone-arm-angstrom/)
 
 
@@ -428,3 +463,8 @@ export MANPATH="$MANPATH:/usr/local/python3.6/share/man"
 
 
 [^2]: [Cross compile for raspberry PI](https://github.com/Yadoms/yadoms/wiki/Cross-compile-for-raspberry-PI)
+
+[^3]: [Building Kernel](https://www.raspberrypi.org/documentation/linux/kernel/building.md)
+
+
+
