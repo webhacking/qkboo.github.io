@@ -74,7 +74,7 @@ export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 ```
 
-그리고 쉘 환경을 로딩하기 위해서 다시 로그인 하거나 다음 같이 source 명령을 이용해도 좋습니다.
+그리고 쉘 환경을 로딩하기 위해서 다시 로그인 하거나 다음 같이 source 명령을 이용해도 좋다.
 
 ```bash
 $ source .profile
@@ -166,6 +166,13 @@ $ pyvenv-3.4 env
 $ source env/bin/activate   # env의 파이썬 활성화
 (env)$ deactivate           # 시스템 파이썬으로 복귀
 ```
+
+
+### System service
+
+Virtualevn 환경을 시스템 시작 스크립, 크론, 파이썬 스크립에서 사용하려면 해당 가상 환경 위치의 python 혹은 가상환경의 jupyter-notebook 같은 명령 위치를 지정하면 된다.
+
+https://serverfault.com/questions/821575/systemd-run-a-python-script-at-startup-virtualenv
 
 
 ## 참조

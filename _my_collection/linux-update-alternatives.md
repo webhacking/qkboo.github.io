@@ -3,8 +3,7 @@ title: Linux - update-alternatives
 date: 2017-04-05 09:00:00 +0900
 layout: post
 tags: [cross compiler]
-categories: 
-- Linux
+categories: [Linux, Programming]
 ---
 
 이 글은 우분투, 리눅스 박스에서 여러버전의 도구를 관리할 수 있는 `update-alternatives` 를  다루고 있다.
