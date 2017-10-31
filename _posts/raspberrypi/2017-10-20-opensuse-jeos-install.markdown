@@ -6,19 +6,24 @@ tags: [Raspberry Pi 3, openSUSE, Linux]
 categories: [Raspberry Pi, Linux]
 ---
 
-Opensuse 에서 Raspberry Pi 3를 위한 64bit OS openSESE Leap 42.3 을 제공하고 있다.
+> 2017-10-30: swap 추가, timezone 수정
+{:.right-history}
+
+Opensuse 에서 Raspberry Pi 3를 위한 64bit OS openSESE Leap 42.2 을 제공하고 있다.
  - https://en.opensuse.org/HCL:Raspberry_Pi3
 
-이글은 3개 글타래로 구성되며, openSUSE 설치 및 사용에 대해 작성한다.
+이글은 5개 글타래로 구성되며, openSUSE 설치 및 사용에 대해 작성한다.
 
-  1. **Install 64bit openSUSE Leap 42.3 / JeOS**
-  2. openSUSE: Basic OS Security for Server
-  3. Install & Configuration - Nginx, Node JS
+  1. **Install 64bit openSUSE Leap 42.2 / JeOS**
+  2. openSUSE: Managing Service daemon
+  3. openSUSE: Basic OS Security for Server
+  4. Install & Configuration - Nginx, Node JS
+  5. openSUSE: Build MongoDB 3.4.x
 
 
-## Install 64bit openSUSE Leap 42.3 / JeOS
+## Install 64bit openSUSE Leap 42.2 / JeOS
 
-openSUSE는 **Raspberry Pi 3**를 위한 Opensuse community edition은 정식 버전 **Leap 42.3 image**, 개발버전 *Tumbleweed image*, 커뮤니티버전 non-upstream openSUSE Tumbleweed image* 으로 구성되어 있다.
+openSUSE는 **Raspberry Pi 3**를 위한 Opensuse community edition은 정식 버전 **Leap 42.2 image**, 개발버전 *Tumbleweed image*, 커뮤니티버전 non-upstream openSUSE Tumbleweed image* 으로 구성되어 있다.
 
 이들 버전은 용도에 따라 JeOS, E20, LXQT X11 이미지로 다운받을 수 있다.
 
@@ -170,6 +175,7 @@ $ ssh root@192.168.1.104
  - yast 소개
  - timezone
  - Network 구성: 호스트 이름, IP 주소
+ - swap 개선
  - yast로 사용자 추가
 
 
@@ -255,11 +261,31 @@ TAB 키로 각 항목을 이동할 수 있고, Enter로 실행한다. 전체 화
 
 #### Timezone
 
-시스템 시간대를 설정하려면 `yast` 를 시작해 *System -> Date and Time* 을 실행해 시간대를 지정한다.
+처음 설치후 *CET* 시간대로 되어 있어서 Asia/Seoul로 변경하고자 한다.
+
+```sh
+linux:~ # date
+Sun Oct 29 09:19:31 CET 2017
+```
+
+시스템 시간대를 설정하려면 `yast` 를 시작해 *System -> Date and Time* 을 실행해 시간대를 지정한다. 혹은 `yast timezone` 모듈 명령을 주면 해당 Date and Time 화면으로 이동할 수 있다.
 
 ![](/images/opensuse/yast-date_time.png){:width="640"}
 
+시간대를 변경후 확인해 보면,
 
+```
+linux:~ # date
+Sun Oct 29 17:22:11 KST 2017
+```
+
+ntp로 동기화하려면 *Other Settings...* 항목을 선택해 *ntp server* 를 설치하고 활성화 한다.
+
+![](/images/opensuse/yast-date_time-ntp1.png){:width="640"}
+![](/images/opensuse/yast-date_time-ntp2.png){:width="640"}
+
+
+{% comment %}
 참고로 ClI로 `yast` 명령을 사용할 수 있다. 예를 들어 timezone 사용 가능한 시간대는
 
 ```sh
@@ -275,6 +301,7 @@ sudo yast2 timezone list
 ```sh
 ~> sudo yast2 timezone set timezone='Asia/Seoul (Seoul)'
 ```
+{% endcomment %}
 
 
 #### yast로 네트워크 설정하기
@@ -317,6 +344,35 @@ sudo yast --install <package_name>
 ```
 
 
+#### swap 개선
+
+JeOS는 별도의 파티션에 swap을 가지고 있다.
+
+```
+~> sudo swapon -s
+Filename        Type    Size  Used  Priority
+/dev/mmcblk0p3                          partition 497384  1816  -1
+```
+
+별도의 swap 을 1GB 크기 Swap file로 추가하려면 
+
+```
+$ sudo dd if=/dev/zero of=/var/swapfile1G bs=1G count=1
+$ sudo chmod 600 /var/swapfile1G
+$ sudo mkswap /var/swapfile1G
+Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+no label, UUID=3b192470-5297-42ef-a033-b19b0de03590
+
+$ sudo swapon /var/swapfile1G
+$ sudo swapon -s
+```
+
+`mkswap` 명령 결과에 있는 *UUID=...* 부분을 복사해 /etc/fstab 에 종속적으로 등록해 주면 재시동 후에도 사용 가능하다.
+
+```
+UUID=3b192470-5297-42ef-a033-b19b0de03590 swap swap defaults 0 0
+```
+
 
 #### yast 사용자 추가
 
@@ -332,6 +388,30 @@ yast 화면에서 사용자 관리 화면,
 
 
 다음 서버로 운영을 위해서 openSUSE에서 sshd 보안 강화, 방화벽, 필터링 등의 기본적인 보안 작업을 진행한다. *다음 openSUSE: Basic Security for Server*
+
+
+
+#### Memory
+
+rpi3 가 1GB 메인메모리로 출시, raspbian 실제 메모리 정보는,
+
+```
+$ cat /proc/meminfo
+MemTotal:         949572 kB
+MemFree:          386192 kB
+MemAvailable:     711148 kB
+```
+
+rpi3에 openSUSE LEAP 42.2에서
+
+```
+> cat /proc/meminfo
+MemTotal:         803988 kB
+MemFree:          661276 kB
+MemAvailable:     684504 kB
+```
+
+[여기](https://raspberrypi.stackexchange.com/questions/56266/raspberry-pi-3-has-less-than-1gb-memory-available-at-os-level) 에 따르면 GPU 때문 인듯...
 
 
 <br>
