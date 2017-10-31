@@ -6,15 +6,10 @@
       <div class="col-md-3 footer-col">
         <ul class="contact-list">
           <li>
-            {% if site.author %}
-              <h4>{{ site.author | escape }}</h4>
-            {% else %}
-              <h4>{{ site.title | escape }}</h4>
-            {% endif %}
+            <h4><a href="/about"><i class="fa fa-question-circle-o" aria-hidden="true"></i>About {{ site.title | escape }}</a></h4>
+            <span class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></span>
 
-              <span class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></span>
-
-            </li>
+          </li>
             {% if site.email %}
             {% comment %}<li><a href="mailto:{{ site.email }}">{{ // site.email }}</a></li>{% endcomment %}
             {% endif %}

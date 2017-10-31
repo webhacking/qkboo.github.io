@@ -13,8 +13,8 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: qkboo Blog
-email: gangtai.goh@gmail.com
+title: Blog
+email: qkboo@thinkbee.kr
 description: > # this means to ignore newlines until "baseurl:"
   다양한 프로그래밍 환경을 다루고 Mobile, macOS, Python, Linux Developement 대해서 다루고 있습니다.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -40,7 +40,8 @@ kramdown:
 
 
 #theme: minima
-gems:
+#gems:
+plugins_dir:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-gist

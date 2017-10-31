@@ -14,13 +14,35 @@
     {% if page_paths %}
     <div class="collapse navbar-collapse justify-content-end" id="nav-content">
         <ul class="navbar-nav">
-            {% for my_page in site.pages %}
-            {% if my_page.title %}
+        
             <li class="nav-item">
-              <a class="nav-link" href="{{ my_page.url | prepend: full_base_url }}">{{ my_page.title | escape }}</a>
+              <a class="nav-link" href="/categories.html#programming">Linux</a>
             </li>
-            {% endif %}
-            {% endfor %}
+            <li class="nav-item">
+              <a class="nav-link" href="/categories.html#programming">Programming</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/categories.html#raspberry-pi">Raspberry pi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/categories.html#nodejs">Node.js</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/categories.html"><i class="fa fa-th-large fa-lg" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tags.html"><i class="fa fa-tags fa-lg" aria-hidden="true"></i></a>
+            </li>
+            {% comment %}
+                {% for my_page in site.pages %}
+                {% if my_page.title %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ my_page.url | prepend: full_base_url }}">{{ my_page.title | escape }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            {% endcomment %}
         </ul>
     </div>
 
