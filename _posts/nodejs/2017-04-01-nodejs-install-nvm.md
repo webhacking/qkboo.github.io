@@ -137,6 +137,32 @@ nvm install 8 --reinstall-packages-from=6
 
 
 
+#### Default alias 잘 못 된 경우
+
+새로 로그인 혹은 버전 변경시 다음 메시지 출력,
+
+```
+N/A: version "N/A -> N/A" is not yet installed.
+```
+
+이 경우 가능성은 제거한 버전이 default 로 지정되서 그런듯 하다, 아래의 경우 default가 v8.7 인데 삭제해서 없기 때문이다.
+
+```
+$ nvm ls
+->      v6.11.5
+        v7.10.1
+default -> v8.7.0 (-> N/A)
+node -> stable (-> v7.10.1) (default)
+stable -> 7.10 (-> v7.10.1) (default)
+iojs -> N/A (default)
+lts/* -> lts/boron (-> v6.11.5)
+lts/argon -> v4.8.5 (-> N/A)
+lts/boron -> v6.11.5
+```
+
+그래서 default 를 설치된 버전으로 변경해서 지정해 주면 위 메시지가 나오지 않는다.
+
+
 <br/>
 <br/>
 ### nodist
