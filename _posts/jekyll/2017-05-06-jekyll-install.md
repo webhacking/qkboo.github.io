@@ -219,7 +219,7 @@ $ gem install jekyll -v 1.5.1
 지킬 삭제는 아래와 같다.
 
 ```
-$ gem uninstall jekyll
+$ sudo gem uninstall jekyll
 ```
 
 특정 버전 삭제는 아래와 같다. (예, 1.5.1)
@@ -231,15 +231,15 @@ $ gem uninstall jekyll -v 1.5.1
 다양한 지킬 버전이 설치되어 있을 때 최신 버전 제외 모두 삭제는 아래와 같다.
 
 ```
-$ gem cleanup jekyll
+$ sudo gem cleanup jekyll
 ```
 
 지킬 버전 업데이트는 아래와 같다. gem update를 사용하는 것이 좋다.
 
 ```
-$ gem update
+$ sudo gem update
 or
-$ gem update jekyll
+$ sudo gem update jekyll
 ```
 
 위의 내용들은 아래의 명령을 통해 도움을 얻을 수 있다.
