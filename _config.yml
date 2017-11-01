@@ -63,7 +63,8 @@ google_analytics: UA-98721340-1
 
 paginate: 6
 
-
+# Permalink
+permalink: /:year/:month/:day/:title
 
 # Collections
 collections:
