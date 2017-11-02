@@ -1,5 +1,5 @@
 ---
-title: Nginx - Install, SSL, WebDAV, Proxy on Ubuntu/Debian
+title: Nginx - Install, WebDAV, Proxy on Ubuntu/Debian
 date: 2017-04-03 09:10:00 +0900
 layout: post
 tags: [linux, nginx, ssl, webdav]
@@ -88,111 +88,6 @@ $ sudo systemctl status nginx.service
 
 만약 설정 파일에 문제가 있으면 `systemctl status nginx.service` 결과에 어느 줄에서 문제가 있는지 확인할 수 있다.
 
-
-##  SSL
-
-Nginx SSL 제공을 해주자.
- - [HTTPS, SSL 설명](https://opentutorials.org/course/228/4894)
-
-여기서는 사용자 개인용 사설 인증서를 만들어 사용한다.
-공인 서버 인증서에 대해서는 별도로 다룬다. [^2] 를 참조하면 사설 인증서와 공인 인증서에 대한 설명이 있다.
-
-
-#### SSL 설정
-
-SSL Certificate 파일을 생성하고 저장해 둔다. [^4]
-
-```bash
-$ sudo mkdir /etc/nginx/ssl
-$ cd /etc/nginx/ssl
-```
-
-OpenSSL을 사용해서 SSL Certificate를 생성한다.
-
-```sh
-$ sudo openssl genrsa -out privkey.pem 2048
-$ sudo openssl req -new -x509 -key privkey.pem -out cacert.pem -days 1095
-```
-
-
-Generate DH params - 시간이 소요된다 (armv7 1Ghz 에서 30분 이상)
-
-```sh
-$ sudo openssl dhparam 2048 > /etc/nginx/ssl/dhparam.pem
-```
-
-{% comment %}
-
-> $ sudo openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
-> $ sudo openssl rsa -passin pass:x -in server.pass.key -out server.key
-> $ sudo rm server.pass.key
-> $ sudo openssl req -new -key server.key -out server.csr
-> $ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-
-{% endcomment %}
-
-
-#### Nginx 설정에 SSL 활성화
-
-/etc/nginx/site-available/yoursite.com
-
-```
-# 80번 요청을 모두 443 SSL 서버로 바꾼다.
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    add_header Strict-Transport-Security max-age=2592000;
-    rewrite ^/.*$ https://$host$request_uri? permanent;
-}
-
-# SSL을 이용한 444번 포트 사용 사이트 정의 
-server {
-    listen      443 default;
-    server_name my-site.localhost;
-
-    ssl on;
-    ssl_certificate /etc/nginx/ssl/cacert.pem;
-    ssl_certificate_key /etc/nginx/ssl/privkey.pem;
-
-    ssl_session_timeout 5m;
-    ssl_session_cache shared:SSL:5m;
-    # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
-    ssl_dhparam /etc/nginx/ssl/dhparam.pem;
-
-    # secure settings (A+ at SSL Labs ssltest at time of writing)
-    # see https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-    ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-
-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-
-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:DHE-RSA-AES256-GCM-S
-HA384:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-CAMELLIA256-SHA:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES128-SHA
-256:DHE-RSA-AES128-SHA:DHE-RSA-SEED-SHA:DHE-RSA-CAMELLIA128-SHA:HIGH:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!
-DSS';
-    ssl_prefer_server_ciphers on;
-
-    proxy_set_header X-Forwarded-For $remote_addr;
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
-
-    proxy_buffers 16 64k;
-    proxy_buffer_size 128k;
-
-    server_tokens off;
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-
-    location / {
-        try_files $uri $uri/ =404;
-        client_max_body_size 0;
-    }
-}
-
-```
-
-설정 파일이 제대로 구성됐는지 테스트해본다.[^1]
-
-```sh
-sudo nginx -t
-```
 
 
 ### Nginx for Node.js
@@ -347,9 +242,5 @@ location /flv/ {
 ## 참조
 
 [^1]: [nginx command](https://www.nginx.com/resources/wiki/start/topics/tutorials/commandline/)
-[^2]: [SSL 인증서 종류](http://it79.egloos.com/1121724)
-
-[^3]: [Enabling Https with Nginx](https://manual.seafile.com/deploy/https_with_nginx.html)
-[^4]: [Create Self signed SSL](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04)
 [^5]: [Http Auth](https://www.digitalocean.com/community/tutorials/how-to-set-up-http-authentication-with-nginx-on-ubuntu-12-10)
 [^6]: [서버 프로세스 관리에 대해](http://www.codeok.net/서버%20프로세스를%20관리하는%20올바른%20방법)
