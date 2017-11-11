@@ -51,7 +51,9 @@ $ cd /etc/nginx/
 $ cp site-available/default cp site-available/my-site
 ```
 
-#### /etc/nginx/sites-available/my-site
+#### my-site
+
+가상 호스트 파일을 /etc/nginx/sites-available/ 폴더에 추가하고 site-enabled에 링크를 해주면 된다. 아래 내용으로 /etc/nginx/sites-available/my-site 파일을 다음 같이 추가해 준다.
 
 ```
 server {
@@ -71,7 +73,7 @@ server {
 ```
 
 
-사이트 활성화
+사이트 활성화는 /etc/nginx/site-enabled 폴더에 소프트 링크를 걸어준ㄷ.
 
 ```sh
 $ sudo ln -s /etc/nginx/sites-available/my-site /etc/nginx/sites-enabled/my-site 
