@@ -113,14 +113,14 @@ Ubuntu/Debian 계열의 패키지 명령 `apt`,`apt-get` 과 비슷한 openSUSE 
 
 ```sh
 zypper help search     # to print help for the search command
+zypper refresh, ref    # Refresh all repositories.
+zypper update,  up     # to update all installed packages
 zypper lp              # to see what patch updates are needed
 zypper patch           # to apply the needed patches
 zypper se sqlite       # to search for sqlite
 zypper rm sqlite2      # to remove sqlite2
 zypper in sqlite3      # to install sqlite3
 zypper in yast*        # to install all packages matching 'yast*'
-zypper update          # to update all installed packages
-zypper up              # to update all installed packages
 ```
 
 - [zypper usages](https://en.opensuse.org/SDB:Zypper_usage) 에서 사용방법을 자세히 알 수 있다.
