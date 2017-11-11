@@ -17,7 +17,7 @@ Opensuse 에서 Raspberry Pi 3를 위한 64bit OS openSESE Leap 42.2 을 제공�
   1. **Install 64bit openSUSE Leap 42.2 / JeOS**
   2. openSUSE: Managing Service daemon
   3. openSUSE: Basic OS Security for Server
-  4. Install & Configuration - Nginx, Node JS
+  4. [Install & Configuration - Nginx, Node JS, Jupyter]({% post_url /raspberrypi/2017-10-21-opensuse-jeos-nginxjupyter %})
   5. openSUSE: Build MongoDB 3.4.x
 
 
@@ -412,6 +412,32 @@ MemAvailable:     684504 kB
 ```
 
 [여기](https://raspberrypi.stackexchange.com/questions/56266/raspberry-pi-3-has-less-than-1gb-memory-available-at-os-level) 에 따르면 GPU 때문 인듯...
+
+
+### tune2fs
+
+fsck로 마지막 체크한 시간 확인은 `tune2fs` 명령을 이용
+
+```
+$sudo tune2fs -l /dev/sdbX | grep Last\ c
+Last checked:             Sun Dec 13 09:14:22 2015
+```
+
+마운트 횟수
+
+```
+tune2fs -l /dev/sdbX | grep Mount
+Mount count:              157
+```
+
+```
+tune2fs -l /dev/sdbX | grep Max
+Maximum mount count:      -1
+```
+
+
+tune2fs -c 10 /dev/sdb1
+
 
 
 <br>
