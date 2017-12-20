@@ -1,0 +1,3 @@
+## openSUSE Usages
+
+### journalctl

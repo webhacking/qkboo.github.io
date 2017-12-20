@@ -1,0 +1,45 @@
+<footer class="bg-faded mt-4 fixed-bottom">
+
+    {% comment %}<h3>{{ site.title | escape }}</h3>{% endcomment %}
+    
+    <div class="row">
+      <div class="col-md-3 footer-col">
+        <ul class="contact-list">
+          <li>
+            <h4><a href="/about"><i class="fa fa-question-circle-o" aria-hidden="true"></i>About {{ site.title | escape }}</a></h4>
+            <span class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></span>
+
+          </li>
+            {% if site.email %}
+            {% comment %}<li><a href="mailto:{{ site.email }}">{{ // site.email }}</a></li>{% endcomment %}
+            {% endif %}
+        </ul>
+      </div>
+
+      <div class="col-md-2 footer-col">
+        <ul class="social-media-list">
+          {% if site.github_username %}
+          <li>
+            {% include icon-github.html username=site.github_username %}
+          </li>
+          {% endif %}
+
+          {% if site.twitter_username %}
+          <li>
+            {% include icon-twitter.html username=site.twitter_username %}
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="col-md-5 ml-4 footer-col blog-description">
+        <p>{{ site.description | escape }}</p>
+      </div>
+    </div>
+
+</footer>
+
+{% if page.comments %}
+  <!-- Disqus comment count -->
+  <script id="dsq-count-scr" src="//{{ site.disqus.shortname }}.disqus.com/count.js" async></script>
+{% endif %}

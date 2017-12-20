@@ -1,0 +1,197 @@
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+.container {
+  padding-top: 1em;
+}
+
+
+/*
+ * Blog name and description
+ */
+
+@media (min-width: 40em) {
+  .blog-title {
+    font-size: 3.5rem;
+  }
+}
+
+
+
+/**
+ * Page content
+ */
+.page-content {
+  padding: $spacing-unit 0;
+}
+.page-heading {
+  @include relative-font-size(1.25);
+}
+
+.post-list {
+  margin-bottom: $spacing-unit;
+  margin-left:  $spacing-unit;
+  list-style: none;
+
+  > li {
+    margin-bottom: $spacing-unit;
+  }
+}
+.post-meta {
+  font-size: $small-font-size;
+  font-style: italic;
+  color: $gray;
+}
+
+.post-link {
+  display: block;
+  @include relative-font-size(1.5);
+}
+
+
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+  margin-top: 4rem;
+  margin-bottom: $footer-height+3;
+}
+.blog-post-header {
+  @include relative-font-size(1.15);
+}
+
+.blog-post-title {
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
+
+.blog-post > h2, h3 {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+.blog-post > h4, h5 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.blog-post > blockquote.right-history {
+  position: relative;
+  left: 60%;
+  width: 40%;
+  #border: 1px solid #afafaf;
+  padding: 5px;
+  background: #f1f1f1;
+  #font-family: "Times New Roman", Times, serif;
+  font: italic 0.8rem Georgia, serif;
+}
+
+// testing floating menu on right side
+.row-floating {
+    position: relative;
+}
+
+
+/*
+ * Keyword highlighter
+ */
+.blog-post .keyword {
+  font-family: Liberation Mono, Consolas, Menlo, Courier, monospace;
+  font-style: normal;
+  color: #0000c0
+}
+// highlighter의 highlight 클래스
+.highlight > code {
+  font-family: Liberation Mono, Consolas, Menlo, Courier, monospace;
+  font-size: 0.9em;//smaller;
+  line-height: 0.5;
+  word-wrap: break-word;
+}
+
+
+
+
+/**
+ * Navbar
+ */
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+/* Nav links */
+.nav-link {
+  position: relative;
+  padding: 1rem;
+  font-weight: 500;
+  color: #cdddeb;
+}
+.nav-link:hover,
+.nav-link:focus {
+  color: #fff;
+  background-color: transparent;
+}
+
+/* Active state gets a caret at the bottom */
+.nav-link.active {
+  color: #fff;
+}
+.nav-link.active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -.3rem;
+  vertical-align: middle;
+  content: "";
+  border-right: .3rem solid transparent;
+  border-bottom: .3rem solid;
+  border-left: .3rem solid transparent;
+}
+
+
+/**
+ * Footer
+ */
+
+footer {
+  border-top: 1px solid $gray-light;
+  padding: $spacing-unit/3 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: $footer-height;
+  line-height: 15px;
+  background-color: #f5f5f5;
+}
+
+footer > h1 h2 h3 h4 {
+  @include relative-font-size(1.125);
+  margin-bottom: $spacing-unit / 2;
+}
+
+.contact-list,
+.social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+footer > .footer-col {
+  float: left;
+  @include relative-font-size(0.7);
+  margin-bottom: $spacing-unit / 2;
+  padding-left: $spacing-unit / 2;
+}
+
+.blog-description {
+  @include relative-font-size(0.8);
+  color: #999;
+}

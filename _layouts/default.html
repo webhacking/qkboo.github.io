@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <!-- Start. contents here -->
+    
+    {{ content }}
+      
+    <!-- End. contents here -->
+
+    {% include footer.html %}
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+
+
+<script>
+/* Latest compiled and minified JavaScript included as External Resource */
+
+
+$(document).ready(function(){
+  var offsetTop = $('.row-floating').offset().top;
+  var actualWidth =$('.row-floating').width(); 
+  $(window).scroll(function() {
+    if( window.scrollY >= offsetTop){
+      $('.row-floating').css('position', 'fixed').css('top', 0).css('width',actualWidth);
+    } else {
+      $('.row-floating').css('position', 'relative').css('top', 'auto').css('width','auto');
+    }
+  });
+});
+</script>
+
+  </body>
+
+</html>
