@@ -503,6 +503,7 @@ describe("필터 테스트", function() {
 ```
 
 
+length 필터를 선언한 myapp.filters.js 소스
 
 ```js
 angular.module('myapp.filters', [])
@@ -513,56 +514,26 @@ angular.module('myapp.filters', [])
 })
 ```
 
-karma.config.js 에 필터 소스를 추가해 준다. 새 컨트롤이 추가된 후 karma를 재시작해서 테스트를 진행한다.
 
+karma.config.js 에 필터 소스를 추가해 준다. 
 
-interporate 필터 테스트
-
-```js
-describe("필터 테스트", function() {
-
-  beforeEach(module('myapp.filters')); //모듈 로드
-
-  describe('interpolate 필터 테스트', function() {
-    beforeEach(module(function($provide) {
-      $provie.value('version', 'TEST_VER');
-    }));
-
-    it('interpolate 필터가 있는가?', inject([function(interpolateFilter) {
-        expect(interpolateFilter).not.toEqual(null);
-        // expect(interpolateFilter).toBeDefined();
-    }]));//it
-
-    it('버전위치 치환', inject([function(interpolateFilter) {
-      expect(interpolateFilter('앞 %VERSION% 뒤')).toEqual('앞 TEST_VER 뒤');
-    }]));//it
-
-  });
-});
-```
-
-이 필터는 `%VERSION%`으로 전달된 부분을 버전 값으로 치환해 준다.
+추가한 소스를 karma.config.js 에 추가해 준다.
 
 ```js
-angular.module('myapp.filters', [])
-.filter('length', function() {
-  return function(text) {
-    return ('' + (text || '')).length;
-  }
-})
+files: [
+        'node_modules/angular/angular.js',
+        'node_modules/angular-mocks/angular-mocks.js',
 
-.filter('interporate', ['version', function(version) {
-  return function(text) {
-    return String(text).replace(/\%VERSION\%/mg, version);
-  };
-}]);
+        'app/src/app.js',
+        'app/src/service/myapp.service.js',
+        'app/src/controller/myapp.controller.js',
+        'app/src/filter/myapp.filters.js',
+        'app/src/test/test*.js'
+    ],
 ```
 
-karma.config.js 에 필터 소스를 추가해 준다.
 
 새 컨트롤이 추가된 후 karma를 재시작해서 테스트를 진행한다.
-
-
 
 
 {% comment %}
