@@ -116,6 +116,35 @@ npm install npm@latest -g
 ```
 
 
+#### Outdated module
+
+현재 package.json 에 설치된 버전과 명시된 버전 그리고 최신 버전과 차이를 알 수 있다.
+
+```sh
+npm outdated
+Package                  Current  Wanted  Latest  Location
+body-parser               1.15.2  1.15.2  1.18.2  application-name
+debug                      0.7.4   0.7.4   3.1.0  application-name
+```
+
+최신 버전으로 설치를 하려면 package.json을 버전코드로 변경하고 업데이트를 진행한다.
+
+모든 패키지를 업데이트할 수 있다.
+
+```
+npm update
++ mongoose@4.13.1
+added 1 package, removed 4 packages and updated 2 packages in 32.975s
+```
+
+특정 모듈만 업데이트하려면 패키지를 명시하면 된다.
+
+```
+npm update debug
+```
+
+
+
 #### lts 버전
 
 Node.js 는 가용 버전이 장기지원을 위해서 [LTS(Long Term Support)](https://github.com/nodejs/Release) 프로그램을 진행하고 있다. 실제 운영 서버는 이런 LTS 버전을 중심으로 가동될 것이다. **nvm** 도 lts 만을 선별해서 설치하고 관리할 수 있다.
