@@ -23,34 +23,28 @@
 /**
  * Page content
  */
+.page-container {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
 .page-content {
   padding: $spacing-unit 0;
 }
-.page-heading {
+
+.page-header {
   @include relative-font-size(1.25);
 }
 
-.post-list {
-  margin-bottom: $spacing-unit;
-  margin-left:  $spacing-unit;
-  list-style: none;
 
-  > li {
-    margin-bottom: $spacing-unit;
-  }
+/**
+ * Tags for Tags, Categories
+ */
+.tags-expo {
+  padding-top: 4em;
 }
-.post-meta {
-  font-size: $small-font-size;
-  font-style: italic;
-  color: $gray;
+.tags-expo-list {
+  
 }
-
-.post-link {
-  display: block;
-  @include relative-font-size(1.5);
-}
-
-
 
 /*
  * Blog posts
@@ -73,6 +67,26 @@
 .blog-post-meta {
   margin-bottom: 1.25rem;
   color: #999;
+}
+
+.post-list {
+  margin-bottom: $spacing-unit;
+  margin-left:  $spacing-unit;
+  list-style: none;
+
+  > li {
+    margin-bottom: $spacing-unit;
+  }
+}
+.post-meta {
+  font-size: $small-font-size;
+  font-style: italic;
+  color: $gray;
+}
+
+.post-link {
+  display: block;
+  @include relative-font-size(1.5);
 }
 
 .blog-post > h2, h3 {
@@ -115,8 +129,6 @@
   line-height: 0.5;
   word-wrap: break-word;
 }
-
-
 
 
 /**
