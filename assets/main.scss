@@ -1,9 +1,9 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
-
-//@import "minima";
+@import "initial"; // before 'main', variables for bootstrap
+@import "minima/_base";
+@import "minima/_syntax-highlighting";
 @import "_bootstrap";
 @import "_bootstrap-grid";
-@import "_custom"; // before 'main', variables for bootstrap
-@import "_blog";
+@import "_blog";	// blog css
