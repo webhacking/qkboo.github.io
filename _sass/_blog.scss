@@ -1,19 +1,10 @@
-@mixin media-query($device) {
-  @media screen and (max-width: $device) {
-    @content;
-  }
-}
-
-@mixin relative-font-size($ratio) {
-  font-size: $base-font-size * $ratio;
-}
-
 /*
  * Override Bootstrap's default container.
  */
 
-.container {
-  padding-top: 1em;
+.container .container-fluid {
+  margin-top: 10px;
+  padding-top: 5px;
 }
 
 
